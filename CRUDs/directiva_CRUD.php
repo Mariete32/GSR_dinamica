@@ -1,0 +1,1 @@
+SELECT directiva.*, cargos.* FROM directiva JOIN cargos ON directiva.`jun_cargo_id` = cargos.car_id

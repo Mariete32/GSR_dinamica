@@ -18,8 +18,8 @@ class Eventos{
         $this->eve_url_ima=$eve_url_ima;
     }
     //hacemos las funciones get de los datos del usuario
-    public function get_eve_titulo(){
-        return $this->eve_titulo;
+    public function get_fecha(){
+        return $this->eve_fecha;
     }
     public function get_eve_fecha_limite_inscripcion(){
         return $this->eve_fecha_limite_inscripcion;

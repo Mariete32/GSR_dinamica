@@ -44,3 +44,4 @@ class Junta_directiva{
 
     }
 }
+?>
