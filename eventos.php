@@ -124,70 +124,7 @@
   $eventos = new CrudEventos();
   $eventos->eventos();
   ?>
-  <!--<div class="container ">
-    <center>
 
-      <div class="row col-12">
-        <div class="card text-center col-lg-3 col-md-4 col-sm-12 m-auto mt-2" style="width: 18rem; ">
-          <div class="card-body pb-4">
-            <div class="card-border-top btn-mayo">
-            </div>
-            <div class="card-title img btn-azulclaro">
-              <h1>29</h1>
-              <h4 class="card-title">MAYO</h4>
-            </div>
-
-            <div class="accordion accordion-flush m-4" id="accordionFlushExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingOne">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    <span class="text-center w-100">Paellas</span>
-                  </button>
-                </h2>
-                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-                  data-bs-parent="#accordionFlushExample">
-                  <div class="accordion-body">
-                    Paellas, castillos hinchables, música ...
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card text-center col-lg-3 col-md-4 col-sm-12 m-auto mt-2" style="width: 18rem;">
-          <div class="card-body pb-4">
-            <div class="card-border-top btn-junio">
-            </div>
-            <div class="card-title img btn-azulclaro">
-              <h1>18</h1>
-              <h4 class="card-title">JUNIO</h4>
-            </div>
-
-            <div class="accordion accordion-flush m-4" id="accordionFlushExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTwo">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                    <span class="text-center w-100">San Joan</span>
-                  </button>
-                </h2>
-                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
-                  data-bs-parent="#accordionFlushExample">
-                  <div class="accordion-body">
-                    Paellas, jocs infantils, sopar catering i discomovil
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <H3 class="mt-5">APÚNTATE EN EL FORMULARIO</H3>
-    </center>
-  </div>
--->
   <div class="container">
     <div class="row col-lg-12">
 

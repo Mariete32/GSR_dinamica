@@ -26,8 +26,7 @@ class CrudEventos
     }
 
 //funcion que imprime los eventos en tarjetas ($fecha, $fechaLimite, $titulo, $detalles, $suscripcion, $url);
-    public function eventos()
-    {
+    public function eventos(){
         $conexion = database::conexion();
         $consulta = "SELECT * FROM eventos ORDER BY `eve_fecha`";
         $consultaPreparada = $conexion->prepare($consulta);
@@ -60,20 +59,17 @@ class CrudEventos
             if ($mes == 12) {$mes = "diciembre";}
             echo "<div class='card text-center col-lg-3 col-md-4 col-sm-12 m-auto mt-2' style='width: 18rem; '>";
             echo "  <div class='card-body  pb-4'>";
-            echo "   <div class='card-border-top btn-$mes'>";
-            echo '   </div>';
-            if ($suscripcion == 1 || $suscripcion == true) {
-                $fondo = "danger";
-                echo "   <div class='card-title img btn-$fondo d-flex  align-items-center'>";
-            } else {
-                echo "   <div class='card-title img btn-azulclaro d-flex align-items-center'>";
-            }
+            echo "   <div class='card-border-top btn-$mes'></div>";
+            echo "<div class='m-1'>";
+            echo "<img src='$url' class='w-100 h-100' style='max-width: 100px'></div>";            
+            echo "   <div class='card-title img btn-azulclaro d-flex align-items-center'>";
             echo "     <h3 class='mx-auto'>$fecha</h3>";
             echo '   </div>';
             if ($fechaLimite) {
                 //cambiamos el formato de la fecha
                 $fechaLimite = date('d-m-Y', strtotime($fechaLimite));
-                echo "     <h5 class='card-title'>fecha límite de inscripción $fechaLimite</h5>";
+                $fondo = "danger";
+                echo "     <h5 class='card-title border m-2 btn-$fondo '>fecha límite de inscripción $fechaLimite</h5>";
             }
             echo '  <div class="accordion accordion-flush m-4" id="accordionFlushExample">';
             echo '      <div class="accordion-item">';
@@ -96,8 +92,7 @@ class CrudEventos
         }
     }
 //funcion que devuelve una clase evento con sus datos
-    public function datosEventoID($id)
-    {
+    public function datosEventoID($id){
         $conexion = database::conexion();
         $consulta = "SELECT * FROM eventos WHERE id= :id";
         $consultaPreparada = $conexion->prepare($consulta);
@@ -115,7 +110,32 @@ class CrudEventos
         }
         return $evento;
     }
+//funcion que imprime el nombre de las falleras en un select
+public function eventosSuscripcion()
+{
+    $conexion = database::conexion();
+    $consulta = "SELECT * FROM `eventos` WHERE `eve_suscripcion`= True";
+    $consultaPreparada = $conexion->prepare($consulta);
+    $consultaPreparada->execute();
+    $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
+    echo "<div class='col-md-3'>";
+    echo  "    <label for='validationDefault02' class='form-label'>Dia del evento</label>";
+    echo "     <input name='Dia' type='text' placeholder='DD/MM/AAAA' class='form-control' id='validationDefault02' required></div>";
+    echo "<label for='evento'>Fallera</label>";
+    
+    echo "<select id='fallera'class='form-select form-select-sm' name='idFallera' >";
+    echo "<option selected>Selecciona</option>";
+    foreach ($resultado as $value) {
+        $id = $value['id'];
+        $nombre = $value['nombre'];
+        $apellidos = $value['apellidos'];
+        $anyo = $value['año'];
+        $nombreCompleto = $nombre . ' ' . $apellidos . ' ' . $anyo;
+        echo "<option value=$id>" . $nombreCompleto . "</option>";
+    }
+    echo "</select>";
 
+}
 //funcion que imprime los nombres de los falleras_mayores pasandole un objeto tipo Fallera com parametro
     public function imprimirNombrefallera($fallera)
     {
