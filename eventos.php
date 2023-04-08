@@ -119,7 +119,12 @@
     Weather Data Source: <a href="https://sharpweather.com/es/tiempo_valencia/semana/" id="ww_720bcd72f1778_u"
       target="_blank">pronóstico para 7 dias Valencia</a></div>
   <script async src="https://app1.weatherwidget.org/js/?id=ww_720bcd72f1778"></script>
-  <div class="container ">
+  <?php
+  require_once "./CRUDs/eventos_CRUD.php";
+  $eventos = new CrudEventos();
+  $eventos->eventos();
+  ?>
+  <!--<div class="container ">
     <center>
 
       <div class="row col-12">
@@ -182,7 +187,7 @@
       <H3 class="mt-5">APÚNTATE EN EL FORMULARIO</H3>
     </center>
   </div>
-
+-->
   <div class="container">
     <div class="row col-lg-12">
 

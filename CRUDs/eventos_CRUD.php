@@ -1,13 +1,13 @@
 <?php
-require_once './classes/fallera_mayor.php';
+require_once './classes/evento.php';
 require_once './BBDD/database.php';
 class CrudEventos
 {
-    public function __construct(){}
-
+    public function __construct()
+    {}
 
     //funcion que devuelve una clase fallera con sus datos
-    public function datosFalleraAnyo($anyo)
+    public function datosEventos($anyo)
     {
         $conexion = database::conexion();
         $consulta = "SELECT * FROM falleras_mayores WHERE anyo= :anyo";
@@ -25,48 +25,95 @@ class CrudEventos
         return $fallera;
     }
 
-//funcion que imprime el nombre de las falleras en un select
-    public function nombresFalleras()
+//funcion que imprime los eventos en tarjetas ($fecha, $fechaLimite, $titulo, $detalles, $suscripcion, $url);
+    public function eventos()
     {
         $conexion = database::conexion();
-        $consulta = "SELECT * FROM falleras_mayores";
+        $consulta = "SELECT * FROM eventos ORDER BY `eve_fecha`";
         $consultaPreparada = $conexion->prepare($consulta);
         $consultaPreparada->execute();
         $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-        echo '<label for="fallera">Fallera</label>';
-        echo "<select id='fallera'class='form-select form-select-sm' name='idFallera' >";
-        echo "<option selected>Selecciona</option>";
+        echo '<div class="container ">';
+        echo '<center>';
+        echo '<div class="row col-12">';
         foreach ($resultado as $value) {
-            $id = $value['id'];
-            $nombre = $value['nombre'];
-            $apellidos = $value['apellidos'];
-            $anyo = $value['año'];
-            $nombreCompleto = $nombre . ' ' . $apellidos . ' ' . $anyo;
-            echo "<option value=$id>" . $nombreCompleto . "</option>";
+            $id = $value['eve_id'];
+            $fecha = $value['eve_fecha'];
+            $fecha = date('d-m-Y', strtotime($fecha));
+            $mes = date("m", strtotime($fecha));
+            $fechaLimite = $value['eve_fecha_limite_inscripcion'];
+            $titulo = $value['eve_titulo'];
+            $detalles = $value['eve_detalles'];
+            $suscripcion = $value['eve_suscripcion'];
+            $url = $value['eve_url_img'];
+            if ($mes == 1) {$mes = "enero";}
+            if ($mes == 2) {$mes = "febrero";}
+            if ($mes == 3) {$mes = "marzo";}
+            if ($mes == 4) {$mes = "abril";}
+            if ($mes == 5) {$mes = "mayo";}
+            if ($mes == 6) {$mes = "junio";}
+            if ($mes == 7) {$mes = "julio";}
+            if ($mes == 8) {$mes = "agosto";}
+            if ($mes == 9) {$mes = "septiembre";}
+            if ($mes == 10) {$mes = "octubre";}
+            if ($mes == 11) {$mes = "noviembre";}
+            if ($mes == 12) {$mes = "diciembre";}
+            echo "<div class='card text-center col-lg-3 col-md-4 col-sm-12 m-auto mt-2' style='width: 18rem; '>";
+            echo "  <div class='card-body  pb-4'>";
+            echo "   <div class='card-border-top btn-$mes'>";
+            echo '   </div>';
+            if ($suscripcion == 1 || $suscripcion == true) {
+                $fondo = "danger";
+                echo "   <div class='card-title img btn-$fondo d-flex  align-items-center'>";
+            } else {
+                echo "   <div class='card-title img btn-azulclaro d-flex align-items-center'>";
+            }
+            echo "     <h3 class='mx-auto'>$fecha</h3>";
+            echo '   </div>';
+            if ($fechaLimite) {
+                //cambiamos el formato de la fecha
+                $fechaLimite = date('d-m-Y', strtotime($fechaLimite));
+                echo "     <h5 class='card-title'>fecha límite de inscripción $fechaLimite</h5>";
+            }
+            echo '  <div class="accordion accordion-flush m-4" id="accordionFlushExample">';
+            echo '      <div class="accordion-item">';
+            echo "       <h2 class='accordion-header' id='flush-heading$id'>";
+            echo '         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"';
+            echo "           data-bs-target='#flush-collapse$id' aria-expanded='false' aria-controls='flush-collapse$id'>";
+            echo "           <span class='text-center w-100'>$titulo</span>";
+            echo '         </button>';
+            echo '       </h2>';
+            echo "       <div id='flush-collapse$id' class='accordion-collapse collapse' aria-labelledby='flush-heading$id'";
+            echo '        data-bs-parent="#accordionFlushExample">';
+            echo '        <div class="accordion-body">';
+            echo "          <p>$detalles</p>";
+            echo '        </div>';
+            echo '      </div>';
+            echo '    </div>';
+            echo '  </div>';
+            echo ' </div>';
+            echo '  </div>';
         }
-        echo "</select>";
-
     }
-//funcion que devuelve una clase fallera con sus datos
-    public function datosFalleraID($id)
+//funcion que devuelve una clase evento con sus datos
+    public function datosEventoID($id)
     {
         $conexion = database::conexion();
-        $consulta = "SELECT * FROM falleras_mayores WHERE id= :id";
+        $consulta = "SELECT * FROM eventos WHERE id= :id";
         $consultaPreparada = $conexion->prepare($consulta);
         $consultaPreparada->bindValue(':id', $id);
         $consultaPreparada->execute();
         $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
         foreach ($resultado as $value) {
-            $nombre = $value["nombre"];
-            $apellidos = $value["apellidos"];
-            $imagen = $value["imagen"];
-            echo "<img src='data:image/jpeg; base64,". base64_encode($imagen)."'>";
-
-
-            $año = $value["año"];
-            $fallera = new FalleraMayor($nombre, $apellidos,$año, $imagen);
+            $fecha = $value["eve_fecha"];
+            $fechaLimite = $value["eve_fecha_limite_inscripcion"];
+            $titulo = $value["eve_titulo"];
+            $detalles = $value["eve_detalles"];
+            $suscripcion = $value["eve_suscripcion"];
+            $url = $value["eve_url_img"];
+            $evento = new Evento($fecha, $fechaLimite, $titulo, $detalles, $suscripcion, $url);
         }
-        return $fallera;
+        return $evento;
     }
 
 //funcion que imprime los nombres de los falleras_mayores pasandole un objeto tipo Fallera com parametro
@@ -106,7 +153,8 @@ class CrudEventos
     }
 
 //funcion que actualiza los valores en la base de datos
-    public static function editarfallera($fallera){
+    public static function editarfallera($fallera)
+    {
         try {
             $conexion = database::conexion();
             $id = $fallera->get_id();
@@ -127,23 +175,24 @@ class CrudEventos
     }
 
 //funcion que inserta un fallera en la bbdd
-    public function insertarFallera($fallera,$imagenSize,$imagenTemp_name){
+    public function insertarFallera($fallera, $imagenSize, $imagenTemp_name)
+    {
         var_dump($fallera);
         //$carpeta_destino=$_SERVER['DOCUMENT_ROOT'].'/proyecto_falla/imagenes/';fallerasMayores
-        $carpeta_destino='imagenes/fallerasMayores/';
-        $ruta= $carpeta_destino.$fallera->get_imagen();
+        $carpeta_destino = 'imagenes/fallerasMayores/';
+        $ruta = $carpeta_destino . $fallera->get_imagen();
 
-        move_uploaded_file($imagenTemp_name,$ruta);
+        move_uploaded_file($imagenTemp_name, $ruta);
         try {
             $conexion = Database::conexion();
 
             //$archivo_objetivo=fopen($ruta,"rb");
-            echo$ruta;
+            echo $ruta;
             //$contenido=fread($archivo_objetivo,filesize($ruta));//$imagenSize
             //le decimos que escape la barras laterales de la ruta
             //$contenido=addcslashes($contenido,"/");
             //fclose($archivo_objetivo);
-            
+
             //$imagen_base64 = base64_encode($archivo_objetivo);
             //$insertar = 'INSERT INTO falleras_mayores values(NULL,:nombre,:apellidos,"'.$imagen_base64.'",:anyo)';
 
@@ -165,4 +214,3 @@ class CrudEventos
         echo $exito;
     }
 }
-?>

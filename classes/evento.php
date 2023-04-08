@@ -1,6 +1,6 @@
 <?php
 
-class Eventos{
+class Evento{
     protected $eve_id;
     protected $eve_fecha;
     protected $eve_fecha_limite_inscripcion;
