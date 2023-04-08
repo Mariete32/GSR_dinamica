@@ -61,15 +61,15 @@ class CrudEventos
             echo "  <div class='card-body  pb-4'>";
             echo "   <div class='card-border-top btn-$mes'></div>";
             echo "<div class='m-1'>";
-            echo "<img src='$url' class='w-100 h-100' style='max-width: 100px'></div>";            
-            echo "   <div class='card-title img btn-azulclaro d-flex align-items-center'>";
+            echo "<img src='$url' class='w-100 h-100' style='max-width: 150px'></div>";            
+            echo "   <div class='card-title img h-50 btn-azulclaro d-flex align-items-center'>";
             echo "     <h3 class='mx-auto'>$fecha</h3>";
             echo '   </div>';
             if ($fechaLimite) {
                 //cambiamos el formato de la fecha
                 $fechaLimite = date('d-m-Y', strtotime($fechaLimite));
                 $fondo = "danger";
-                echo "     <h5 class='card-title border m-2 btn-$fondo '>fecha límite de inscripción $fechaLimite</h5>";
+                echo "     <h5 class='card-title img h-50 w-100 m-2 btn-$fondo '>fecha límite de inscripción $fechaLimite</h5>";
             }
             echo '  <div class="accordion accordion-flush m-4" id="accordionFlushExample">';
             echo '      <div class="accordion-item">';
