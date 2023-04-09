@@ -5,7 +5,7 @@ class CrudEventos
 {
     public function __construct(){}
 
-//funcion que imprime los eventos en tarjetas ($fecha, $fechaLimite, $eve_titulo, $eve_detalles, $suscripcion, $url);
+//funcion que imprime los eventos en tarjetas ($fecha, $fechaLimite, $titulo, $detalles, $suscripcion, $url);
     public function eventos(){
         $conexion = database::conexion();
         $consulta = "SELECT * FROM eventos ORDER BY `eve_fecha`";
@@ -17,14 +17,14 @@ class CrudEventos
         echo '<div class="row col-12">';
         //hacemos una carda por evento
         foreach ($resultado as $value) {
-            $eve_suscripcion = $value['eve_eve_suscripcion'];
+            $id = $value['eve_id'];
             //cambiamos el formato de la fecha
             $fecha = $value['eve_fecha'];
             $fecha = date('d-m-Y', strtotime($fecha));
             $mes = date("m", strtotime($fecha));
             $fechaLimite = $value['eve_fecha_limite_inscripcion'];
-            $eve_titulo = $value['eve_eve_titulo'];
-            $eve_detalles = $value['eve_eve_detalles'];
+            $titulo = $value['eve_titulo'];
+            $detalles = $value['eve_detalles'];
             $suscripcion = $value['eve_suscripcion'];
             $url = $value['eve_url_img'];
             if ($mes == 1) {$mes = "enero";}
@@ -39,11 +39,11 @@ class CrudEventos
             if ($mes == 10) {$mes = "octubre";}
             if ($mes == 11) {$mes = "noviembre";}
             if ($mes == 12) {$mes = "diciembre";}
-            echo "<div class='card text-center col-lg-3 col-md-4 col-sm-12 m-auto mt-2' style='weve_suscripcionth: 18rem; '>";
+            echo "<div class='card text-center col-lg-3 col-md-4 col-sm-12 m-auto mt-2' style='width: 18rem; '>";
             echo "  <div class='card-body  pb-4'>";
             echo "   <div class='card-border-top btn-$mes'></div>";
             echo "<div class='m-1'>";
-            echo "<img src='$url' class='w-100 h-100' style='max-weve_suscripcionth: 150px'></div>";            
+            echo "<img src='$url' class='w-100 h-100' style='max-width: 150px'></div>";            
             echo "   <div class='card-title img h-50 btn-azulclaro d-flex align-items-center'>";
             echo "     <h3 class='mx-auto'>$fecha</h3>";
             echo '   </div>';
@@ -53,18 +53,18 @@ class CrudEventos
                 $fondo = "danger";
                 echo "     <h5 class='card-title img h-50 w-100 m-2 btn-$fondo '>fecha límite de inscripción $fechaLimite</h5>";
             }
-            echo '  <div class="accordion accordion-flush m-4" eve_suscripcion="accordionFlushExample">';
+            echo '  <div class="accordion accordion-flush m-4" id="accordionFlushExample">';
             echo '      <div class="accordion-item">';
-            echo "       <h2 class='accordion-header' eve_suscripcion='flush-heading$eve_suscripcion'>";
+            echo "       <h2 class='accordion-header' id='flush-heading$id'>";
             echo '         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"';
-            echo "           data-bs-target='#flush-collapse$eve_suscripcion' aria-expanded='false' aria-controls='flush-collapse$eve_suscripcion'>";
-            echo "           <span class='text-center w-100'>$eve_titulo</span>";
+            echo "           data-bs-target='#flush-collapse$id' aria-expanded='false' aria-controls='flush-collapse$id'>";
+            echo "           <span class='text-center w-100'>$titulo</span>";
             echo '         </button>';
             echo '       </h2>';
-            echo "        <div eve_suscripcion='flush-collapse$eve_suscripcion' class='accordion-collapse collapse' aria-labelledby='flush-heading$eve_suscripcion'";
+            echo "        <div id='flush-collapse$id' class='accordion-collapse collapse' aria-labelledby='flush-heading$id'";
             echo '        data-bs-parent="#accordionFlushExample">';
-            echo '          <div class="accordion-body">';
-            echo "            <p>$eve_detalles</p>";
+            echo '          <div class="accordion-body p-1">';
+            echo "            <p'>$detalles</p>";
             echo '          </div>';
             echo '        </div>';
             echo '      </div>';
@@ -88,8 +88,8 @@ class CrudEventos
         foreach ($resultado as $value) {
             $fecha = $value["eve_fecha"];
             $fechaLimite = $value["eve_fecha_limite_inscripcion"];
-            $eve_titulo = $value["eve_eve_titulo"];
-            $eve_detalles = $value["eve_eve_detalles"];
+            $eve_titulo = $value["eve_titulo"];
+            $eve_detalles = $value["eve_detalles"];
             $suscripcion = $value["eve_suscripcion"];
             $url = $value["eve_url_img"];
             $evento = new Evento($fecha, $fechaLimite, $eve_titulo, $eve_detalles, $suscripcion, $url);
@@ -114,8 +114,8 @@ public function eventosSuscripcion()
         $fecha = date('d-m-Y', strtotime($fecha));
 
         $fechaLimite = $value["eve_fecha_limite_inscripcion"];
-        $eve_titulo = $value["eve_eve_titulo"];
-        $eve_detalles = $value["eve_eve_detalles"];
+        $eve_titulo = $value["eve_titulo"];
+        $eve_detalles = $value["eve_detalles"];
         $suscripcion = $value["eve_suscripcion"];
         $url = $value["eve_url_img"];
         echo "<option value=$eve_suscripcion> $eve_titulo $fecha </option>";
@@ -125,13 +125,13 @@ public function eventosSuscripcion()
 }
 
 //funcion que elimina el evento
-    public function eliminarevento($eve_suscripcionevento)
+    public function eliminarEvento($idEvento)
     {
         try {
             $conexion = database::conexion();
-            $consulta = "DELETE FROM eventos WHERE  eve_eve_suscripcion=:eve_suscripcionevento";
+            $consulta = "DELETE FROM eventos WHERE  eve_id=:eve_id";
             $consultaPreparada = $conexion->prepare($consulta);
-            $consultaPreparada->bindValue(':eve_suscripcionevento', $eve_suscripcionevento);
+            $consultaPreparada->bindValue(':eve_id', $eve_id);
             $consultaPreparada->execute();
             $exito = 1;
             return $exito;
