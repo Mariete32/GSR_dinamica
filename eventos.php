@@ -127,13 +127,10 @@
 
   <div class="container">
     <div class="row col-lg-12">
-
-
       <form class="row g-3 mb-3" action="https://formsubmit.co/d551e9122ec63de4621fdfbe72141e52" method="POST">
-        <div class="col-md-3">
-          <label for="validationDefault02" class="form-label">Dia del evento</label>
-          <input name="Dia" type="text" placeholder="DD/MM/AAAA" class="form-control" id="validationDefault02" required>
-        </div>
+        <?php
+        $eventos->eventosSuscripcion()
+        ?>
         <div class="col-md-3">
           <label for="validationDefault01" class="form-label">Nombre</label>
           <input name="Nombre" type="text" class="form-control" id="validationDefault01" required>

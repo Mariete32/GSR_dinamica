@@ -3,29 +3,9 @@ require_once './classes/evento.php';
 require_once './BBDD/database.php';
 class CrudEventos
 {
-    public function __construct()
-    {}
+    public function __construct(){}
 
-    //funcion que devuelve una clase fallera con sus datos
-    public function datosEventos($anyo)
-    {
-        $conexion = database::conexion();
-        $consulta = "SELECT * FROM falleras_mayores WHERE anyo= :anyo";
-        $consultaPreparada = $conexion->prepare($consulta);
-        $consultaPreparada->bindValue(':anyo', $anyo);
-        $consultaPreparada->execute();
-        $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($resultado as $value) {
-            $nombre = $value["nombre"];
-            $apellidos = $value["apellidos"];
-            $imagen = $value["imagen"];
-            $año = $value["año"];
-            $fallera = new FalleraMayor($nombre, $apellidos, $imagen, $año, $id_fallera);
-        }
-        return $fallera;
-    }
-
-//funcion que imprime los eventos en tarjetas ($fecha, $fechaLimite, $titulo, $detalles, $suscripcion, $url);
+//funcion que imprime los eventos en tarjetas ($fecha, $fechaLimite, $eve_titulo, $eve_detalles, $suscripcion, $url);
     public function eventos(){
         $conexion = database::conexion();
         $consulta = "SELECT * FROM eventos ORDER BY `eve_fecha`";
@@ -35,14 +15,16 @@ class CrudEventos
         echo '<div class="container ">';
         echo '<center>';
         echo '<div class="row col-12">';
+        //hacemos una carda por evento
         foreach ($resultado as $value) {
-            $id = $value['eve_id'];
+            $eve_suscripcion = $value['eve_eve_suscripcion'];
+            //cambiamos el formato de la fecha
             $fecha = $value['eve_fecha'];
             $fecha = date('d-m-Y', strtotime($fecha));
             $mes = date("m", strtotime($fecha));
             $fechaLimite = $value['eve_fecha_limite_inscripcion'];
-            $titulo = $value['eve_titulo'];
-            $detalles = $value['eve_detalles'];
+            $eve_titulo = $value['eve_eve_titulo'];
+            $eve_detalles = $value['eve_eve_detalles'];
             $suscripcion = $value['eve_suscripcion'];
             $url = $value['eve_url_img'];
             if ($mes == 1) {$mes = "enero";}
@@ -57,11 +39,11 @@ class CrudEventos
             if ($mes == 10) {$mes = "octubre";}
             if ($mes == 11) {$mes = "noviembre";}
             if ($mes == 12) {$mes = "diciembre";}
-            echo "<div class='card text-center col-lg-3 col-md-4 col-sm-12 m-auto mt-2' style='width: 18rem; '>";
+            echo "<div class='card text-center col-lg-3 col-md-4 col-sm-12 m-auto mt-2' style='weve_suscripcionth: 18rem; '>";
             echo "  <div class='card-body  pb-4'>";
             echo "   <div class='card-border-top btn-$mes'></div>";
             echo "<div class='m-1'>";
-            echo "<img src='$url' class='w-100 h-100' style='max-width: 150px'></div>";            
+            echo "<img src='$url' class='w-100 h-100' style='max-weve_suscripcionth: 150px'></div>";            
             echo "   <div class='card-title img h-50 btn-azulclaro d-flex align-items-center'>";
             echo "     <h3 class='mx-auto'>$fecha</h3>";
             echo '   </div>';
@@ -71,46 +53,50 @@ class CrudEventos
                 $fondo = "danger";
                 echo "     <h5 class='card-title img h-50 w-100 m-2 btn-$fondo '>fecha límite de inscripción $fechaLimite</h5>";
             }
-            echo '  <div class="accordion accordion-flush m-4" id="accordionFlushExample">';
+            echo '  <div class="accordion accordion-flush m-4" eve_suscripcion="accordionFlushExample">';
             echo '      <div class="accordion-item">';
-            echo "       <h2 class='accordion-header' id='flush-heading$id'>";
+            echo "       <h2 class='accordion-header' eve_suscripcion='flush-heading$eve_suscripcion'>";
             echo '         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"';
-            echo "           data-bs-target='#flush-collapse$id' aria-expanded='false' aria-controls='flush-collapse$id'>";
-            echo "           <span class='text-center w-100'>$titulo</span>";
+            echo "           data-bs-target='#flush-collapse$eve_suscripcion' aria-expanded='false' aria-controls='flush-collapse$eve_suscripcion'>";
+            echo "           <span class='text-center w-100'>$eve_titulo</span>";
             echo '         </button>';
             echo '       </h2>';
-            echo "       <div id='flush-collapse$id' class='accordion-collapse collapse' aria-labelledby='flush-heading$id'";
+            echo "        <div eve_suscripcion='flush-collapse$eve_suscripcion' class='accordion-collapse collapse' aria-labelledby='flush-heading$eve_suscripcion'";
             echo '        data-bs-parent="#accordionFlushExample">';
-            echo '        <div class="accordion-body">';
-            echo "          <p>$detalles</p>";
+            echo '          <div class="accordion-body">';
+            echo "            <p>$eve_detalles</p>";
+            echo '          </div>';
             echo '        </div>';
             echo '      </div>';
-            echo '    </div>';
             echo '  </div>';
             echo ' </div>';
-            echo '  </div>';
+            echo ' </div>';
         }
+        echo '</div>';
+        echo '</div>';
+            
+        
     }
 //funcion que devuelve una clase evento con sus datos
-    public function datosEventoID($id){
+    public function datosEventoeve_suscripcion($eve_suscripcion){
         $conexion = database::conexion();
-        $consulta = "SELECT * FROM eventos WHERE id= :id";
+        $consulta = "SELECT * FROM eventos WHERE eve_suscripcion= :eve_suscripcion";
         $consultaPreparada = $conexion->prepare($consulta);
-        $consultaPreparada->bindValue(':id', $id);
+        $consultaPreparada->bindValue(':eve_suscripcion', $eve_suscripcion);
         $consultaPreparada->execute();
         $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
         foreach ($resultado as $value) {
             $fecha = $value["eve_fecha"];
             $fechaLimite = $value["eve_fecha_limite_inscripcion"];
-            $titulo = $value["eve_titulo"];
-            $detalles = $value["eve_detalles"];
+            $eve_titulo = $value["eve_eve_titulo"];
+            $eve_detalles = $value["eve_eve_detalles"];
             $suscripcion = $value["eve_suscripcion"];
             $url = $value["eve_url_img"];
-            $evento = new Evento($fecha, $fechaLimite, $titulo, $detalles, $suscripcion, $url);
+            $evento = new Evento($fecha, $fechaLimite, $eve_titulo, $eve_detalles, $suscripcion, $url);
         }
         return $evento;
     }
-//funcion que imprime el nombre de las falleras en un select
+//funcion que imprime el nombre de las eventos en un select
 public function eventosSuscripcion()
 {
     $conexion = database::conexion();
@@ -119,50 +105,33 @@ public function eventosSuscripcion()
     $consultaPreparada->execute();
     $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
     echo "<div class='col-md-3'>";
-    echo  "    <label for='validationDefault02' class='form-label'>Dia del evento</label>";
-    echo "     <input name='Dia' type='text' placeholder='DD/MM/AAAA' class='form-control' id='validationDefault02' required></div>";
-    echo "<label for='evento'>Fallera</label>";
-    
-    echo "<select id='fallera'class='form-select form-select-sm' name='idFallera' >";
-    echo "<option selected>Selecciona</option>";
+    echo '<label for="evento">Evento</label>';
+    echo "<select eve_suscripcion=evento class='form-select form-select-md mt-2' name='eve_suscripcionEvento' >";
     foreach ($resultado as $value) {
-        $id = $value['id'];
-        $nombre = $value['nombre'];
-        $apellidos = $value['apellidos'];
-        $anyo = $value['año'];
-        $nombreCompleto = $nombre . ' ' . $apellidos . ' ' . $anyo;
-        echo "<option value=$id>" . $nombreCompleto . "</option>";
+        $eve_suscripcion = $value["eve_eve_suscripcion"];
+        //cambiamos el formato de la fecha
+        $fecha = $value["eve_fecha"];
+        $fecha = date('d-m-Y', strtotime($fecha));
+
+        $fechaLimite = $value["eve_fecha_limite_inscripcion"];
+        $eve_titulo = $value["eve_eve_titulo"];
+        $eve_detalles = $value["eve_eve_detalles"];
+        $suscripcion = $value["eve_suscripcion"];
+        $url = $value["eve_url_img"];
+        echo "<option value=$eve_suscripcion> $eve_titulo $fecha </option>";
     }
     echo "</select>";
-
+    echo"</div>";
 }
-//funcion que imprime los nombres de los falleras_mayores pasandole un objeto tipo Fallera com parametro
-    public function imprimirNombrefallera($fallera)
-    {
-        $nombre = $fallera->get_nombre();
-        echo '<a href=fallera_ficha.php?id=' . $fallera->get_id() . '>' . $fallera->get_nombre() . '</a><br>';
-    }
-//funcion que imprime los datos de los falleras_mayores pasandole un objeto tipo Fallera com parametro
-    public function imprimirDatos($fallera)
-    {
-        echo '<p><strong>Nombre: </strong>' . $fallera->get_nombre() . '</p><br>';
-        echo '<p><strong>Apellidos: </strong>' . $fallera->get_apellidos() . '</p><br>';
-        echo '<p><strong>imagen: </strong>' . $fallera->get_imagen() . '</p><br>';
-        echo '<p><strong>Año: </strong>' . $fallera->get_año() . '</p><br>';
-        echo '<a class="editar" href="falleras_mayores_form.php?id=' . $fallera->get_id() . '">editar</a>';
-        echo '<a class="borrado" href="falleras_mayores_ficha.php?idBorrar=' . $fallera->get_id() . '">borrar</a>';
-    }
-//funcion que elimina el fallera
-    public function eliminarfallera($idfallera)
+
+//funcion que elimina el evento
+    public function eliminarevento($eve_suscripcionevento)
     {
         try {
             $conexion = database::conexion();
-            $consulta = "DELETE FROM falleras_mayores WHERE  id=:idfallera";
+            $consulta = "DELETE FROM eventos WHERE  eve_eve_suscripcion=:eve_suscripcionevento";
             $consultaPreparada = $conexion->prepare($consulta);
-            $consultaPreparada->bindValue(':idfallera', $idfallera);
-            //$consulta = "DELETE FROM presidentes_falleras_mayores WHERE  id_fallera=:idfallera";
-            //$consultaPreparada = $conexion->prepare($consulta);
-            //$consultaPreparada->bindValue(':id_fallera', $idfallera);
+            $consultaPreparada->bindValue(':eve_suscripcionevento', $eve_suscripcionevento);
             $consultaPreparada->execute();
             $exito = 1;
             return $exito;
@@ -173,18 +142,19 @@ public function eventosSuscripcion()
     }
 
 //funcion que actualiza los valores en la base de datos
-    public static function editarfallera($fallera)
+    public static function editarEvento($evento)
     {
         try {
             $conexion = database::conexion();
-            $id = $fallera->get_id();
-            $actualizacion = "UPDATE falleras_mayores SET nombre=:nombre, apellidos=:apellidos, imagen=:imagen, año=:anyo, id=:id WHERE id=$id";
+            $eve_id = $evento->get_eve_id();
+            $actualizacion = "UPDATE eventos SET eve_fecha=:eve_fecha, eve_fecha_limite_inscripcion=:eve_fecha_limite_inscripcion, eve_titulo=:eve_titulo, eve_detalles=:eve_detalles, eve_suscripcion=:eve_suscripcion, eve_url_img=:eve_url_img WHERE eve_id=$eve_id";
             $consultaPreparada = $conexion->prepare($actualizacion);
-            $consultaPreparada->bindValue(':nombre', $fallera->get_nombre());
-            $consultaPreparada->bindValue(':apellidos', $fallera->get_apellidos());
-            $consultaPreparada->bindValue(':imagen', $fallera->get_imagen());
-            $consultaPreparada->bindValue(':anyo', $fallera->get_anyo());
-            $consultaPreparada->bindValue(':id', $fallera->get_id());
+            $consultaPreparada->bindValue(':eve_fecha', $evento->get_nombre());
+            $consultaPreparada->bindValue(':eve_fecha_limite_inscripcion', $evento->get_eve_fecha_limite_inscripcion());
+            $consultaPreparada->bindValue(':eve_titulo', $evento->get_eve_titulo());
+            $consultaPreparada->bindValue(':eve_detalles', $evento->get_eve_detalles());
+            $consultaPreparada->bindValue(':eve_suscripcion', $evento->get_eve_suscripcion());
+            $consultaPreparada->bindValue(':eve_url_img', $evento->get_eve_url_img());
             $consultaPreparada->execute();
             $exito = 1;
             return $exito;
@@ -194,43 +164,24 @@ public function eventosSuscripcion()
         }
     }
 
-//funcion que inserta un fallera en la bbdd
-    public function insertarFallera($fallera, $imagenSize, $imagenTemp_name)
+//funcion que inserta un evento en la bbdd
+    public function insertarEvento($evento)
     {
-        var_dump($fallera);
-        //$carpeta_destino=$_SERVER['DOCUMENT_ROOT'].'/proyecto_falla/imagenes/';fallerasMayores
-        $carpeta_destino = 'imagenes/fallerasMayores/';
-        $ruta = $carpeta_destino . $fallera->get_imagen();
-
-        move_uploaded_file($imagenTemp_name, $ruta);
         try {
             $conexion = Database::conexion();
-
-            //$archivo_objetivo=fopen($ruta,"rb");
-            echo $ruta;
-            //$contenido=fread($archivo_objetivo,filesize($ruta));//$imagenSize
-            //le decimos que escape la barras laterales de la ruta
-            //$contenido=addcslashes($contenido,"/");
-            //fclose($archivo_objetivo);
-
-            //$imagen_base64 = base64_encode($archivo_objetivo);
-            //$insertar = 'INSERT INTO falleras_mayores values(NULL,:nombre,:apellidos,"'.$imagen_base64.'",:anyo)';
-
-            $insertar = $conexion->prepare('INSERT INTO falleras_mayores values(NULL,:nombre,:apellidos,:imagen,:anyo)');
-            $insertar->bindValue(':nombre', $fallera->get_nombre());
-            $insertar->bindValue(':apellidos', $fallera->get_apellidos());
-            $insertar->bindValue(':imagen', $ruta);
-            $insertar->bindValue(':anyo', $fallera->get_anyo());
+            $insertar = $conexion->prepare('INSERT INTO eventos values(NULL,:eve_fecha,:eve_fecha_limite_inscripcion,:eve_titulo,:eve_detalles,:eve_suscripcion,:eve_url_img)');
+            $insertar->bindValue(':eve_fecha', $evento->get_eve_fecha());
+            $insertar->bindValue(':eve_fecha_limite_inscripcion', $evento->get_eve_fecha_limite_inscripcion());
+            $insertar->bindValue(':eve_titulo', $evento->get_eve_titulo());
+            $insertar->bindValue(':eve_detalles', $evento->get_eve_detalles());
+            $insertar->bindValue(':eve_suscripcion', $evento->get_eve_suscripcion());
+            $insertar->bindValue(':eve_url_img', $evento->get_eve_url_img());
             $insertar->execute();
-            //$resultado=mysql_query($conexion,$insertar);
             $exito = 1;
-            echo $exito;
             return $exito;
         } catch (exception $e) {
             $exito = 0;
-            echo $exito;
             return $exito;
         }
-        echo $exito;
     }
 }
