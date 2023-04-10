@@ -74,15 +74,13 @@ class CrudEventos
         }
         echo '</div>';
         echo '</div>';
-            
-        
     }
 //funcion que devuelve una clase evento con sus datos
-    public function datosEventoeve_suscripcion($eve_suscripcion){
+    public function datosEvento($eve_id){
         $conexion = database::conexion();
-        $consulta = "SELECT * FROM eventos WHERE eve_suscripcion= :eve_suscripcion";
+        $consulta = "SELECT * FROM eventos WHERE eve_id= :eve_id";
         $consultaPreparada = $conexion->prepare($consulta);
-        $consultaPreparada->bindValue(':eve_suscripcion', $eve_suscripcion);
+        $consultaPreparada->bindValue(':eve_id', $eve_id);
         $consultaPreparada->execute();
         $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
         foreach ($resultado as $value) {
@@ -106,9 +104,9 @@ public function eventosSuscripcion()
     $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
     echo "<div class='col-md-3'>";
     echo '<label for="evento">Evento</label>';
-    echo "<select eve_suscripcion=evento class='form-select form-select-md mt-2' name='eve_suscripcionEvento' >";
+    echo "<select id='evento' class='form-select form-select-md mt-2' name='eve_id' >";
     foreach ($resultado as $value) {
-        $eve_suscripcion = $value["eve_eve_suscripcion"];
+        $id = $value["eve_id"];
         //cambiamos el formato de la fecha
         $fecha = $value["eve_fecha"];
         $fecha = date('d-m-Y', strtotime($fecha));
@@ -118,7 +116,7 @@ public function eventosSuscripcion()
         $eve_detalles = $value["eve_detalles"];
         $suscripcion = $value["eve_suscripcion"];
         $url = $value["eve_url_img"];
-        echo "<option value=$eve_suscripcion> $eve_titulo $fecha </option>";
+        echo "<option value=$id> $eve_titulo $fecha </option>";
     }
     echo "</select>";
     echo"</div>";

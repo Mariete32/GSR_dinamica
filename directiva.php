@@ -12,8 +12,8 @@
 </head>
 
 <body>
-  
-  
+
+
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v14.0"
     nonce="IX9rRk67"></script>
@@ -118,37 +118,11 @@
     </nav>
   </header>
 <main>
-
-  <div class="container">
-    <div class="row col-12">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th class="text-center display-5" scope="col">CUOTAS 22/23</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th class="text-center display-5" scope="row">ADULTOS</th>
-            <td class="text-center display-5">150€</td>
-          </tr>
-          <tr>
-            <th class="text-center display-5" scope="row">NIÑOS 0-2 años</th>
-            <td class="text-center display-5">gratis</td>
-          </tr>
-          <tr>
-            <th class="text-center display-5" scope="row">NIÑOS </th>
-            <td class="text-center display-5">€</td>
-          </tr>
-          <tr>
-            <th class="text-center display-5" scope="row">NIÑOS </th>
-            <td class="text-center display-5">€</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<?php
+  require_once "./CRUDs/directiva_CRUD.php";
+  $directiva = new CrudDirectiva();
+  $directiva->directivosActuales();
+  ?>
   <footer class="btn-azulclaro footer">
     <div class="text-center">
       <p class="">Síguenos en: </p>
@@ -163,7 +137,7 @@
       </a>
     </div>
     <a class="mx-5 link-dark nav-link" href="aviso_legal.html">Aviso legal</a>
-
+</main>
   </footer>
 
 
