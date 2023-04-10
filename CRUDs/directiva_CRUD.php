@@ -134,60 +134,32 @@ class CrudDirectiva
 
     }
 //funcion que devuelve una clase evento con sus datos
-    public function datosEvento($eve_id){
+    public function datosEvento($jun_id){
         $conexion = database::conexion();
-        $consulta = "SELECT * FROM directiva WHERE eve_id= :eve_id";
+        $consulta = "SELECT * FROM directiva WHERE jun_id= :jun_id";
         $consultaPreparada = $conexion->prepare($consulta);
-        $consultaPreparada->bindValue(':eve_id', $eve_id);
+        $consultaPreparada->bindValue(':jun_id', $jun_id);
         $consultaPreparada->execute();
         $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
         foreach ($resultado as $value) {
-            $fecha = $value["eve_fecha"];
-            $fechaLimite = $value["eve_fecha_limite_inscripcion"];
-            $eve_titulo = $value["eve_titulo"];
-            $eve_detalles = $value["eve_detalles"];
-            $suscripcion = $value["eve_suscripcion"];
-            $url = $value["eve_url_img"];
-            $evento = new Evento($fecha, $fechaLimite, $eve_titulo, $eve_detalles, $suscripcion, $url);
+            $jun_nombre = $value["jun_nombre"];
+            $jun_apellidos = $value["jun_apellidos"];
+            $jun_img = $value["jun_img"];
+            $jun_anyo = $value["jun_anyo"];
+            $jun_cargo_id = $value["jun_cargo_id"];
+            $directivo = new Junta_directiva($jun_nombre, $jun_apellidos, $jun_img, $jun_anyo, $jun_cargo_id);
         }
-        return $evento;
+        return $directivo;
     }
-//funcion que imprime el nombre de las eventos en un select
-public function eventosSuscripcion()
-{
-    $conexion = database::conexion();
-    $consulta = "SELECT * FROM `eventos` WHERE `eve_suscripcion`= True";
-    $consultaPreparada = $conexion->prepare($consulta);
-    $consultaPreparada->execute();
-    $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-    echo "<div class='col-md-3'>";
-    echo '<label for="evento">Evento</label>';
-    echo "<select id='evento' class='form-select form-select-md mt-2' name='eve_id' >";
-    foreach ($resultado as $value) {
-        $id = $value["eve_id"];
-        //cambiamos el formato de la fecha
-        $fecha = $value["eve_fecha"];
-        $fecha = date('d-m-Y', strtotime($fecha));
 
-        $fechaLimite = $value["eve_fecha_limite_inscripcion"];
-        $eve_titulo = $value["eve_titulo"];
-        $eve_detalles = $value["eve_detalles"];
-        $suscripcion = $value["eve_suscripcion"];
-        $url = $value["eve_url_img"];
-        echo "<option value=$id> $eve_titulo $fecha </option>";
-    }
-    echo "</select>";
-    echo"</div>";
-}
-
-//funcion que elimina el evento
-    public function eliminarEvento($idEvento)
+//funcion que elimina el directivo
+    public function eliminarDirectivo($idDirectivo)
     {
         try {
             $conexion = database::conexion();
-            $consulta = "DELETE FROM directiva WHERE  eve_id=:eve_id";
+            $consulta = "DELETE FROM directiva WHERE  jun_id=:jun_id";
             $consultaPreparada = $conexion->prepare($consulta);
-            $consultaPreparada->bindValue(':eve_id', $eve_id);
+            $consultaPreparada->bindValue(':jun_id', $jun_id);
             $consultaPreparada->execute();
             $exito = 1;
             return $exito;
@@ -198,19 +170,18 @@ public function eventosSuscripcion()
     }
 
 //funcion que actualiza los valores en la base de datos
-    public static function editarEvento($evento)
+    public static function editarDirectivo($directivo)
     {
         try {
             $conexion = database::conexion();
-            $eve_id = $evento->get_eve_id();
-            $actualizacion = "UPDATE eventos SET eve_fecha=:eve_fecha, eve_fecha_limite_inscripcion=:eve_fecha_limite_inscripcion, eve_titulo=:eve_titulo, eve_detalles=:eve_detalles, eve_suscripcion=:eve_suscripcion, eve_url_img=:eve_url_img WHERE eve_id=$eve_id";
+            $jun_id = $directivo->get_jun_id();
+            $actualizacion = "UPDATE directiva SET jun_id=:jun_id, jun_nombre=:jun_nombre, jun_apellidos=:jun_apellidos, jun_img=:jun_img, jun_anyo=:jun_anyo, jun_cargo_id=:jun_cargo_id WHERE jun_id=$jun_id";
             $consultaPreparada = $conexion->prepare($actualizacion);
-            $consultaPreparada->bindValue(':eve_fecha', $evento->get_nombre());
-            $consultaPreparada->bindValue(':eve_fecha_limite_inscripcion', $evento->get_eve_fecha_limite_inscripcion());
-            $consultaPreparada->bindValue(':eve_titulo', $evento->get_eve_titulo());
-            $consultaPreparada->bindValue(':eve_detalles', $evento->get_eve_detalles());
-            $consultaPreparada->bindValue(':eve_suscripcion', $evento->get_eve_suscripcion());
-            $consultaPreparada->bindValue(':eve_url_img', $evento->get_eve_url_img());
+            $consultaPreparada->bindValue(':jun_nombre', $directivo->get_jun_nombre());
+            $consultaPreparada->bindValue(':jun_apellidos', $directivo->get_jun_apellidos());
+            $consultaPreparada->bindValue(':jun_img', $directivo->get_jun_img());
+            $consultaPreparada->bindValue(':jun_anyo', $directivo->get_jun_anyo());
+            $consultaPreparada->bindValue(':jun_cargo_id', $directivo->get_jun_cargo_id());
             $consultaPreparada->execute();
             $exito = 1;
             return $exito;
@@ -220,18 +191,17 @@ public function eventosSuscripcion()
         }
     }
 
-//funcion que inserta un evento en la bbdd
-    public function insertarEvento($evento)
+//funcion que inserta un directivo en la bbdd
+    public function insertarDirectivo($directivo)
     {
         try {
             $conexion = Database::conexion();
-            $insertar = $conexion->prepare('INSERT INTO eventos values(NULL,:eve_fecha,:eve_fecha_limite_inscripcion,:eve_titulo,:eve_detalles,:eve_suscripcion,:eve_url_img)');
-            $insertar->bindValue(':eve_fecha', $evento->get_eve_fecha());
-            $insertar->bindValue(':eve_fecha_limite_inscripcion', $evento->get_eve_fecha_limite_inscripcion());
-            $insertar->bindValue(':eve_titulo', $evento->get_eve_titulo());
-            $insertar->bindValue(':eve_detalles', $evento->get_eve_detalles());
-            $insertar->bindValue(':eve_suscripcion', $evento->get_eve_suscripcion());
-            $insertar->bindValue(':eve_url_img', $evento->get_eve_url_img());
+            $insertar = $conexion->prepare('INSERT INTO directiva values(NULL,:jun_nombre,:jun_apellidos,:jun_img,:jun_anyo,:jun_cargo_id)');
+            $insertar->bindValue(':jun_nombre', $directivo->get_jun_nombre());
+            $insertar->bindValue(':jun_apellidos', $directivo->get_jun_apellidos());
+            $insertar->bindValue(':jun_img', $directivo->get_jun_img());
+            $insertar->bindValue(':jun_anyo', $directivo->get_jun_anyo());
+            $insertar->bindValue(':jun_cargo_id', $directivo->get_jun_cargo_id());
             $insertar->execute();
             $exito = 1;
             return $exito;

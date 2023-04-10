@@ -147,7 +147,7 @@ public function eventosSuscripcion()
             $eve_id = $evento->get_eve_id();
             $actualizacion = "UPDATE eventos SET eve_fecha=:eve_fecha, eve_fecha_limite_inscripcion=:eve_fecha_limite_inscripcion, eve_titulo=:eve_titulo, eve_detalles=:eve_detalles, eve_suscripcion=:eve_suscripcion, eve_url_img=:eve_url_img WHERE eve_id=$eve_id";
             $consultaPreparada = $conexion->prepare($actualizacion);
-            $consultaPreparada->bindValue(':eve_fecha', $evento->get_nombre());
+            $consultaPreparada->bindValue(':eve_fecha', $evento->get_eve_fecha());
             $consultaPreparada->bindValue(':eve_fecha_limite_inscripcion', $evento->get_eve_fecha_limite_inscripcion());
             $consultaPreparada->bindValue(':eve_titulo', $evento->get_eve_titulo());
             $consultaPreparada->bindValue(':eve_detalles', $evento->get_eve_detalles());
