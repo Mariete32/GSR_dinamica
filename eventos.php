@@ -1,3 +1,20 @@
+<?php
+require_once "./classes/inscritos.php";
+require_once "./CRUDs/inscritos_CRUD.php";
+
+if (isset($_POST["Nombre"]) && isset($_POST["Apellidos"])) {
+  $id=$_POST["eve_id"];
+  $eve_id=intval($id);
+
+  //creamos el objeto Inscrito_evento con los datos introducidos
+  $inscrito = new Inscrito_evento($eve_id,$_POST["Nombre"], $_POST["Apellidos"], $_POST["Email"], $_POST["Texto"]);
+
+  //insertamos el inscrito en la bbdd
+  $crudInscrito = new CrudInscrito();
+  $crudInscrito->insertarInscrito($inscrito);
+  
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -127,7 +144,8 @@
 
   <div class="container">
     <div class="row col-lg-12">
-      <form class="row g-3 mb-3" action="https://formsubmit.co/d551e9122ec63de4621fdfbe72141e52" method="POST">
+      <!-- action="https://formsubmit.co/d551e9122ec63de4621fdfbe72141e52" -->
+      <form class="row g-3 mb-3" action=eventos.php  method="POST">
         <?php
         $eventos->eventosSuscripcion()
         ?>
@@ -141,7 +159,7 @@
         </div>
         <div class="col-md-3">
           <label for="inputEmail4" class="form-label">Email</label>
-          <input name="Email" type="email" class="form-control" id="inputEmail4" required>
+          <input name="Email" type="email" class="form-control" id="inputEmail4">
         </div>
         <div class="input-group">
           <span class="input-group-text">Texto</span>

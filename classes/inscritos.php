@@ -10,11 +10,11 @@ class Inscrito_evento{
     protected $ins_eve_id;
 
     function __construct($ins_eve_id,$ins_nombre,$ins_apellidos,$ins_email,$ins_texto){
+        $this->ins_eve_id=$ins_eve_id;
         $this->ins_nombre=$ins_nombre;
         $this->ins_email=$ins_email;
         $this->ins_apellidos=$ins_apellidos;
-        $this->texto=$texto;
-        $this->ins_eve_id=$ins_eve_id;
+        $this->ins_texto=$ins_texto;
     }
     //hacemos las funciones get de los datos del usuario
     public function get_ins_nombre(){
@@ -27,7 +27,7 @@ class Inscrito_evento{
         return $this->ins_email;
 
     }
-    public function get_texto(){
+    public function get_ins_texto(){
         return $this->ins_texto;
 
     }

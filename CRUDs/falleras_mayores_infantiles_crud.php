@@ -120,6 +120,6 @@ public function nombresFallerasMayoresInfantiles()
         $insertar->bindValue(':apellidos', $fallera_infantil->get_apellidos());
         $insertar->bindValue(':imagen', $fallera_infantil->get_imagen());
         $insertar->bindValue(':anyo', $fallera_infantil->get_anyo());
-        $consultaPreparada->execute();
+        $insertar->execute();
     }
 }
