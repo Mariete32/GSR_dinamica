@@ -1,41 +1,51 @@
 <?php
 require_once "./BBDD/database.php";
 require_once "./classes/usuarios.php";
-require_once "./modelos/usuarios_crud.php";
-require_once "./modelos/falleras_mayores_crud.php";
-require_once "./modelos/presidentes_crud.php";
-require_once "./modelos/presidentes_infantiles_crud.php";
-require_once "./modelos/falleras_mayores_infantiles_crud.php";
+require_once "./CRUDs/directiva_CRUD.php";
+require_once "./CRUDs/eventos_CRUD.php";
+require_once "./CRUDs/inscritos_CRUD.php";
+
+require_once "./CRUDs/usuarios_CRUD.php";
+require_once "./CRUDs/falleras_mayores_crud.php";
+require_once "./CRUDs/presidentes_crud.php";
+require_once "./CRUDs/presidentes_infantiles_crud.php";
+require_once "./CRUDs/falleras_mayores_infantiles_crud.php";
 session_start();
 //si los campos estan rellenos
 if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
-
-    //creamos el objeto usuario con los datos introducidos
-    $login = new Usuario($_POST["usuario"], $_POST["contraseña"]);
-
+    
     //creamos el objeto crudusuario para gestionar el login
     $crudusuario = new CrudUsuario();
-    $id = $crudusuario->obtenerIdUsuario($login);
+    $usuario = $crudusuario->obtenerRolUsuario($_POST["usuario"], $_POST["contraseña"]);
+    $rol=$usuario->get_user_rol();
+    //creamos el objeto usuario con los datos introducidos
+    //$login = new Usuario($_POST["usuario"], $_POST["contraseña"]);
+
+    
 
     //si el usuario o contraseña son incorrectos la bbdd no devuelve el id
-    if ($id == 0 || $id == null) {
+    if ($rol == 0 || $rol == NULL) {
         header("Location: ./login.php?error=1");
     } else {
         //guardamos el usuario en la session para que no nos redirija a index si ya hemos iniciado sesion
         $_SESSION["usuario"] = $_POST["usuario"];
+        $_SESSION["nivel"] = $rol;
         //si marca recordar credenciales, almacenamos el ID en la coockie
     }
-    if ($_POST["usuario"] == "admin" || $_POST["usuario"] == "ADMIN") {
+    //if ($_POST["usuario"] == "admin" || $_POST["usuario"] == "ADMIN") {
         //guardamos el nivel en la session para que no nos redirija a login si ya hemos iniciado sesion
-        $_SESSION["nivel"] = 1;
-    } else {
-        $_SESSION["nivel"] = 2;
-    }
+      //  $_SESSION["nivel"] = 1;
+    //} else {
+      //  $_SESSION["nivel"] = 2;
+    //}
     //si ya estamos logueados no nos redirije a login.php
 } else if (!isset($_SESSION["nivel"])) {
     header("Location: ./login.php");
-} else if (isset($_POST["idFallera"])) {
-    $idFallera = $_POST["idFallera"];
+} else if (isset($_POST["anyos"])) {
+    $anyos = $_POST["anyos"];
+} else if (isset($_POST["directivo"])) {
+
+    $idDirectivo = $_POST["directivo"];
 } else if (isset($_POST["idPresidente"])) {
     $idPresidente = $_POST["idPresidente"];
 } else if (isset($_POST["idPresidenteInfantil"])) {
@@ -47,9 +57,7 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
     $falleraEliminada = new CrudFalleras();
     $falleraEliminada->eliminarfallera($idEliminar);
 } else if (isset($_POST["falleraCrear"])) {
-  var_dump($_POST);
-  var_dump($_FILES);
-
+ 
     $anyoNew = $_POST["anyoNew"];
     $nombreNew = $_POST["nombreNew"];
     $apellidosNew = $_POST["apellidosNew"];
@@ -196,19 +204,25 @@ if ($_SESSION["nivel"] == 1) {
     echo '<div class="container">';
     echo '<div class="row">';
     echo ' <form action=edicion.php method=POST class= "mt-4 col-lg-2 col-md-4 col-sm-12">';
-    $falleras = new CrudFalleras();
-    $falleras->nombresFalleras();
+    $directivo = new CrudDirectiva();
+    $directivo->anyos();
     echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
     echo '</form>';
-    if (isset($idFallera)) {
-        $datosFallera = new CrudFalleras();
-        $fallera = $datosFallera->datosFalleraID($idFallera);
-        $nombre = $fallera->get_nombre();
-        $apellidos = $fallera->get_apellidos();
-        $anyo = $fallera->get_anyo();
-        $imagen = $fallera->get_imagen();
-        $idEliminar = $idFallera;
-        $idModificar = $idFallera;
+    if (isset($anyos)) {
+        echo ' <form action=edicion.php method=POST class= "mt-4 col-lg-2 col-md-4 col-sm-12">';
+        $directivos = $directivo->nombresDirectivos($anyos);
+        echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
+        echo '</form>';}
+    if (isset($idDirectivo)) {
+        //obtenemos los datos del directivo seleccionado para ponerlos en el formulario
+        $datosDirectivo=$directivo->datosDirectivoID($idDirectivo);
+        $nombre = $datosDirectivo->get_jun_nombre();
+        $apellidos = $datosDirectivo->get_jun_apellidos();
+        $anyo = $datosDirectivo->get_jun_anyo();
+        $imagen = $datosDirectivo->get_jun_img();
+        $cargo = $datosDirectivo->get_jun_cargo_id();
+        $idEliminar = $directivo;
+        $idModificar = $directivo;
         echo '<form action=edicion.php method=POST class= "mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="nombre">Nombre</label>';
@@ -221,6 +235,10 @@ if ($_SESSION["nivel"] == 1) {
         echo '<div class="form-group">';
         echo '<label for="anyo">Año</label>';
         echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="' . $anyo . '">';
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label for="cargo">Cargo</label>';
+        echo '<input type="number" class="form-control" id="cargo" name="cargoNew" placeholder="' . $cargo . '">';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="imagen">Imagen</label>';

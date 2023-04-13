@@ -13,7 +13,7 @@ class Junta_directiva{
         $this->jun_nombre=$jun_nombre;
         $this->jun_anyo=$jun_anyo;
         $this->jun_apellidos=$jun_apellidos;
-        $this->imagen=$imagen;
+        $this->jun_img=$jun_img;
         $this->jun_cargo_id=$jun_cargo_id;
     }
     //hacemos las funciones get de los datos del usuario
@@ -27,8 +27,8 @@ class Junta_directiva{
         return $this->jun_anyo;
 
     }
-    public function get_imagen(){
-        return $this->imagen;
+    public function get_jun_img(){
+        return $this->jun_img;
 
     }
     public function get_jun_cargo_id(){

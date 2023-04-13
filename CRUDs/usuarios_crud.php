@@ -5,21 +5,24 @@ class CrudUsuario
     public function __construct()
     {}
 
-//funcion que extrae el id de la bbdd si existe el user y contraseña
-    public function obtenerIdUsuario($usuario)
+//funcion que extrae el rol de la bbdd si existe el user_login y contraseña
+    public function obtenerRolUsuario($login, $password)
     {
         $conexion = database::conexion();
-        $consulta = 'SELECT * FROM usuarios WHERE user=:user AND contraseña=:password';
+        $consulta = 'SELECT * FROM usuarios WHERE user_login=:user_login AND user_password=:user_password';
         $consultaPreparada = $conexion->prepare($consulta);
-        $consultaPreparada->bindvalue(":user", $usuario->get_user());
-        $consultaPreparada->bindvalue(":password", $usuario->get_password());
+        $consultaPreparada->bindvalue(":user_login", $login);
+        $consultaPreparada->bindvalue(":user_password", $password);
         $consultaPreparada->execute();
-        $id=0;
         $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
         foreach ($resultado as $fila) {
-            $id = $fila["id"];
+            $id = $fila["user_id"];
+            $rol= $fila["user_rol"];
+            $login=$fila["user_login"];
+            $password=$fila["user_password"];
+            $usuario = new Usuario($login, $password, $rol);
         }
-        return $id;
+        return $usuario;
     }
 
 //funcion que nos devuelve la clase usuario con el user y contraseña pasandole el ID

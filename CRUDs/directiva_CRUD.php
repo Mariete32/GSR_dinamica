@@ -133,7 +133,7 @@ class CrudDirectiva
         echo '</div>';
 
     }
-//funcion que devuelve una clase evento con sus datos
+//funcion que devuelve una clase Junta_directiva con sus datos
     public function datosEvento($jun_id){
         $conexion = database::conexion();
         $consulta = "SELECT * FROM directiva WHERE jun_id= :jun_id";
@@ -151,6 +151,66 @@ class CrudDirectiva
         }
         return $directivo;
     }
+//funcion que imprime el nombre de las falleras en un select
+public function anyos()
+{
+    $conexion = database::conexion();
+    $consulta = "SELECT DISTINCT jun_anyo FROM directiva ORDER BY jun_anyo DESC";
+    $consultaPreparada = $conexion->prepare($consulta);
+    $consultaPreparada->execute();
+    $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
+    echo '<label for="directiva">seleciona año</label>';
+    echo "<select id='directiva'class='form-select form-select-sm' name='anyos' >";
+    echo "<option selected>Seleccionar</option>";
+    foreach ($resultado as $value) {
+        $anyo = $value['jun_anyo'];
+        echo "<option value=$anyo>" . $anyo . "</option>";
+    }
+    echo "</select>";
+}
+//funcion que imprime el nombre de los directivos en un select
+public function nombresDirectivos($anyo)
+{
+    $conexion = database::conexion();
+    $consulta = "SELECT * FROM directiva WHERE jun_anyo=$anyo";
+    $consultaPreparada = $conexion->prepare($consulta);
+    $consultaPreparada->execute();
+    $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
+    
+    echo '<label for="directivos">Selecciona directivo</label>';
+    echo "<select id='directivos'class='form-select form-select-sm' name='directivo' >";
+    echo "<option selected>Selecciona</option>";
+    foreach ($resultado as $value) {
+        $id = $value['jun_id'];
+        
+        $nombre = $value['jun_nombre'];
+        $apellidos = $value['jun_apellidos'];
+        $nombreCompleto = $nombre . ' ' . $apellidos ;
+        echo "<option value=$id>" . $nombreCompleto . "</option>";
+    }
+    echo "</select>";
+}
+
+//funcion que devuelve una clase directivo con sus datos
+public function datosDirectivoID($id){
+    $conexion = database::conexion();
+    $consulta = "SELECT * FROM directiva WHERE jun_id= :jun_id";
+    $consultaPreparada = $conexion->prepare($consulta);
+    $consultaPreparada->bindValue(':jun_id', $id);
+    $consultaPreparada->execute();
+    $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($resultado as $value) {
+        $jun_nombre = $value["jun_nombre"];
+        $jun_apellidos = $value["jun_apellidos"];
+        $jun_img = $value["jun_img"];
+        $jun_anyo = $value["jun_anyo"];
+        $jun_cargo_id = $value["jun_cargo_id"];
+
+        $directivo = new Junta_directiva($jun_nombre, $jun_apellidos, $jun_img, $jun_anyo, $jun_cargo_id);
+    }
+    return $directivo;
+}
+
 
 //funcion que elimina el directivo
     public function eliminarDirectivo($idDirectivo)
