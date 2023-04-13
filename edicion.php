@@ -3,8 +3,9 @@ require_once "./BBDD/database.php";
 require_once "./classes/usuarios.php";
 require_once "./CRUDs/directiva_CRUD.php";
 require_once "./CRUDs/eventos_CRUD.php";
-require_once "./CRUDs/inscritos_CRUD.php";
+require_once "./CRUDs/cargos_CRUD.php";
 
+require_once "./CRUDs/inscritos_CRUD.php";
 require_once "./CRUDs/usuarios_CRUD.php";
 require_once "./CRUDs/falleras_mayores_crud.php";
 require_once "./CRUDs/presidentes_crud.php";
@@ -221,8 +222,8 @@ if ($_SESSION["nivel"] == 1) {
         $anyo = $datosDirectivo->get_jun_anyo();
         $imagen = $datosDirectivo->get_jun_img();
         $cargo = $datosDirectivo->get_jun_cargo_id();
-        $idEliminar = $directivo;
-        $idModificar = $directivo;
+        $idEliminar = $idDirectivo;
+        $idModificar = $idDirectivo;
         echo '<form action=edicion.php method=POST class= "mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="nombre">Nombre</label>';
@@ -238,11 +239,11 @@ if ($_SESSION["nivel"] == 1) {
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="cargo">Cargo</label>';
-        echo '<input type="number" class="form-control" id="cargo" name="cargoNew" placeholder="' . $cargo . '">';
+        echo '<input type="number" class="form-control" id="cargo" min="1" max="22"  name="cargoNew" placeholder="' . $cargo . '">';
         echo '</div>';
         echo '<div class="form-group">';
-        echo '<label for="imagen">Imagen</label>';
-        echo '<input type="file" class="form-control form-control-sm" id="imagen" name="imagenNew" placeholder="seleccionar">';
+        echo '<label for="urlImg">Url Imagen</label>';
+        echo '<input type="text" class="form-control" id="urlImg" name="urlImgNew" placeholder=' . $imagen . '>';
         echo '<input type=hidden name="idModificar" value="' . $idModificar . '">';
         echo '</div>';
         echo '<button type="submit" class="m-2 btn btn-septiembre">Modificar</button>';
@@ -255,6 +256,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '</div>';
         echo '<button type="submit" class="btn m-1  btn-danger">Eliminar</button>';
         echo '</form>';
+
     } else {
       // Formulario de crear nueva fallera
         echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class="mt-4 border col-lg-4 col-md-8 col-sm-12">';
@@ -279,6 +281,10 @@ if ($_SESSION["nivel"] == 1) {
         echo '</form>';
 
     }
+    
+    //mostramos la leyenda de los cargos
+    $listaCargos = new CrudCargos();
+    $listaCargos->listaCargos();
     echo '</div>';
     echo '</div>';
     //mostramos los formularios para crear, modificar o eliminar presidente

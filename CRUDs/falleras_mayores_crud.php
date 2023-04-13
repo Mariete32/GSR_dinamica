@@ -86,6 +86,7 @@ class CrudFalleras
         return $fallera;
     }
 
+    
 //funcion que imprime los nombres de los falleras_mayores pasandole un objeto tipo Fallera com parametro
     public function imprimirNombrefallera($fallera)
     {

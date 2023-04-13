@@ -182,7 +182,6 @@ public function nombresDirectivos($anyo)
     echo "<option selected>Selecciona</option>";
     foreach ($resultado as $value) {
         $id = $value['jun_id'];
-        
         $nombre = $value['jun_nombre'];
         $apellidos = $value['jun_apellidos'];
         $nombreCompleto = $nombre . ' ' . $apellidos ;
