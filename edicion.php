@@ -4,7 +4,7 @@ require_once "./classes/usuarios.php";
 require_once "./CRUDs/directiva_CRUD.php";
 require_once "./CRUDs/eventos_CRUD.php";
 require_once "./CRUDs/cargos_CRUD.php";
-
+require_once "./CRUDs/recurso_CRUD.php";
 require_once "./CRUDs/inscritos_CRUD.php";
 require_once "./CRUDs/usuarios_CRUD.php";
 require_once "./CRUDs/falleras_mayores_crud.php";
@@ -238,12 +238,16 @@ if ($_SESSION["nivel"] == 1) {
         echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="' . $anyo . '">';
         echo '</div>';
         echo '<div class="form-group">';
-        echo '<label for="cargo">Cargo</label>';
-        echo '<input type="number" class="form-control" id="cargo" min="1" max="22"  name="cargoNew" placeholder="' . $cargo . '">';
+        //mostramos la lista de los cargos
+        $listaCargos = new CrudCargos();
+        $listaCargos->listadoCargos();
         echo '</div>';
         echo '<div class="form-group">';
-        echo '<label for="urlImg">Url Imagen</label>';
-        echo '<input type="text" class="form-control" id="urlImg" name="urlImgNew" placeholder=' . $imagen . '>';
+        //mostramos las rutas de todas las imagenes
+        $recurso= new CrudRecurso();
+        $recurso->listadoRecurso();
+        echo '</div>';
+        echo '<div class="form-group">';
         echo '<input type=hidden name="idModificar" value="' . $idModificar . '">';
         echo '</div>';
         echo '<button type="submit" class="m-2 btn btn-septiembre">Modificar</button>';
@@ -272,9 +276,12 @@ if ($_SESSION["nivel"] == 1) {
         echo '<label for="anyo">Año</label>';
         echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="Año">';
         echo '</div>';
+        //mostramos la lista de los cargos
+        $listaCargos = new CrudCargos();
+        $listaCargos->listadoCargos();
         echo '<div class="form-group">';
-        echo '<label for="imagen">Imagen</label>';
-        echo '<input type="file" class="form-control form-control-sm" id="imagen" name="imagenNew" placeholder="seleccionar">';
+        echo '<label for="urlImg">Url Imagen</label>';
+        echo '<input type="text" class="form-control" id="urlImg" name="urlImgNew" placeholder=""Url de la imagen>';
         echo '<input type=hidden name="falleraCrear" value="crear">';
         echo '</div>';
         echo '<button type="submit" class="m-2 btn m-1  btn-primary">Crear</button>';
@@ -282,9 +289,6 @@ if ($_SESSION["nivel"] == 1) {
 
     }
     
-    //mostramos la leyenda de los cargos
-    $listaCargos = new CrudCargos();
-    $listaCargos->listaCargos();
     echo '</div>';
     echo '</div>';
     //mostramos los formularios para crear, modificar o eliminar presidente
