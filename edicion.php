@@ -39,46 +39,51 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
     //} else {
       //  $_SESSION["nivel"] = 2;
     //}
-    //si ya estamos logueados no nos redirije a login.php
+//si ya estamos logueados no nos redirije a login.php
 } else if (!isset($_SESSION["nivel"])) {
     header("Location: ./login.php");
+//si se selecciona un año, mostramos la junta directiva de ese año en otro select
 } else if (isset($_POST["anyos"])) {
     $anyos = $_POST["anyos"];
+//si seleccionamos directivo, mostramos sus datos en el formulario para su modificacion o eliminacion
 } else if (isset($_POST["directivo"])) {
-
     $idDirectivo = $_POST["directivo"];
+/*
 } else if (isset($_POST["idPresidente"])) {
     $idPresidente = $_POST["idPresidente"];
 } else if (isset($_POST["idPresidenteInfantil"])) {
     $idPresidenteInfantil = $_POST["idPresidenteInfantil"];
 } else if (isset($_POST["idFalleraMayorInfantil"])) {
     $idFalleraMayorInfantil = $_POST["idFalleraMayorInfantil"];
-} else if (isset($_POST["idEliminar"])) {
-    $idEliminar = $_POST["idEliminar"];
-    $falleraEliminada = new CrudFalleras();
-    $falleraEliminada->eliminarfallera($idEliminar);
-} else if (isset($_POST["falleraCrear"])) {
- 
+*/
+//si seleccionamos eliminar desde el formulario, eliminamos el directivo en la BBDD
+} else if (isset($_POST["idEliminarDirectivo"])) {
+    $idEliminar = $_POST["idEliminarDirectivo"];
+    $directivoEliminado = new CrudDirectiva();
+    $directivoEliminado->eliminarDirectivo($idEliminar);
+
+//si seleccionamos crear desde el formulario, insertamos el directivo en la BBDD
+} else if (isset($_POST["directivoCrear"])) {
     $anyoNew = $_POST["anyoNew"];
     $nombreNew = $_POST["nombreNew"];
     $apellidosNew = $_POST["apellidosNew"];
-    $imagenNew = $_FILES["imagenNew"]['name'];
-    $imagenSize = $_FILES["imagenNew"]['size'];
-    $imagenTemp_name=$_FILES["imagenNew"]['tmp_name'];
-    $falleraNueva = new FalleraMayor($nombreNew, $apellidosNew, $anyoNew, $imagenNew);
-    $falleraCreada = new CrudFalleras();
-    $exito=$falleraCreada->insertarFallera($falleraNueva,$imagenSize,$imagenTemp_name);
-    echo $exito;
-} else if (isset($_POST["idModificar"])) {
+    $Urlimg = $_POST["Urlimg"];
+    $cargoId = $_POST["cargoId"];
+    $directivoNuevo = new Junta_directiva($nombreNew, $apellidosNew,$Urlimg, $anyoNew, $cargoId);
+    $directivoCreado = new CrudDirectiva();
+    $exito=$directivoCreado->insertarDirectivo($directivoNuevo);
+    
+//si seleccionamos modificar desde el formulario, modificamos el directivo en la BBDD
+} else if (isset($_POST["idModificarDirectivo"])) {
     $anyoNew = $_POST["anyoNew"];
     $nombreNew = $_POST["nombreNew"];
     $apellidosNew = $_POST["apellidosNew"];
-    $imagenNew = $_POST["imagenNew"];
-    $idModificar = $_POST["idModificar"];
-    $falleraEditada = new FalleraMayor($nombreNew, $apellidosNew, $anyoNew, $imagenNew);
-    $falleraEditada->set_id($idModificar);
-    $falleraCreada = new CrudFalleras();
-    $falleraCreada->editarfallera($falleraEditada);
+    $Urlimg = $_POST["Urlimg"];
+    $cargoId = $_POST["cargoId"];
+    $directivoEditado = new Junta_directiva($nombreNew, $apellidosNew,$Urlimg, $anyoNew, $cargoId);
+    $directivoEditado->set_jun_id($_POST["idModificarDirectivo"]);
+    $directivoCreado = new CrudDirectiva();
+    $directivoCreado->editarDirectivo($directivoEditado);
 }
 ?>
 <!DOCTYPE html>
@@ -248,7 +253,7 @@ if ($_SESSION["nivel"] == 1) {
         $recurso->listadoRecurso();
         echo '</div>';
         echo '<div class="form-group">';
-        echo '<input type=hidden name="idModificar" value="' . $idModificar . '">';
+        echo '<input type=hidden name="idModificarDirectivo" value="' . $idModificar . '">';
         echo '</div>';
         echo '<button type="submit" class="m-2 btn btn-septiembre">Modificar</button>';
         echo '</form>';
@@ -256,7 +261,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '<div class="form-group">';
         echo '<label for="eliminar">Nombre</label>';
         echo '<input type="text" class="form-control " id="eliminar"  placeholder="' . $nombre . ' ' . $apellidos . '">';
-        echo '<input type=hidden name="idEliminar" value="' . $idEliminar . '">';
+        echo '<input type=hidden name="idEliminarDirectivo" value="' . $idEliminar . '">';
         echo '</div>';
         echo '<button type="submit" class="btn m-1  btn-danger">Eliminar</button>';
         echo '</form>';
@@ -276,13 +281,16 @@ if ($_SESSION["nivel"] == 1) {
         echo '<label for="anyo">Año</label>';
         echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="Año">';
         echo '</div>';
+        echo '<div class="form-group">';
         //mostramos la lista de los cargos
         $listaCargos = new CrudCargos();
         $listaCargos->listadoCargos();
+        echo '</div>';
         echo '<div class="form-group">';
-        echo '<label for="urlImg">Url Imagen</label>';
-        echo '<input type="text" class="form-control" id="urlImg" name="urlImgNew" placeholder=""Url de la imagen>';
-        echo '<input type=hidden name="falleraCrear" value="crear">';
+        //mostramos las rutas de todas las imagenes
+        $recurso= new CrudRecurso();
+        $recurso->listadoRecurso();
+        echo '<input type=hidden name="directivoCrear" value="crear">';
         echo '</div>';
         echo '<button type="submit" class="m-2 btn m-1  btn-primary">Crear</button>';
         echo '</form>';

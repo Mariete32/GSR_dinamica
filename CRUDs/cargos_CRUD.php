@@ -15,7 +15,7 @@ public function listadoCargos()
     $consultaPreparada->execute();
     $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
     echo '<label for="cargos">Selecciona cargo</label>';
-    echo "<select id='cargos'class='form-select form-select-sm' name='cargos' >";
+    echo "<select id='cargos'class='form-select form-select-sm' name='cargoId' >";
     echo "<option > Selecciona...</option>";
     foreach ($resultado as $value) {
         $cargo = $value['car_tipo'];

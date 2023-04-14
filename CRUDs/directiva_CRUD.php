@@ -218,7 +218,7 @@ public function datosDirectivoID($id){
             $conexion = database::conexion();
             $consulta = "DELETE FROM directiva WHERE  jun_id=:jun_id";
             $consultaPreparada = $conexion->prepare($consulta);
-            $consultaPreparada->bindValue(':jun_id', $jun_id);
+            $consultaPreparada->bindValue(':jun_id', $idDirectivo);
             $consultaPreparada->execute();
             $exito = 1;
             return $exito;
@@ -236,6 +236,7 @@ public function datosDirectivoID($id){
             $jun_id = $directivo->get_jun_id();
             $actualizacion = "UPDATE directiva SET jun_id=:jun_id, jun_nombre=:jun_nombre, jun_apellidos=:jun_apellidos, jun_img=:jun_img, jun_anyo=:jun_anyo, jun_cargo_id=:jun_cargo_id WHERE jun_id=$jun_id";
             $consultaPreparada = $conexion->prepare($actualizacion);
+            $consultaPreparada->bindValue(':jun_id', $directivo->get_jun_id());
             $consultaPreparada->bindValue(':jun_nombre', $directivo->get_jun_nombre());
             $consultaPreparada->bindValue(':jun_apellidos', $directivo->get_jun_apellidos());
             $consultaPreparada->bindValue(':jun_img', $directivo->get_jun_img());
