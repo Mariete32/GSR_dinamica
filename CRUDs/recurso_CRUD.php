@@ -18,7 +18,7 @@ class CrudRecurso{
             // comprueba si el archivo es una imagen
             if (in_array(pathinfo($archivo, PATHINFO_EXTENSION), array('jpg', 'jpeg', 'png', 'gif'))) {
                 $ruta= $directorio . '/' . $archivo ; // imprime la ruta completa del archivo
-                echo "<option value=$ruta>" . $ruta . "</option>";
+                echo "<option value=$ruta>" . $archivo . "</option>";
             }
         }
         echo "</select>";
@@ -35,7 +35,7 @@ class CrudRecurso{
             // comprueba si el archivo es una imagen
             if (in_array(pathinfo($archivo, PATHINFO_EXTENSION), array('jpg', 'jpeg', 'png', 'gif'))) {
                 $ruta= $directorio . '/' . $archivo ; // imprime la ruta completa del archivo
-                echo "<option value=$ruta>" . $ruta . "</option>";
+                echo "<option value=$ruta>" . $archivo . "</option>";
             }
         }
         echo "</select>";

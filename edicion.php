@@ -300,6 +300,7 @@ if ($_SESSION["nivel"] == 1) {
     echo '<hr>';
 
     //mostramos los formularios para crear, modificar o eliminar eventos
+    echo'<p class="mt-2"><strong> EDITAR EVENTOS</strong></p>';
     echo '<div class="container">';
     echo '<div class="row">';
     echo ' <form action=edicion.php method=POST class="mt-4 col-lg-3 col-md-4 col-sm-12">';
@@ -316,25 +317,41 @@ if ($_SESSION["nivel"] == 1) {
         $eve_titulo = $evento->get_eve_titulo();
         $eve_detalles = $evento->get_eve_detalles();
         $eve_suscripcion = $evento->get_eve_suscripcion();
+        $eve_suscripcion = ($eve_suscripcion==0) ? " " : "checked" ;
+        $valor = ($eve_suscripcion=="checked") ? $valor=1 : $valor=0 ;
         $eve_url_img = $evento->get_eve_url_img();
         $idEliminarevento = $eve_id;
         $idModificarevento = $eve_id;
         echo ' <form action=edicion.php method=POST class="mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
-        echo '<label for="nombre">Nombre</label>';
-        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" value='.$eve_titulo.' placeholder=' . $eve_titulo . '>';
+        echo '<label for="Titulo">Titulo</label>';
+        echo '<input type="text" class="form-control" id="Titulo" name="TituloNew" value='.$eve_titulo.' placeholder=' . $eve_titulo . '>';
         echo '</div>';
         echo '<div class="form-group">';
-        echo '<label for="apellidos">Apellidos</label>';
-        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" value='.$eve_detalles.' placeholder=' . $eve_detalles . '>';
+        echo '<label for="Descripcion">Descripcion</label>';
+        echo '<input type="text" class="form-control" id="Descripcion" name="DescripcionNew" value='.$eve_detalles.' placeholder=' . $eve_detalles . '>';
         echo '</div>';
         echo '<div class="form-group">';
-        echo '<label for="anyo">Año</label>';
-        echo '<input type="date" class="form-control" id="anyo" name="anyoNew" value='.$fecha.' placeholder="' . $fecha . '">';
+        echo '<label for="Fecha">Fecha</label>';
+        echo '<input type="date" class="form-control" id="Fecha" name="FechaNew" value='.$fecha.' placeholder="12-04-2023">';
         echo '</div>';
         echo '<div class="form-group">';
-        echo '<label for="imagen" class="form-label">Imagen</label>';
-        echo '<input type="file" class="form-control form-control-sm" id="imagen" name="imagenNew" placeholder="seleccionar" >';
+        echo '<label for="fechaLimite">Fecha límite de inscripción</label>';
+        echo '<input type="date" class="form-control" id="fechaLimite" name="fechaLimiteNew" value='.$eve_fecha_limite_inscripcion.' placeholder="fechaLimite">';
+        echo '</div>';
+        echo '<div class="form-group">';
+        //mostramos las rutas de todas las imagenes
+        $recurso= new CrudRecurso();
+        $recurso->urlEventos();
+        echo '<div class="form-check mt-2">';
+        echo '<input class="form-check-input" type="checkbox" value='.$valor.'  id="validationFormCheck1" '.$eve_suscripcion.'>';
+        echo '<label class="form-check-label" for="validationFormCheck1">';
+        echo '  Se requiere inscribirse al evento';
+        echo '</label>';
+        echo '</div>';
+        echo '</div>';
+
+        echo '<div class="form-group">';
         echo '<input type=hidden name="idModificar" value="' . $idModificarevento . '">';
         echo '</div>';
         echo '<button type="submit" class="m-2 btn btn-septiembre">Modificar</button>';
@@ -351,20 +368,32 @@ if ($_SESSION["nivel"] == 1) {
       //formulario de crear nuevo presidente
         echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class=" mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
-        echo '<label for="nombre">Nombre</label>';
-        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" aria-describedby="nombreHelp" placeholder="Nombre">';
+        echo '<label for="Titulo">Titulo</label>';
+        echo '<input type="text" class="form-control" id="Titulo" name="TituloNew" aria-describedby="TituloHelp" placeholder="Titulo">';
         echo '</div>';
         echo '<div class="form-group">';
-        echo '<label for="apellidos">Apellidos</label>';
-        echo '<input type="date" class="form-control" id="apellidos" name="apellidosNew" placeholder="Apellidos">';
+        echo '<label for="fecha">Fecha</label>';
+        echo '<input type="date" class="form-control" id="fecha" name="fechaNew" placeholder="fecha">';
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label for="fechaLimite">Fecha límite de inscripción</label>';
+        echo '<input type="date" class="form-control" id="fechaLimite" name="fechaLimiteNew" placeholder="fechaLimite">';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="anyo">Año</label>';
-        echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="Año">';
+        echo '<input type="number" min="2023" class="form-control" id="anyo" name="anyoNew" placeholder="Año">';
         echo '</div>';
         echo '<div class="form-group">';
-        echo '<label for="imagen">Imagen</label>';
-        echo '<input type="file" class="form-control form-control-sm" id="imagen" name="imagenNew" placeholder="seleccionar">';
+        //mostramos las rutas de todas las imagenes
+        $recurso= new CrudRecurso();
+        $recurso->urlEventos();
+        echo '<div class="form-check mt-2">';
+        echo '<input class="form-check-input" type="checkbox"  id="validationFormCheck1" >';
+        echo '<label class="form-check-label" for="validationFormCheck1">';
+        echo '  Se requiere inscribirse al evento';
+        echo '</label>';
+        
+        echo '</div>';
         echo '<input type=hidden name="falleraCrear" value="crear">';
         echo '</div>';
         echo '<button type="submit" class="m-2 btn m-1  btn-primary">Crear</button>';
