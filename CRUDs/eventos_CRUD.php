@@ -94,7 +94,8 @@ class CrudEventos
         }
         return $evento;
     }
-//funcion que imprime el nombre de las eventos en un select
+
+//funcion que imprime el nombre de las eventos con suscripcion en un select
 public function eventosSuscripcion()
 {
     $conexion = database::conexion();
@@ -121,7 +122,31 @@ public function eventosSuscripcion()
     echo "</select>";
     echo"</div>";
 }
+//funcion que imprime el nombre de las eventos en un select
+public function nombresEventos()
+{
+    $conexion = database::conexion();
+    $consulta = "SELECT * FROM `eventos`";
+    $consultaPreparada = $conexion->prepare($consulta);
+    $consultaPreparada->execute();
+    $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
+    echo '<label for="evento">Eventos</label>';
+    echo "<select id='evento' class=' form-select form-select-md mt-2' name='eve_id' >";
+    foreach ($resultado as $value) {
+        $eve_id = $value["eve_id"];
+        //cambiamos el formato de la fecha
+        $fecha = $value["eve_fecha"];
+        $fecha = date('d-m-Y', strtotime($fecha));
 
+        $fechaLimite = $value["eve_fecha_limite_inscripcion"];
+        $eve_titulo = $value["eve_titulo"];
+        $eve_detalles = $value["eve_detalles"];
+        $suscripcion = $value["eve_suscripcion"];
+        $url = $value["eve_url_img"];
+        echo "<option value=$eve_id> $eve_titulo $fecha </option>";
+    }
+    echo "</select>";
+}
 //funcion que elimina el evento
     public function eliminarEvento($idEvento)
     {

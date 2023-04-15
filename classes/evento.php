@@ -7,15 +7,15 @@ class Evento{
     protected $eve_titulo;
     protected $eve_detalles;
     protected $eve_suscripcion;
-    protected $eve_url_ima;
+    protected $eve_url_img;
 
-    function __construct($eve_fecha,$eve_fecha_limite_inscripcion,$eve_titulo,$eve_detalles,$eve_suscripcion,$eve_url_ima){
+    function __construct($eve_fecha,$eve_fecha_limite_inscripcion,$eve_titulo,$eve_detalles,$eve_suscripcion,$eve_url_img){
         $this->eve_fecha=$eve_fecha;
         $this->eve_fecha_limite_inscripcion=$eve_fecha_limite_inscripcion;
         $this->eve_titulo=$eve_titulo;
         $this->eve_detalles=$eve_detalles;
         $this->eve_suscripcion=$eve_suscripcion;
-        $this->eve_url_ima=$eve_url_ima;
+        $this->eve_url_img=$eve_url_img;
     }
     //hacemos las funciones get de los datos del usuario
     public function get_fecha(){
@@ -36,8 +36,8 @@ class Evento{
         return $this->eve_suscripcion;
 
     }
-    public function get_eve_url_ima(){
-        return $this->eve_url_ima;
+    public function get_eve_url_img(){
+        return $this->eve_url_img;
 
     }
     public function get_eve_id(){

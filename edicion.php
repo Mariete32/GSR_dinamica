@@ -48,9 +48,8 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
 //si seleccionamos directivo, mostramos sus datos en el formulario para su modificacion o eliminacion
 } else if (isset($_POST["directivo"])) {
     $idDirectivo = $_POST["directivo"];
-/*
-} else if (isset($_POST["idPresidente"])) {
-    $idPresidente = $_POST["idPresidente"];
+} else if (isset($_POST["eve_id"])) {
+    $eve_id = $_POST["eve_id"];/*
 } else if (isset($_POST["idPresidenteInfantil"])) {
     $idPresidenteInfantil = $_POST["idPresidenteInfantil"];
 } else if (isset($_POST["idFalleraMayorInfantil"])) {
@@ -207,6 +206,7 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
 
 if ($_SESSION["nivel"] == 1) {
   //formulario de Seleccion de fallera para insertar los datos en el formulario de modificar
+  echo'<p class="mt-2"><strong> EDITAR JUNTA DIRECTIVA</strong></p>';
     echo '<div class="container">';
     echo '<div class="row">';
     echo ' <form action=edicion.php method=POST class= "mt-4 col-lg-2 col-md-4 col-sm-12">';
@@ -232,15 +232,15 @@ if ($_SESSION["nivel"] == 1) {
         echo '<form action=edicion.php method=POST class= "mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="nombre">Nombre</label>';
-        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" placeholder=' . $nombre . '>';
+        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" value='.$nombre.' placeholder=' . $nombre . '>';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="apellidos">Apellidos</label>';
-        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" placeholder=' . $apellidos . '>';
+        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" value='.$apellidos.' placeholder=' . $apellidos . '>';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="anyo">Año</label>';
-        echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="' . $anyo . '">';
+        echo '<input type="number" class="form-control" id="anyo" name="anyoNew" value='.$anyo.' placeholder="' . $anyo . '">';
         echo '</div>';
         echo '<div class="form-group">';
         //mostramos la lista de los cargos
@@ -265,7 +265,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '</div>';
         echo '<button type="submit" class="btn m-1  btn-danger">Eliminar</button>';
         echo '</form>';
-
+        echo '<hr>';
     } else {
       // Formulario de crear nueva fallera
         echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class="mt-4 border col-lg-4 col-md-8 col-sm-12">';
@@ -294,53 +294,56 @@ if ($_SESSION["nivel"] == 1) {
         echo '</div>';
         echo '<button type="submit" class="m-2 btn m-1  btn-primary">Crear</button>';
         echo '</form>';
-
     }
-    
     echo '</div>';
     echo '</div>';
-    //mostramos los formularios para crear, modificar o eliminar presidente
+    echo '<hr>';
+
+    //mostramos los formularios para crear, modificar o eliminar eventos
     echo '<div class="container">';
     echo '<div class="row">';
-    echo ' <form action=edicion.php method=POST class="mt-4 col-lg-2 col-md-4 col-sm-12">';
-    $presidentes = new CrudPresidentes();
-    $presidentes->nombresPresidentes();
+    echo ' <form action=edicion.php method=POST class="mt-4 col-lg-3 col-md-4 col-sm-12">';
+    $eventos = new CrudEventos();
+    $eventos->nombresEventos();
     echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
     echo '</form>';
-    if (isset($idPresidente)) {
-        $datosPresidente = new CrudPresidentes();
-        $presidente = $datosPresidente->datosPresidenteId($idPresidente);
-        $nombre = $presidente->get_nombre();
-        $apellidos = $presidente->get_apellidos();
-        $anyo = $presidente->get_anyo();
-        $imagen = $presidente->get_imagen();
-        $idEliminar = $idPresidente;
-        $idModificar = $idPresidente;
+    if (isset($eve_id)) {
+        $evento = $eventos->datosEvento($eve_id);
+        $fecha = $evento->get_fecha();
+        $fecha = new DateTime($fecha); // Crear objeto DateTime a partir del string
+        $fecha = date_format($fecha, 'd/m/Y'); // Formatear la fecha
+        $eve_fecha_limite_inscripcion = $evento->get_eve_fecha_limite_inscripcion();
+        $eve_titulo = $evento->get_eve_titulo();
+        $eve_detalles = $evento->get_eve_detalles();
+        $eve_suscripcion = $evento->get_eve_suscripcion();
+        $eve_url_img = $evento->get_eve_url_img();
+        $idEliminarevento = $eve_id;
+        $idModificarevento = $eve_id;
         echo ' <form action=edicion.php method=POST class="mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="nombre">Nombre</label>';
-        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" placeholder=' . $nombre . '>';
+        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" value='.$eve_titulo.' placeholder=' . $eve_titulo . '>';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="apellidos">Apellidos</label>';
-        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" placeholder=' . $apellidos . '>';
+        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" value='.$eve_detalles.' placeholder=' . $eve_detalles . '>';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="anyo">Año</label>';
-        echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="' . $anyo . '">';
+        echo '<input type="date" class="form-control" id="anyo" name="anyoNew" value='.$fecha.' placeholder="' . $fecha . '">';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="imagen" class="form-label">Imagen</label>';
         echo '<input type="file" class="form-control form-control-sm" id="imagen" name="imagenNew" placeholder="seleccionar" >';
-        echo '<input type=hidden name="idModificar" value="' . $idModificar . '">';
+        echo '<input type=hidden name="idModificar" value="' . $idModificarevento . '">';
         echo '</div>';
         echo '<button type="submit" class="m-2 btn btn-septiembre">Modificar</button>';
         echo '</form>';
         echo '<form action=edicion.php method=POST class= "mt-4 col-lg-2 col-md-4 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="eliminar">Nombre</label>';
-        echo '<input type="text" class="form-control" id="eliminar"  placeholder="' . $nombre . ' ' . $apellidos . '">';
-        echo '<input type=hidden name="idEliminar" value="' . $idEliminar . '">';
+        echo '<input type="text" class="form-control" id="eliminar"  placeholder="' . $eve_titulo . ' ' . $fecha . '">';
+        echo '<input type=hidden name="idEliminar" value="' . $idEliminarevento . '">';
         echo '</div>';
         echo '<button type="submit" class="btn m-1  btn-danger">Eliminar</button>';
         echo '</form>';
@@ -353,7 +356,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="apellidos">Apellidos</label>';
-        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" placeholder="Apellidos">';
+        echo '<input type="date" class="form-control" id="apellidos" name="apellidosNew" placeholder="Apellidos">';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="anyo">Año</label>';
@@ -369,6 +372,7 @@ if ($_SESSION["nivel"] == 1) {
     }
     echo '</div>';
     echo '</div>';
+    echo '<hr>';
 
     //mostramos los formularios para crear, modificar o eliminar presidente infantil
     echo '<div class="container">';
@@ -399,6 +403,11 @@ if ($_SESSION["nivel"] == 1) {
         echo '<div class="form-group">';
         echo '<label for="anyo">Año</label>';
         echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="' . $anyo . '">';
+        echo '</div>';
+        echo '<div class="form-group">';
+        //mostramos las rutas de todas las imagenes
+        $recurso= new CrudRecurso();
+        $recurso->listadoRecurso();
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="imagen" class="form-label">Imagen</label>';

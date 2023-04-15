@@ -151,7 +151,7 @@ class CrudDirectiva
         }
         return $directivo;
     }
-//funcion que imprime el nombre de las falleras en un select
+//funcion que imprime los años en un select
 public function anyos()
 {
     $conexion = database::conexion();
