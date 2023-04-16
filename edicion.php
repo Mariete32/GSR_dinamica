@@ -232,6 +232,9 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
   <?php
 
 if ($_SESSION["nivel"] == 1) {
+    //
+    //..............JUNTA DIRECTIVA..................
+    //
   //formulario de Seleccion de fallera para insertar los datos en el formulario de modificar
   echo'<p class="mt-2"><strong> EDITAR JUNTA DIRECTIVA</strong></p>';
     echo '<div class="container">';
@@ -340,7 +343,9 @@ if ($_SESSION["nivel"] == 1) {
     echo '</div>';
     echo '</div>';
     echo '<hr>';
-
+    //
+    //..............EVENTOS..................
+    //
     //mostramos los formularios para crear, modificar o eliminar eventos
     echo'<p class="mt-2"><strong> EDITAR EVENTOS</strong></p>';
     echo '<div class="container">';
@@ -410,7 +415,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '<button type="submit" class="btn m-1  btn-danger">Eliminar</button>';
         echo '</form>';
     } else {
-      //formulario de crear nuevo presidente
+      //formulario de crear nuevo evento
         echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class=" mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="Titulo">Titulo</label>';
@@ -440,7 +445,6 @@ if ($_SESSION["nivel"] == 1) {
         echo '<label class="form-check-label" for="validationFormCheck1">';
         echo '  Se requiere inscribirse al evento';
         echo '</label>';
-        
         echo '</div>';
         echo '<input type=hidden name="falleraCrear" value="crear">';
         echo '</div>';
@@ -450,13 +454,19 @@ if ($_SESSION["nivel"] == 1) {
     echo '</div>';
     echo '</div>';
     echo '<hr>';
-
-    //mostramos los formularios para crear, modificar o eliminar presidente infantil
+    //
+    //..............RECURSOS..................
+    //
+    //mostramos los formularios para crear, modificar o eliminar recurso
+    echo'<p class="mt-2"><strong> EDITAR IMAGENES Y LLIBRETS</strong></p>';
     echo '<div class="container">';
     echo '<div class="row">';
-    echo ' <form action=edicion.php method=POST class="mt-4 col-lg-2 col-md-4 col-sm-12">';
-    $presidentesInfantiles = new CrudPresidenteInfantiles();
-    $presidentesInfantiles->nombresPresidentesInfantiles();
+    echo ' <form action=edicion.php method=POST class="mt-4 col-lg-3 col-md-4 col-sm-12">';
+    echo '<label for="rutaRecurso">Selecciona ruta del recurso</label>';
+    echo "<select id='rutaRecurso'class='form-select form-select-md' name='rutaRecurso' >";
+    echo "<option > Selecciona...</option>";
+    $recurso = new CrudRecurso();
+    $recurso->urlRcursos();
     echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
     echo '</form>';
     if (isset($idPresidenteInfantil)) {
@@ -474,13 +484,14 @@ if ($_SESSION["nivel"] == 1) {
         echo '<input type="text" class="form-control" id="nombre" name="nombreNew" placeholder=' . $nombre . '>';
         echo '</div>';
         echo '<div class="form-group">';
-        echo '<label for="apellidos">Apellidos</label>';
-        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" placeholder=' . $apellidos . '>';
-        echo '</div>';
-        echo '<div class="form-group">';
         echo '<label for="anyo">Año</label>';
         echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="' . $anyo . '">';
         echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label for="recurso">Tipo de recurso</label>';
+        echo '<input type="text" class="form-control" id="recurso" name="recursoNew" placeholder=' . $apellidos . '>';
+        echo '</div>';
+        
         echo '<div class="form-group">';
         //mostramos las rutas de todas las imagenes
         $recurso= new CrudRecurso();
@@ -502,7 +513,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '<button type="submit" class="btn m-1  btn-danger">Eliminar</button>';
         echo '</form>';
     } else {
-      //formulario de crear nuevo presidente
+      //formulario de crear nuevo recuso
         echo ' <form action=edicion.php method=POST class=" mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="nombre">Nombre</label>';
@@ -526,6 +537,7 @@ if ($_SESSION["nivel"] == 1) {
 }
 echo '</div>';
 echo '</div>';
+echo '<hr>';
 //mostramos los formularios para crear, modificar o eliminar fallera mayor infantil
 echo '<div class="container">';
 echo '<div class="row">';

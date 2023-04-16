@@ -143,7 +143,7 @@ public function anyos()
     $consultaPreparada->execute();
     $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
     echo '<label for="directiva">seleciona año</label>';
-    echo "<select id='directiva'class='form-select form-select-sm' name='anyos' >";
+    echo "<select id='directiva'class='form-select form-select-md' name='anyos' >";
     echo "<option selected>Seleccionar</option>";
     foreach ($resultado as $value) {
         $anyo = $value['jun_anyo'];
