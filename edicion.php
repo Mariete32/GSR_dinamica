@@ -83,7 +83,34 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
     $directivoEditado->set_jun_id($_POST["idModificarDirectivo"]);
     $directivoCreado = new CrudDirectiva();
     $directivoCreado->editarDirectivo($directivoEditado);
-}
+
+    //si seleccionamos modificar desde el formulario, modificamos el directivo en la BBDD
+} else if (isset($_POST["idModificarEvento"])) {
+  $tituloNew = $_POST["TituloNew"];
+  $descripcionNew = $_POST["DescripcionNew"];
+  $fechaNew = $_POST["FechaNew"];
+  $fechaLimiteNew = $_POST["fechaLimiteNew"];
+  $urlimg = $_POST["Urlimg"];
+  /*si tiene marcada la casilla de suscripcion cambiamos el valor de la variable para la BBDD
+    en caso contrario le asignamos un 0*/
+    if (isset($_POST["suscripcionNew"])) {
+      $suscripcionNew = $_POST["suscripcionNew"];
+      $suscripcionNew = ($suscripcionNew=="on") ? 1 : 0 ;
+      var_dump($suscripcionNew);
+    } else{$suscripcionNew=0;}
+  $eventoEditado = new Evento($fechaNew, $fechaLimiteNew,$tituloNew, $descripcionNew, $suscripcionNew, $urlimg);
+  $eventoEditado->set_eve_id($_POST["idModificarEvento"]);
+  $eventoCreado = new CrudEventos();
+  $eventoCreado->editarEvento($eventoEditado);
+//si seleccionamos eliminar desde el formulario, eliminamos el directivo en la BBDD
+} else if (isset($_POST["idEliminarEvento"])) {
+  $idEliminar = $_POST["idEliminarEvento"];
+  $eventoEliminado = new CrudEventos();
+  $eventoEliminado->eliminarEvento($idEliminar);
+
+//si seleccionamos crear desde el formulario, insertamos el directivo en la BBDD
+} 
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -226,28 +253,37 @@ if ($_SESSION["nivel"] == 1) {
         $apellidos = $datosDirectivo->get_jun_apellidos();
         $anyo = $datosDirectivo->get_jun_anyo();
         $imagen = $datosDirectivo->get_jun_img();
-        $cargo = $datosDirectivo->get_jun_cargo_id();
+        $cargoID = $datosDirectivo->get_jun_cargo_id();
         $idEliminar = $idDirectivo;
         $idModificar = $idDirectivo;
         echo '<form action=edicion.php method=POST class= "mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="nombre">Nombre</label>';
-        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" value='.$nombre.' placeholder=' . $nombre . '>';
+        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" value="'.$nombre.'" placeholder="' . $nombre . '">';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="apellidos">Apellidos</label>';
-        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" value='.$apellidos.' placeholder=' . $apellidos . '>';
+        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" value="'.$apellidos.'" placeholder="' . $apellidos . '">';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="anyo">Año</label>';
         echo '<input type="number" class="form-control" id="anyo" name="anyoNew" value='.$anyo.' placeholder="' . $anyo . '">';
         echo '</div>';
         echo '<div class="form-group">';
+        echo '<label for="Urlimg">Seleccione cargo</label>';
+        echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
+        //mostramos l cargo actual del directivo seleccionado
+        $crudCargos = new CrudCargos();
+        $cargoActual=$crudCargos->cargoActual($cargoID);
+        echo"esto es $cargoActual)";
+        echo "<option value='$cargoActual'> $cargoActual</option>";
         //mostramos la lista de los cargos
-        $listaCargos = new CrudCargos();
-        $listaCargos->listadoCargos();
+        $crudCargos->listadoCargos();
         echo '</div>';
         echo '<div class="form-group">';
+        echo '<label for="Urlimg">Selecciona ruta imagen</label>';
+        echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
+        echo "<option value='$imagen'> $imagen</option>";
         //mostramos las rutas de todas las imagenes
         $recurso= new CrudRecurso();
         $recurso->listadoRecurso();
@@ -267,7 +303,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '</form>';
         echo '<hr>';
     } else {
-      // Formulario de crear nueva fallera
+      // Formulario de crear un directivo
         echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class="mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="nombre">Nombre</label>';
@@ -282,11 +318,17 @@ if ($_SESSION["nivel"] == 1) {
         echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="Año">';
         echo '</div>';
         echo '<div class="form-group">';
+        echo '<label for="Urlimg">Selecciona ruta imagen</label>';
+        echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
+        echo "<option > Selecciona...</option>";
         //mostramos la lista de los cargos
         $listaCargos = new CrudCargos();
         $listaCargos->listadoCargos();
         echo '</div>';
         echo '<div class="form-group">';
+        echo '<label for="Urlimg">Selecciona ruta imagen</label>';
+        echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
+        echo "<option > Selecciona...</option>";
         //mostramos las rutas de todas las imagenes
         $recurso= new CrudRecurso();
         $recurso->listadoRecurso();
@@ -310,41 +352,44 @@ if ($_SESSION["nivel"] == 1) {
     echo '</form>';
     if (isset($eve_id)) {
         $evento = $eventos->datosEvento($eve_id);
-        $fecha = $evento->get_fecha();
-        $fecha = new DateTime($fecha); // Crear objeto DateTime a partir del string
+        $fechaBBDD = $evento->get_eve_fecha();
+        $fecha = new DateTime($fechaBBDD); // Crear objeto DateTime a partir del string
         $fecha = date_format($fecha, 'd/m/Y'); // Formatear la fecha
         $eve_fecha_limite_inscripcion = $evento->get_eve_fecha_limite_inscripcion();
         $eve_titulo = $evento->get_eve_titulo();
         $eve_detalles = $evento->get_eve_detalles();
         $eve_suscripcion = $evento->get_eve_suscripcion();
         $eve_suscripcion = ($eve_suscripcion==0) ? " " : "checked" ;
-        $valor = ($eve_suscripcion=="checked") ? $valor=1 : $valor=0 ;
+        $valor = ($eve_suscripcion=="checked") ? 1 : 0 ; 
         $eve_url_img = $evento->get_eve_url_img();
-        $idEliminarevento = $eve_id;
-        $idModificarevento = $eve_id;
+        $idEliminarEvento = $eve_id;
+        $idModificarEvento = $eve_id;
         echo ' <form action=edicion.php method=POST class="mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="Titulo">Titulo</label>';
-        echo '<input type="text" class="form-control" id="Titulo" name="TituloNew" value='.$eve_titulo.' placeholder=' . $eve_titulo . '>';
+        echo '<input type="text" class="form-control" id="Titulo" name="TituloNew" value="'.$eve_titulo.' " placeholder=' . $eve_titulo . '>';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="Descripcion">Descripcion</label>';
-        echo '<input type="text" class="form-control" id="Descripcion" name="DescripcionNew" value='.$eve_detalles.' placeholder=' . $eve_detalles . '>';
+        echo '<input type="text" class="form-control" id="Descripcion" name="DescripcionNew" value="'.$eve_detalles.'" placeholder=' . $eve_detalles . '>';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="Fecha">Fecha</label>';
-        echo '<input type="date" class="form-control" id="Fecha" name="FechaNew" value='.$fecha.' placeholder="12-04-2023">';
+        echo '<input type="date" class="form-control" id="Fecha" name="FechaNew" value="'.$fechaBBDD.'" >';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="fechaLimite">Fecha límite de inscripción</label>';
-        echo '<input type="date" class="form-control" id="fechaLimite" name="fechaLimiteNew" value='.$eve_fecha_limite_inscripcion.' placeholder="fechaLimite">';
+        echo '<input type="date" class="form-control" id="fechaLimite" name="fechaLimiteNew" value="'.$eve_fecha_limite_inscripcion.'">';
         echo '</div>';
         echo '<div class="form-group">';
+        echo '<label for="Urlimg">Selecciona ruta imagen</label>';
+        echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
+        echo "<option value='$eve_url_img'> $eve_url_img</option>";
         //mostramos las rutas de todas las imagenes
         $recurso= new CrudRecurso();
         $recurso->urlEventos();
-        echo '<div class="form-check mt-2">';
-        echo '<input class="form-check-input" type="checkbox" value='.$valor.'  id="validationFormCheck1" '.$eve_suscripcion.'>';
+        echo '<div class="form-group m-2">';
+        echo "<input class='form-check-input' type='checkbox' name='suscripcionNew' id='validationFormCheck1' $eve_suscripcion>";
         echo '<label class="form-check-label" for="validationFormCheck1">';
         echo '  Se requiere inscribirse al evento';
         echo '</label>';
@@ -352,7 +397,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '</div>';
 
         echo '<div class="form-group">';
-        echo '<input type=hidden name="idModificar" value="' . $idModificarevento . '">';
+        echo '<input type=hidden name="idModificarEvento" value="' . $idModificarEvento . '">';
         echo '</div>';
         echo '<button type="submit" class="m-2 btn btn-septiembre">Modificar</button>';
         echo '</form>';
@@ -360,7 +405,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '<div class="form-group">';
         echo '<label for="eliminar">Nombre</label>';
         echo '<input type="text" class="form-control" id="eliminar"  placeholder="' . $eve_titulo . ' ' . $fecha . '">';
-        echo '<input type=hidden name="idEliminar" value="' . $idEliminarevento . '">';
+        echo '<input type=hidden name="idEliminarEvento" value="' . $idEliminarEvento . '">';
         echo '</div>';
         echo '<button type="submit" class="btn m-1  btn-danger">Eliminar</button>';
         echo '</form>';
@@ -372,22 +417,25 @@ if ($_SESSION["nivel"] == 1) {
         echo '<input type="text" class="form-control" id="Titulo" name="TituloNew" aria-describedby="TituloHelp" placeholder="Titulo">';
         echo '</div>';
         echo '<div class="form-group">';
+        echo '<label for="Descripcion">Descripcion</label>';
+        echo '<input type="text" class="form-control" id="Descripcion" name="DescripcionNew" placeholder="Descripcion">';
+        echo '</div>';
+        echo '<div class="form-group">';
         echo '<label for="fecha">Fecha</label>';
-        echo '<input type="date" class="form-control" id="fecha" name="fechaNew" placeholder="fecha">';
+        echo '<input type="date" class="form-control" id="fecha" name="fechaNew" placeholder="Fecha">';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="fechaLimite">Fecha límite de inscripción</label>';
         echo '<input type="date" class="form-control" id="fechaLimite" name="fechaLimiteNew" placeholder="fechaLimite">';
         echo '</div>';
         echo '<div class="form-group">';
-        echo '<label for="anyo">Año</label>';
-        echo '<input type="number" min="2023" class="form-control" id="anyo" name="anyoNew" placeholder="Año">';
-        echo '</div>';
-        echo '<div class="form-group">';
+        echo '<label for="Urlimg">Selecciona ruta imagen</label>';
+        echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
+        echo "<option> Seleccionar imagen</option>";
         //mostramos las rutas de todas las imagenes
         $recurso= new CrudRecurso();
         $recurso->urlEventos();
-        echo '<div class="form-check mt-2">';
+        echo '<div class="form-group m-2">';
         echo '<input class="form-check-input" type="checkbox"  id="validationFormCheck1" >';
         echo '<label class="form-check-label" for="validationFormCheck1">';
         echo '  Se requiere inscribirse al evento';

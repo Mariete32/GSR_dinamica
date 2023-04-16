@@ -18,7 +18,7 @@ class Evento{
         $this->eve_url_img=$eve_url_img;
     }
     //hacemos las funciones get de los datos del usuario
-    public function get_fecha(){
+    public function get_eve_fecha(){
         return $this->eve_fecha;
     }
     public function get_eve_fecha_limite_inscripcion(){

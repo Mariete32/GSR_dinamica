@@ -11,9 +11,7 @@ class CrudRecurso{
     {
         $directorio = "./imagenes/directiva"; // reemplaza "ruta/a/la/carpeta" con la ruta real de la carpeta que quieres leer
         $archivos = scandir($directorio);
-        echo '<label for="Urlimg">Selecciona ruta imagen</label>';
-        echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
-        echo "<option > Selecciona...</option>";
+        
         foreach ($archivos as $archivo) {
             // comprueba si el archivo es una imagen
             if (in_array(pathinfo($archivo, PATHINFO_EXTENSION), array('jpg', 'jpeg', 'png', 'gif'))) {
@@ -28,9 +26,7 @@ class CrudRecurso{
     {
         $directorio = "./imagenes/imageneseventos"; // reemplaza "ruta/a/la/carpeta" con la ruta real de la carpeta que quieres leer
         $archivos = scandir($directorio);
-        echo '<label for="Urlimg">Selecciona ruta imagen</label>';
-        echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
-        echo "<option > Selecciona...</option>";
+        
         foreach ($archivos as $archivo) {
             // comprueba si el archivo es una imagen
             if (in_array(pathinfo($archivo, PATHINFO_EXTENSION), array('jpg', 'jpeg', 'png', 'gif'))) {

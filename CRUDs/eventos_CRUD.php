@@ -154,7 +154,7 @@ public function nombresEventos()
             $conexion = database::conexion();
             $consulta = "DELETE FROM eventos WHERE  eve_id=:eve_id";
             $consultaPreparada = $conexion->prepare($consulta);
-            $consultaPreparada->bindValue(':eve_id', $eve_id);
+            $consultaPreparada->bindValue(':eve_id', $idEvento);
             $consultaPreparada->execute();
             $exito = 1;
             return $exito;

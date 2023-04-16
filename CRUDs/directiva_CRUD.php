@@ -133,24 +133,7 @@ class CrudDirectiva
         echo '</div>';
 
     }
-//funcion que devuelve una clase Junta_directiva con sus datos
-    public function datosEvento($jun_id){
-        $conexion = database::conexion();
-        $consulta = "SELECT * FROM directiva WHERE jun_id= :jun_id";
-        $consultaPreparada = $conexion->prepare($consulta);
-        $consultaPreparada->bindValue(':jun_id', $jun_id);
-        $consultaPreparada->execute();
-        $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($resultado as $value) {
-            $jun_nombre = $value["jun_nombre"];
-            $jun_apellidos = $value["jun_apellidos"];
-            $jun_img = $value["jun_img"];
-            $jun_anyo = $value["jun_anyo"];
-            $jun_cargo_id = $value["jun_cargo_id"];
-            $directivo = new Junta_directiva($jun_nombre, $jun_apellidos, $jun_img, $jun_anyo, $jun_cargo_id);
-        }
-        return $directivo;
-    }
+
 //funcion que imprime los años en un select
 public function anyos()
 {
