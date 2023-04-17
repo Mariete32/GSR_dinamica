@@ -7,25 +7,19 @@ require_once "./CRUDs/cargos_CRUD.php";
 require_once "./CRUDs/recurso_CRUD.php";
 require_once "./CRUDs/inscritos_CRUD.php";
 require_once "./CRUDs/usuarios_CRUD.php";
-require_once "./CRUDs/falleras_mayores_crud.php";
-require_once "./CRUDs/presidentes_crud.php";
-require_once "./CRUDs/presidentes_infantiles_crud.php";
-require_once "./CRUDs/falleras_mayores_infantiles_crud.php";
 session_start();
 //si los campos estan rellenos
 if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
-    
+
     //creamos el objeto crudusuario para gestionar el login
     $crudusuario = new CrudUsuario();
     $usuario = $crudusuario->obtenerRolUsuario($_POST["usuario"], $_POST["contraseña"]);
-    $rol=$usuario->get_user_rol();
+    $rol = $usuario->get_user_rol();
     //creamos el objeto usuario con los datos introducidos
     //$login = new Usuario($_POST["usuario"], $_POST["contraseña"]);
 
-    
-
     //si el usuario o contraseña son incorrectos la bbdd no devuelve el id
-    if ($rol == 0 || $rol == NULL) {
+    if ($rol == 0 || $rol == null) {
         header("Location: ./login.php?error=1");
     } else {
         //guardamos el usuario en la session para que no nos redirija a index si ya hemos iniciado sesion
@@ -34,12 +28,12 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
         //si marca recordar credenciales, almacenamos el ID en la coockie
     }
     //if ($_POST["usuario"] == "admin" || $_POST["usuario"] == "ADMIN") {
-        //guardamos el nivel en la session para que no nos redirija a login si ya hemos iniciado sesion
-      //  $_SESSION["nivel"] = 1;
+    //guardamos el nivel en la session para que no nos redirija a login si ya hemos iniciado sesion
+    //  $_SESSION["nivel"] = 1;
     //} else {
-      //  $_SESSION["nivel"] = 2;
+    //  $_SESSION["nivel"] = 2;
     //}
-//si ya estamos logueados no nos redirije a login.php
+    //si ya estamos logueados no nos redirije a login.php
 } else if (!isset($_SESSION["nivel"])) {
     header("Location: ./login.php");
 //si se selecciona un año, mostramos la junta directiva de ese año en otro select
@@ -49,12 +43,12 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
 } else if (isset($_POST["directivo"])) {
     $idDirectivo = $_POST["directivo"];
 } else if (isset($_POST["eve_id"])) {
-    $eve_id = $_POST["eve_id"];/*
-} else if (isset($_POST["idPresidenteInfantil"])) {
-    $idPresidenteInfantil = $_POST["idPresidenteInfantil"];
-} else if (isset($_POST["idFalleraMayorInfantil"])) {
-    $idFalleraMayorInfantil = $_POST["idFalleraMayorInfantil"];
-*/
+    $eve_id = $_POST["eve_id"];
+} else if (isset($_POST["rutaRecurso"])) {
+    $rutaRecurso = $_POST["rutaRecurso"];
+} else if (isset($_POST["recursoSeleccionado"])) {
+    $recursoSeleccionado = $_POST["recursoSeleccionado"];
+
 //si seleccionamos eliminar desde el formulario, eliminamos el directivo en la BBDD
 } else if (isset($_POST["idEliminarDirectivo"])) {
     $idEliminar = $_POST["idEliminarDirectivo"];
@@ -68,10 +62,10 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
     $apellidosNew = $_POST["apellidosNew"];
     $Urlimg = $_POST["Urlimg"];
     $cargoId = $_POST["cargoId"];
-    $directivoNuevo = new Junta_directiva($nombreNew, $apellidosNew,$Urlimg, $anyoNew, $cargoId);
+    $directivoNuevo = new Junta_directiva($nombreNew, $apellidosNew, $Urlimg, $anyoNew, $cargoId);
     $directivoCreado = new CrudDirectiva();
-    $exito=$directivoCreado->insertarDirectivo($directivoNuevo);
-    
+    $exito = $directivoCreado->insertarDirectivo($directivoNuevo);
+
 //si seleccionamos modificar desde el formulario, modificamos el directivo en la BBDD
 } else if (isset($_POST["idModificarDirectivo"])) {
     $anyoNew = $_POST["anyoNew"];
@@ -79,38 +73,55 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
     $apellidosNew = $_POST["apellidosNew"];
     $Urlimg = $_POST["Urlimg"];
     $cargoId = $_POST["cargoId"];
-    $directivoEditado = new Junta_directiva($nombreNew, $apellidosNew,$Urlimg, $anyoNew, $cargoId);
+    $directivoEditado = new Junta_directiva($nombreNew, $apellidosNew, $Urlimg, $anyoNew, $cargoId);
     $directivoEditado->set_jun_id($_POST["idModificarDirectivo"]);
     $directivoCreado = new CrudDirectiva();
     $directivoCreado->editarDirectivo($directivoEditado);
 
     //si seleccionamos modificar desde el formulario, modificamos el directivo en la BBDD
 } else if (isset($_POST["idModificarEvento"])) {
-  $tituloNew = $_POST["TituloNew"];
-  $descripcionNew = $_POST["DescripcionNew"];
-  $fechaNew = $_POST["FechaNew"];
-  $fechaLimiteNew = $_POST["fechaLimiteNew"];
-  $urlimg = $_POST["Urlimg"];
-  /*si tiene marcada la casilla de suscripcion cambiamos el valor de la variable para la BBDD
+    $tituloNew = $_POST["TituloNew"];
+    $descripcionNew = $_POST["DescripcionNew"];
+    $fechaNew = $_POST["FechaNew"];
+    $fechaLimiteNew = $_POST["fechaLimiteNew"];
+    $urlimg = $_POST["Urlimg"];
+
+    /*si tiene marcada la casilla de suscripcion cambiamos el valor de la variable para la BBDD
     en caso contrario le asignamos un 0*/
     if (isset($_POST["suscripcionNew"])) {
-      $suscripcionNew = $_POST["suscripcionNew"];
-      $suscripcionNew = ($suscripcionNew=="on") ? 1 : 0 ;
-      var_dump($suscripcionNew);
-    } else{$suscripcionNew=0;}
-  $eventoEditado = new Evento($fechaNew, $fechaLimiteNew,$tituloNew, $descripcionNew, $suscripcionNew, $urlimg);
-  $eventoEditado->set_eve_id($_POST["idModificarEvento"]);
-  $eventoCreado = new CrudEventos();
-  $eventoCreado->editarEvento($eventoEditado);
+        $suscripcionNew = $_POST["suscripcionNew"];
+        $suscripcionNew = ($suscripcionNew == "on") ? 1 : 0;
+        var_dump($suscripcionNew);
+    } else { $suscripcionNew = 0;}
+    $eventoEditado = new Evento($fechaNew, $fechaLimiteNew, $tituloNew, $descripcionNew, $suscripcionNew, $urlimg);
+    $eventoEditado->set_eve_id($_POST["idModificarEvento"]);
+    $eventoCreado = new CrudEventos();
+    $eventoCreado->editarEvento($eventoEditado);
+
 //si seleccionamos eliminar desde el formulario, eliminamos el directivo en la BBDD
 } else if (isset($_POST["idEliminarEvento"])) {
-  $idEliminar = $_POST["idEliminarEvento"];
-  $eventoEliminado = new CrudEventos();
-  $eventoEliminado->eliminarEvento($idEliminar);
+    $idEliminar = $_POST["idEliminarEvento"];
+    $eventoEliminado = new CrudEventos();
+    $eventoEliminado->eliminarEvento($idEliminar);
 
-//si seleccionamos crear desde el formulario, insertamos el directivo en la BBDD
-} 
+//si seleccionamos modificar desde el formulario, modificamos el recurso en la BBDD
+} else if (isset($_POST["idModificarRecurso"])) {
+    $nombreNew = $_POST["nombreNew"];
+    $anyoNew = $_POST["anyoNew"];
+    $recursoNew = $_POST["recursoNew"];
+    $urlNew = $_POST["urlNew"];
+    $recursoEditado = new recurso($nombreNew, $recursoNew,$anyoNew, $urlNew);
+    $recursoEditado->set_rec_id($_POST["idModificarRecurso"]);
+    $recursoCreado = new CrudRecurso();
+    $recursoCreado->editarRecurso($recursoEditado);
 
+//si seleccionamos eliminar desde el formulario, eliminamos el directivo en la BBDD
+} else if (isset($_POST["idEliminarRecurso"])) {
+    $idEliminar = $_POST["idEliminarRecurso"];
+    $recursoEliminado = new CrudRecurso();
+    $recursoEliminado->eliminarRecurso($idEliminar);
+}
+var_dump($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -126,8 +137,8 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
 </head>
 
 <body>
-  
-  
+
+
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v14.0"
     nonce="IX9rRk67"></script>
@@ -235,8 +246,8 @@ if ($_SESSION["nivel"] == 1) {
     //
     //..............JUNTA DIRECTIVA..................
     //
-  //formulario de Seleccion de fallera para insertar los datos en el formulario de modificar
-  echo'<p class="mt-2"><strong> EDITAR JUNTA DIRECTIVA</strong></p>';
+    //formulario de Seleccion de fallera para insertar los datos en el formulario de modificar
+    echo '<p class="mt-2"><strong> EDITAR JUNTA DIRECTIVA</strong></p>';
     echo '<div class="container">';
     echo '<div class="row">';
     echo ' <form action=edicion.php method=POST class= "mt-4 col-lg-2 col-md-4 col-sm-12">';
@@ -251,7 +262,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '</form>';}
     if (isset($idDirectivo)) {
         //obtenemos los datos del directivo seleccionado para ponerlos en el formulario
-        $datosDirectivo=$directivo->datosDirectivoID($idDirectivo);
+        $datosDirectivo = $directivo->datosDirectivoID($idDirectivo);
         $nombre = $datosDirectivo->get_jun_nombre();
         $apellidos = $datosDirectivo->get_jun_apellidos();
         $anyo = $datosDirectivo->get_jun_anyo();
@@ -262,23 +273,23 @@ if ($_SESSION["nivel"] == 1) {
         echo '<form action=edicion.php method=POST class= "mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="nombre">Nombre</label>';
-        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" value="'.$nombre.'" placeholder="' . $nombre . '">';
+        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" value="' . $nombre . '" placeholder="' . $nombre . '">';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="apellidos">Apellidos</label>';
-        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" value="'.$apellidos.'" placeholder="' . $apellidos . '">';
+        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" value="' . $apellidos . '" placeholder="' . $apellidos . '">';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="anyo">Año</label>';
-        echo '<input type="number" class="form-control" id="anyo" name="anyoNew" value='.$anyo.' placeholder="' . $anyo . '">';
+        echo '<input type="number" class="form-control" id="anyo" name="anyoNew" value=' . $anyo . ' placeholder="' . $anyo . '">';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="Urlimg">Seleccione cargo</label>';
         echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
         //mostramos l cargo actual del directivo seleccionado
         $crudCargos = new CrudCargos();
-        $cargoActual=$crudCargos->cargoActual($cargoID);
-        echo"esto es $cargoActual)";
+        $cargoActual = $crudCargos->cargoActual($cargoID);
+        echo "esto es $cargoActual)";
         echo "<option value='$cargoActual'> $cargoActual</option>";
         //mostramos la lista de los cargos
         $crudCargos->listadoCargos();
@@ -288,7 +299,7 @@ if ($_SESSION["nivel"] == 1) {
         echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
         echo "<option value='$imagen'> $imagen</option>";
         //mostramos las rutas de todas las imagenes
-        $recurso= new CrudRecurso();
+        $recurso = new CrudRecurso();
         $recurso->listadoRecurso();
         echo '</div>';
         echo '<div class="form-group">';
@@ -306,7 +317,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '</form>';
         echo '<hr>';
     } else {
-      // Formulario de crear un directivo
+        // Formulario de crear un directivo
         echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class="mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="nombre">Nombre</label>';
@@ -321,7 +332,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="Año">';
         echo '</div>';
         echo '<div class="form-group">';
-        echo '<label for="Urlimg">Selecciona ruta imagen</label>';
+        echo '<label for="Urlimg">Selecciona cargo</label>';
         echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
         echo "<option > Selecciona...</option>";
         //mostramos la lista de los cargos
@@ -333,7 +344,7 @@ if ($_SESSION["nivel"] == 1) {
         echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
         echo "<option > Selecciona...</option>";
         //mostramos las rutas de todas las imagenes
-        $recurso= new CrudRecurso();
+        $recurso = new CrudRecurso();
         $recurso->listadoRecurso();
         echo '<input type=hidden name="directivoCrear" value="crear">';
         echo '</div>';
@@ -347,7 +358,7 @@ if ($_SESSION["nivel"] == 1) {
     //..............EVENTOS..................
     //
     //mostramos los formularios para crear, modificar o eliminar eventos
-    echo'<p class="mt-2"><strong> EDITAR EVENTOS</strong></p>';
+    echo '<p class="mt-2"><strong> EDITAR EVENTOS</strong></p>';
     echo '<div class="container">';
     echo '<div class="row">';
     echo ' <form action=edicion.php method=POST class="mt-4 col-lg-3 col-md-4 col-sm-12">';
@@ -364,34 +375,34 @@ if ($_SESSION["nivel"] == 1) {
         $eve_titulo = $evento->get_eve_titulo();
         $eve_detalles = $evento->get_eve_detalles();
         $eve_suscripcion = $evento->get_eve_suscripcion();
-        $eve_suscripcion = ($eve_suscripcion==0) ? " " : "checked" ;
-        $valor = ($eve_suscripcion=="checked") ? 1 : 0 ; 
+        $eve_suscripcion = ($eve_suscripcion == 0) ? " " : "checked";
+        $valor = ($eve_suscripcion == "checked") ? 1 : 0;
         $eve_url_img = $evento->get_eve_url_img();
         $idEliminarEvento = $eve_id;
         $idModificarEvento = $eve_id;
         echo ' <form action=edicion.php method=POST class="mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="Titulo">Titulo</label>';
-        echo '<input type="text" class="form-control" id="Titulo" name="TituloNew" value="'.$eve_titulo.' " placeholder=' . $eve_titulo . '>';
+        echo '<input type="text" class="form-control" id="Titulo" name="TituloNew" value="' . $eve_titulo . ' " placeholder=' . $eve_titulo . '>';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="Descripcion">Descripcion</label>';
-        echo '<input type="text" class="form-control" id="Descripcion" name="DescripcionNew" value="'.$eve_detalles.'" placeholder=' . $eve_detalles . '>';
+        echo '<input type="text" class="form-control" id="Descripcion" name="DescripcionNew" value="' . $eve_detalles . '" placeholder=' . $eve_detalles . '>';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="Fecha">Fecha</label>';
-        echo '<input type="date" class="form-control" id="Fecha" name="FechaNew" value="'.$fechaBBDD.'" >';
+        echo '<input type="date" class="form-control" id="Fecha" name="FechaNew" value="' . $fechaBBDD . '" >';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="fechaLimite">Fecha límite de inscripción</label>';
-        echo '<input type="date" class="form-control" id="fechaLimite" name="fechaLimiteNew" value="'.$eve_fecha_limite_inscripcion.'">';
+        echo '<input type="date" class="form-control" id="fechaLimite" name="fechaLimiteNew" value="' . $eve_fecha_limite_inscripcion . '">';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="Urlimg">Selecciona ruta imagen</label>';
         echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
         echo "<option value='$eve_url_img'> $eve_url_img</option>";
         //mostramos las rutas de todas las imagenes
-        $recurso= new CrudRecurso();
+        $recurso = new CrudRecurso();
         $recurso->urlEventos();
         echo '<div class="form-group m-2">';
         echo "<input class='form-check-input' type='checkbox' name='suscripcionNew' id='validationFormCheck1' $eve_suscripcion>";
@@ -415,7 +426,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '<button type="submit" class="btn m-1  btn-danger">Eliminar</button>';
         echo '</form>';
     } else {
-      //formulario de crear nuevo evento
+        //formulario de crear nuevo evento
         echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class=" mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="Titulo">Titulo</label>';
@@ -438,7 +449,7 @@ if ($_SESSION["nivel"] == 1) {
         echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
         echo "<option> Seleccionar imagen</option>";
         //mostramos las rutas de todas las imagenes
-        $recurso= new CrudRecurso();
+        $recurso = new CrudRecurso();
         $recurso->urlEventos();
         echo '<div class="form-group m-2">';
         echo '<input class="form-check-input" type="checkbox"  id="validationFormCheck1" >';
@@ -457,63 +468,78 @@ if ($_SESSION["nivel"] == 1) {
     //
     //..............RECURSOS..................
     //
+    /*
+    if (isset($rutaRecurso)) {
+    var_dump($rutaRecurso);
+    echo ' <form action=edicion.php method=POST class= "mt-4 col-lg-2 col-md-4 col-sm-12">';
+    $recursos = $recurso->nombresRecursos($rutaRecurso);
+    echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
+    echo '</form>';}
+     */
     //mostramos los formularios para crear, modificar o eliminar recurso
-    echo'<p class="mt-2"><strong> EDITAR IMAGENES Y LLIBRETS</strong></p>';
+    echo '<p class="mt-2"><strong> EDITAR IMAGENES Y LLIBRETS</strong></p>';
     echo '<div class="container">';
     echo '<div class="row">';
     echo ' <form action=edicion.php method=POST class="mt-4 col-lg-3 col-md-4 col-sm-12">';
-    echo '<label for="rutaRecurso">Selecciona ruta del recurso</label>';
+    echo '<label for="rutaRecurso">Selecciona tipo de recurso</label>';
     echo "<select id='rutaRecurso'class='form-select form-select-md' name='rutaRecurso' >";
     echo "<option > Selecciona...</option>";
     $recurso = new CrudRecurso();
-    $recurso->urlRcursos();
+    $recurso->tiposRecursos();
     echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
     echo '</form>';
-    if (isset($idPresidenteInfantil)) {
-        $datosPresidenteInfantil = new CrudPresidenteInfantiles();
-        $presidenteInfantil = $datosPresidenteInfantil->datosPresidenteInfantilId($idPresidenteInfantil);
-        $nombre = $presidenteInfantil->get_nombre();
-        $apellidos = $presidenteInfantil->get_apellidos();
-        $anyo = $presidenteInfantil->get_anyo();
-        $imagen = $presidenteInfantil->get_imagen();
-        $idEliminar = $idPresidenteInfantil;
-        $idModificar = $idPresidenteInfantil;
+    //con la ruta del recurso tenemos que hacer otro select con los recursos de esa ruta
+    if (isset($rutaRecurso)) {
+        echo ' <form action=edicion.php method=POST class= "mt-4 col-lg-2 col-md-4 col-sm-12">';
+        $recursos = $recurso->nombresRecursos($rutaRecurso);
+        echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
+        echo '</form>';}
+    if (isset($recursoSeleccionado)) {
+        $datosRecurso = new CrudRecurso();
+        $recurso = $datosRecurso->datosRecurso($recursoSeleccionado);
+        $nombre = $recurso->get_rec_nombre();
+        $anyo = $recurso->get_rec_anyo();
+        $tipo = $recurso->get_rec_tipo();
+        $url = $recurso->get_rec_url();
+        //falta crear la url cuando envie formulario--------------------------------
+        $idEliminarRecurso = $recursoSeleccionado;
+        $idModificarRecurso = $recursoSeleccionado;
         echo ' <form action=edicion.php method=POST class="mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="nombre">Nombre</label>';
-        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" placeholder=' . $nombre . '>';
+        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" value="' . $nombre . ' " placeholder=' . $nombre . '>';
         echo '</div>';
         echo '<div class="form-group">';
         echo '<label for="anyo">Año</label>';
-        echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="' . $anyo . '">';
+        echo '<input type="number" class="form-control" id="anyo" min="2023" name="anyoNew" value=' . $anyo . ' placeholder="' . $anyo . '">';
         echo '</div>';
         echo '<div class="form-group">';
-        echo '<label for="recurso">Tipo de recurso</label>';
-        echo '<input type="text" class="form-control" id="recurso" name="recursoNew" placeholder=' . $apellidos . '>';
+        echo '<label for="rutaRecurso">Selecciona tipo del recurso</label>';
+        echo "<select id='rutaRecurso'class='form-select form-select-md' name='recursoNew' >";
+        $recurso = new CrudRecurso();
+        $recurso->tiposRecursos();
         echo '</div>';
-        
-        echo '<div class="form-group">';
+        echo "<input type=hidden name='urlNew' value='$url'>";
+        /*echo '<div class="form-group">';
         //mostramos las rutas de todas las imagenes
         $recurso= new CrudRecurso();
         $recurso->listadoRecurso();
-        echo '</div>';
+        echo '</div>';*/
         echo '<div class="form-group">';
-        echo '<label for="imagen" class="form-label">Imagen</label>';
-        echo '<input type="file" class="form-control form-control-sm" id="imagen" name="imagenNew" placeholder="seleccionar" >';
-        echo '<input type=hidden name="idModificar" value="' . $idModificar . '">';
+        echo '<input type=hidden name="idModificarRecurso" value="' . $idModificarRecurso . '">';
         echo '</div>';
         echo '<button type="submit" class="m-2 btn btn-septiembre">Modificar</button>';
         echo '</form>';
         echo '<form action=edicion.php method=POST class= "mt-4 col-lg-2 col-md-4 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="eliminar">Nombre</label>';
-        echo '<input type="text" class="form-control" id="eliminar"  placeholder="' . $nombre . ' ' . $apellidos . '">';
-        echo '<input type=hidden name="idEliminar" value="' . $idEliminar . '">';
+        echo '<input type="text" class="form-control" id="eliminar"  placeholder="' . $nombre . ' ' . $anyo . '">';
+        echo '<input type=hidden name="idEliminarRecurso" value="' . $idEliminarRecurso . '">';
         echo '</div>';
         echo '<button type="submit" class="btn m-1  btn-danger">Eliminar</button>';
         echo '</form>';
     } else {
-      //formulario de crear nuevo recuso
+        //formulario de crear nuevo recuso
         echo ' <form action=edicion.php method=POST class=" mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group">';
         echo '<label for="nombre">Nombre</label>';
@@ -534,80 +560,80 @@ if ($_SESSION["nivel"] == 1) {
         echo '</div>';
         echo '<button type="submit" class="m-2 btn m-1  btn-primary">Crear</button>';
         echo '</form>';
-}
-echo '</div>';
-echo '</div>';
-echo '<hr>';
+    }
+    echo '</div>';
+    echo '</div>';
+    echo '<hr>';
 //mostramos los formularios para crear, modificar o eliminar fallera mayor infantil
-echo '<div class="container">';
-echo '<div class="row">';
-echo ' <form action=edicion.php method=POST class="mt-4 col-lg-2 col-md-4 col-sm-12">';
-$presidentesInfantiles = new CrudFallerasInfantiles();
-$presidentesInfantiles->nombresFallerasMayoresInfantiles();
-echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
-echo '</form>';
-if (isset($idFalleraMayorInfantil)) {
-    $datosFalleraMayorInfantil = new CrudFallerasInfantiles();
-    $falleraMayorInfantil = $datosFalleraMayorInfantil->datosFalleraInfantilId($idFalleraMayorInfantil);
-    $nombre = $falleraMayorInfantil->get_nombre();
-    $apellidos = $falleraMayorInfantil->get_apellidos();
-    $anyo = $falleraMayorInfantil->get_anyo();
-    $imagen = $falleraMayorInfantil->get_imagen();
-    $idEliminar = $idFalleraMayorInfantil;
-    $idModificar = $idFalleraMayorInfantil;
-    echo ' <form action=edicion.php method=POST class="mt-4 border col-lg-4 col-md-8 col-sm-12">';
-    echo '<div class="form-group">';
-    echo '<label for="nombre">Nombre</label>';
-    echo '<input type="text" class="form-control" id="nombre" name="nombreNew" placeholder=' . $nombre . '>';
-    echo '</div>';
-    echo '<div class="form-group">';
-    echo '<label for="apellidos">Apellidos</label>';
-    echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" placeholder=' . $apellidos . '>';
-    echo '</div>';
-    echo '<div class="form-group">';
-    echo '<label for="anyo">Año</label>';
-    echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="' . $anyo . '">';
-    echo '</div>';
-    echo '<div class="form-group">';
-    echo '<label for="imagen" class="form-label">Imagen</label>';
-    echo '<input type="file" class="form-control form-control-sm" id="imagen" name="imagenNew" placeholder="seleccionar" >';
-    echo '<input type=hidden name="idModificar" value="' . $idModificar . '">';
-    echo '</div>';
-    echo '<button type="submit" class="m-2 btn btn-septiembre">Modificar</button>';
+    echo '<div class="container">';
+    echo '<div class="row">';
+    echo ' <form action=edicion.php method=POST class="mt-4 col-lg-2 col-md-4 col-sm-12">';
+    $presidentesInfantiles = new CrudFallerasInfantiles();
+    $presidentesInfantiles->nombresFallerasMayoresInfantiles();
+    echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
     echo '</form>';
-    echo '<form action=edicion.php method=POST class= " mt-4 col-lg-2 col-md-4 col-sm-12">';
-    echo '<div class="form-group">';
-    echo '<label for="eliminar">Nombre</label>';
-    echo '<input type="text" class="form-control" id="eliminar"  placeholder="' . $nombre . ' ' . $apellidos . '">';
-    echo '<input type=hidden name="idEliminar" value="' . $idEliminar . '">';
+    if (isset($idFalleraMayorInfantil)) {
+        $datosFalleraMayorInfantil = new CrudFallerasInfantiles();
+        $falleraMayorInfantil = $datosFalleraMayorInfantil->datosFalleraInfantilId($idFalleraMayorInfantil);
+        $nombre = $falleraMayorInfantil->get_nombre();
+        $apellidos = $falleraMayorInfantil->get_apellidos();
+        $anyo = $falleraMayorInfantil->get_anyo();
+        $imagen = $falleraMayorInfantil->get_imagen();
+        $idEliminar = $idFalleraMayorInfantil;
+        $idModificar = $idFalleraMayorInfantil;
+        echo ' <form action=edicion.php method=POST class="mt-4 border col-lg-4 col-md-8 col-sm-12">';
+        echo '<div class="form-group">';
+        echo '<label for="nombre">Nombre</label>';
+        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" placeholder=' . $nombre . '>';
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label for="apellidos">Apellidos</label>';
+        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" placeholder=' . $apellidos . '>';
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label for="anyo">Año</label>';
+        echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="' . $anyo . '">';
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label for="imagen" class="form-label">Imagen</label>';
+        echo '<input type="file" class="form-control form-control-sm" id="imagen" name="imagenNew" placeholder="seleccionar" >';
+        echo '<input type=hidden name="idModificar" value="' . $idModificar . '">';
+        echo '</div>';
+        echo '<button type="submit" class="m-2 btn btn-septiembre">Modificar</button>';
+        echo '</form>';
+        echo '<form action=edicion.php method=POST class= " mt-4 col-lg-2 col-md-4 col-sm-12">';
+        echo '<div class="form-group">';
+        echo '<label for="eliminar">Nombre</label>';
+        echo '<input type="text" class="form-control" id="eliminar"  placeholder="' . $nombre . ' ' . $apellidos . '">';
+        echo '<input type=hidden name="idEliminar" value="' . $idEliminar . '">';
+        echo '</div>';
+        echo '<button type="submit" class="btn m-1  btn-danger">Eliminar</button>';
+        echo '</form>';
+    } else {
+        //formulario de crear nuevo presidente
+        echo ' <form action=edicion.php method=POST class=" mt-4 border col-lg-4 col-md-8 col-sm-12">';
+        echo '<div class="form-group">';
+        echo '<label for="nombre">Nombre</label>';
+        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" aria-describedby="nombreHelp" placeholder="Nombre">';
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label for="apellidos">Apellidos</label>';
+        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" placeholder="Apellidos">';
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label for="anyo">Año</label>';
+        echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="Año">';
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label for="imagen">Imagen</label>';
+        echo '<input type="file" class="form-control form-control-sm" id="imagen" name="imagenNew" placeholder="seleccionar">';
+        echo '<input type=hidden name="falleraCrear" value="crear">';
+        echo '</div>';
+        echo '<button type="submit" class="m-2 btn m-1  btn-primary">Crear</button>';
+        echo '</form>';
+    }
     echo '</div>';
-    echo '<button type="submit" class="btn m-1  btn-danger">Eliminar</button>';
-    echo '</form>';
-} else {
-  //formulario de crear nuevo presidente
-    echo ' <form action=edicion.php method=POST class=" mt-4 border col-lg-4 col-md-8 col-sm-12">';
-    echo '<div class="form-group">';
-    echo '<label for="nombre">Nombre</label>';
-    echo '<input type="text" class="form-control" id="nombre" name="nombreNew" aria-describedby="nombreHelp" placeholder="Nombre">';
     echo '</div>';
-    echo '<div class="form-group">';
-    echo '<label for="apellidos">Apellidos</label>';
-    echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" placeholder="Apellidos">';
-    echo '</div>';
-    echo '<div class="form-group">';
-    echo '<label for="anyo">Año</label>';
-    echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="Año">';
-    echo '</div>';
-    echo '<div class="form-group">';
-    echo '<label for="imagen">Imagen</label>';
-    echo '<input type="file" class="form-control form-control-sm" id="imagen" name="imagenNew" placeholder="seleccionar">';
-    echo '<input type=hidden name="falleraCrear" value="crear">';
-    echo '</div>';
-    echo '<button type="submit" class="m-2 btn m-1  btn-primary">Crear</button>';
-    echo '</form>';
-}
-echo '</div>';
-echo '</div>';
 }
 echo '</div>';
 echo '</div>';

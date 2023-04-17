@@ -1,6 +1,6 @@
 <?php
 
-class Junta_directiva{
+class Recurso{
 
     protected $rec_nombre;
     protected $rec_anyo;
@@ -11,7 +11,7 @@ class Junta_directiva{
     function __construct($rec_nombre,$rec_tipo,$rec_anyo,$rec_url){
         $this->rec_nombre=$rec_nombre;
         $this->rec_anyo=$rec_anyo;
-        $this->imagen=$imagen;
+        $this->rec_tipo=$rec_tipo;
         $this->rec_url=$rec_url;
     }
     //hacemos las funciones get de los datos del usuario
@@ -23,8 +23,8 @@ class Junta_directiva{
         return $this->rec_anyo;
 
     }
-    public function get_imagen(){
-        return $this->imagen;
+    public function get_rec_tipo(){
+        return $this->rec_tipo;
 
     }
     public function get_rec_url(){
