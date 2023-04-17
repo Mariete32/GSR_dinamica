@@ -65,7 +65,11 @@ public function datosRecurso($rec_id){
         $bocetos = "Boceto_imagen";
         $llibrets = "pdf_llibret";
         echo "<option value=$eventos> Imagen de eventos</option>";
-        echo "<option value=$directivas>Imagen de junta directiva</option>";
+        echo "<option value=$fm>Imagen de fallera mayor</option>";
+        echo "<option value=$fmi>Imagen de fallera mayor infantil</option>";
+        echo "<option value=$presidente>Imagen de presidente</option>";
+        echo "<option value=$presidenteInfantil>Imagen de presidente infantil</option>";
+
         echo "<option value=$premios>Imagen de premio de monumento</option>";
         echo "<option value=$bocetos>Imagen de monumento</option>";
         echo "<option value=$llibrets>PDF de llibret</option>";
