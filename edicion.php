@@ -33,17 +33,20 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
     //} else {
     //  $_SESSION["nivel"] = 2;
     //}
-    //si ya estamos logueados no nos redirije a login.php
+  //si ya estamos logueados no nos redirije a login.php
 } else if (!isset($_SESSION["nivel"])) {
     header("Location: ./login.php");
 //si se selecciona un año, mostramos la junta directiva de ese año en otro select
 } else if (isset($_POST["anyos"])) {
     $anyos = $_POST["anyos"];
-//si seleccionamos directivo, mostramos sus datos en el formulario para su modificacion o eliminacion
+
+    //si seleccionamos directivo, mostramos sus datos en el formulario para su modificacion o eliminacion
 } else if (isset($_POST["directivo"])) {
     $idDirectivo = $_POST["directivo"];
 } else if (isset($_POST["eve_id"])) {
     $eve_id = $_POST["eve_id"];
+
+    //si seleccionamos directivo, mostramos sus datos en el formulario para su modificacion o eliminacion
 } else if (isset($_POST["rutaRecurso"])) {
     $rutaRecurso = $_POST["rutaRecurso"];
 } else if (isset($_POST["recursoSeleccionado"])) {
@@ -104,7 +107,21 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
     $idEliminar = $_POST["idEliminarEvento"];
     $eventoEliminado = new CrudEventos();
     $eventoEliminado->eliminarEvento($idEliminar);
-
+//si seleccionamos crear desde el formulario, insertamos el directivo en la BBDD
+} else if (isset($_POST["eventoCrear"])) {
+  var_dump($_POST);
+  $TituloNew = $_POST["TituloNew"];
+  $fechaNew = $_POST["fechaNew"];
+  $fechaLimiteNew = $_POST["fechaLimiteNew"];
+  $DescripcionNew = $_POST["DescripcionNew"];
+  $Urlimg = $_POST["Urlimg"];
+  if (isset($_POST["suscripcionNew"])) {
+    $suscripcionNew = $_POST["suscripcionNew"];
+    $suscripcionNew = ($suscripcionNew == "on") ? 1 : 0;
+  } else { $suscripcionNew = 0;}
+  $eventoNuevo = new Evento($fechaNew, $fechaLimiteNew, $TituloNew, $DescripcionNew,  $suscripcionNew, $Urlimg);
+  $eventoCreado = new CrudEventos();
+  $exito = $eventoCreado->insertarEvento($eventoNuevo);
     //-----------------------------RECURSO--------------------------
     //si seleccionamos modificar desde el formulario, modificamos el recurso en la BBDD
 } else if (isset($_POST["idModificarRecurso"])) {
@@ -128,7 +145,6 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
     $anyoNew = $_POST["anyoNew"];
     $nombreNew = $_POST["nombreNew"];
     $tipoNew = $_POST["recursoNew"];
-    //$Urlimg = $_POST["imagenNew"];
     //En la página "guardar_imagen.php", verifica que se haya subido un archivo y que sea una imagen válida:
     if (isset($_FILES['imagenNew']) && $_FILES['imagenNew']['error'] == 0) {
         //prefijos para generar los nombres de las imagenes
@@ -140,17 +156,6 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
         $tipoBOCETO = 'Boceto_';
         $tipoPREMIO = 'Premio_';
         $tipoLLIBRET = 'Llibret_';
-        /*$file_info = pathinfo($_FILES['imagenNew']['name']);
-        $extension = strtolower($file_info['extension']);
-        $valid_extensions = array('jpg', 'jpeg', 'png', 'gif');
-        if (in_array($extension, $valid_extensions)) {
-        // El archivo es una imagen válida
-        } else {
-        // El archivo no es una imagen válida
-        }
-        } else {
-        // No se ha subido ningún archivo
-        }*/
 
         //cambiamos el nombre de la imagen por uno estandar en la carpeta directiva
         //En la función move_uploaded_file, el primer argumento es la ubicación temporal del archivo subido y
@@ -544,7 +549,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '  Se requiere inscribirse al evento';
         echo '</label>';
         echo '</div>';
-        echo '<input type=hidden name="falleraCrear" value="crear">';
+        echo '<input type=hidden name="eventoCrear" value="crear">';
         echo '</div>';
         echo '<button type="submit" class="m-2 btn m-1  btn-primary">Crear</button>';
         echo '</form>';
