@@ -136,4 +136,22 @@ public static function editarRecurso($recurso)
         return $exito;
     }
 }
+//funcion que inserta un recurso en la bbdd
+public function insertarDirectivo($recurso)
+{
+    try {
+        $conexion = Database::conexion();
+        $insertar = $conexion->prepare('INSERT INTO recurso values(NULL,:rec_nombre,:rec_anyo,:rec_tipo,:rec_url)');
+        $insertar->bindValue(':rec_nombre', $recurso->get_rec_nombre());
+        $insertar->bindValue(':rec_anyo', $recurso->get_rec_anyo());
+        $insertar->bindValue(':rec_tipo', $recurso->get_rec_tipo());
+        $insertar->bindValue(':rec_url', $recurso->get_rec_url());
+        $insertar->execute();
+        $exito = 1;
+        return $exito;
+    } catch (exception $e) {
+        $exito = 0;
+        return $exito;
+    }
+}
 }

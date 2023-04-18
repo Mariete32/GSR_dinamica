@@ -8,7 +8,7 @@ class Recurso{
     protected $rec_id;
     protected $rec_url;
 
-    function __construct($rec_nombre,$rec_tipo,$rec_anyo,$rec_url){
+    function __construct($rec_nombre,$rec_anyo,$rec_tipo,$rec_url){
         $this->rec_nombre=$rec_nombre;
         $this->rec_anyo=$rec_anyo;
         $this->rec_tipo=$rec_tipo;
