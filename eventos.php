@@ -1,6 +1,7 @@
 <?php
 require_once "./classes/inscritos.php";
 require_once "./CRUDs/inscritos_CRUD.php";
+require_once "./CRUDs/eventos_CRUD.php";
 
 if (isset($_POST["Nombre"]) && isset($_POST["Apellidos"])) {
   $id=$_POST["eve_id"];
@@ -137,7 +138,6 @@ if (isset($_POST["Nombre"]) && isset($_POST["Apellidos"])) {
       target="_blank">pronóstico para 7 dias Valencia</a></div>
   <script async src="https://app1.weatherwidget.org/js/?id=ww_720bcd72f1778"></script>
   <?php
-  require_once "./CRUDs/eventos_CRUD.php";
   $eventos = new CrudEventos();
   $eventos->eventos();
   ?>

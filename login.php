@@ -1,9 +1,10 @@
 <?php
-echo "hay que guardar en las cookies la variable session";
-if (isset($_SESSION["nivel"])) {
-  echo"entra";
-    header("Location: ./edicion.php");
+session_start();
+if (isset($_COOKIE['sesion'])) {
+  var_dump($_COOKIE['sesion']);
+  header("Location: ./edicion.php");
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

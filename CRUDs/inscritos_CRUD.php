@@ -32,13 +32,15 @@ class CrudInscrito{
         $consulta_preparada->bindParam(':ins_eve_id', $idEvento);
         $consulta_preparada->execute();
         $resultado = $consulta_preparada->fetchAll(PDO::FETCH_ASSOC);
+        $contador=0;
         foreach ($resultado as $valor) {
-            $nombre = $valor["nombre"];
-            $apellidos = $valor["apellidos"];
-            $email = $valor["email"];
-            $texto = $valor["texto"];
-            echo"$nombre $apellidos $email $texto";
-            //$inscrito = new Inscrito_evento($nombre, $apellidos, $email, $texto);
+            $contador++;
+            $nombre = $valor["ins_nombre"];
+            $apellidos = $valor["ins_apellidos"];
+            $email = $valor["ins_email"];
+            $texto = $valor["ins_texto"];
+            echo"$contador - $nombre $apellidos, $email, $texto";
+            echo"<br>";            //$inscrito = new Inscrito_evento($nombre, $apellidos, $email, $texto);
         }
         //return $inscrito;
     }

@@ -130,14 +130,39 @@ public function nombresEventos()
     $consultaPreparada = $conexion->prepare($consulta);
     $consultaPreparada->execute();
     $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-    echo '<label for="evento">Eventos</label>';
+    echo '<label for="evento">Seleciona evento a modificar</label>';
     echo "<select id='evento' class=' form-select form-select-md mt-2' name='eve_id' >";
     foreach ($resultado as $value) {
         $eve_id = $value["eve_id"];
         //cambiamos el formato de la fecha
         $fecha = $value["eve_fecha"];
         $fecha = date('d-m-Y', strtotime($fecha));
-
+        $fechaLimite = $value["eve_fecha_limite_inscripcion"];
+        $eve_titulo = $value["eve_titulo"];
+        $eve_detalles = $value["eve_detalles"];
+        $suscripcion = $value["eve_suscripcion"];
+        $url = $value["eve_url_img"];
+        echo "<option value=$eve_id> $eve_titulo $fecha </option>";
+    }
+    echo "</select>";
+}
+//funcion que imprime el nombre de las eventos en un select
+public function nombresEventosSuscripcion()
+{
+    $suscripcion=1;
+    $conexion = database::conexion();
+    $consulta = "SELECT * FROM `eventos` WHERE  eve_suscripcion=:suscripcion";
+    $consultaPreparada = $conexion->prepare($consulta);
+    $consultaPreparada->bindValue(':suscripcion', $suscripcion);
+    $consultaPreparada->execute();
+    $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
+    echo '<label for="evento">Ver lista de isncritos al evento</label>';
+    echo "<select id='evento' class=' form-select form-select-md mt-2' name='eve_id' >";
+    foreach ($resultado as $value) {
+        $eve_id = $value["eve_id"];
+        //cambiamos el formato de la fecha
+        $fecha = $value["eve_fecha"];
+        $fecha = date('d-m-Y', strtotime($fecha));
         $fechaLimite = $value["eve_fecha_limite_inscripcion"];
         $eve_titulo = $value["eve_titulo"];
         $eve_detalles = $value["eve_detalles"];

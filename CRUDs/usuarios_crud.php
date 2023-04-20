@@ -26,29 +26,51 @@ class CrudUsuario
     }
 
 //funcion que nos devuelve la clase usuario con el user y contraseña pasandole el ID
-    public function obtenerUserPassword($id)
+    public function obtenerDatosUsuario($id)
     {
         $conexion = database::conexion();
-        $consulta = "SELECT * FROM usuarios WHERE id=:id";
+        $consulta = "SELECT * FROM usuarios WHERE user_id=:user_id";
         $consulta_preparada = $conexion->prepare($consulta);
-        $consulta_preparada->bindParam(':id', $id);
+        $consulta_preparada->bindParam(':user_id', $id);
         $consulta_preparada->execute();
         $resultado = $consulta_preparada->fetchAll(PDO::FETCH_ASSOC);
         foreach ($resultado as $valor) {
-            $user = $valor["user"];
-            $password = $valor["password"];
-            $usuario = new Usuario($user, $password);
+            $user = $valor["user_login"];
+            $password = $valor["user_password"];
+            $rol = $valor["user_rol"];
+            $usuario = new Usuario($user, $password, $rol);
         }
         return $usuario;
     }
-
+//funcion que imprime los usuarios de ese tipo en un select
+public function nombresUsuarios()
+{
+    $conexion = database::conexion();
+    $consulta = "SELECT * FROM `usuarios` ";
+    $consultaPreparada = $conexion->prepare($consulta);
+    $consultaPreparada->execute();
+    $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
+    echo '<label for="recurso">Selecciona usuario</label>';
+    echo "<select id='recurso'class='form-select form-select-sm' name='usuarioSeleccionado' >";
+    echo "<option selected>Selecciona</option>";
+    //quitamos el primer elemento de administrador para que no se pueda modificar o eliminar
+    array_shift($resultado);
+    foreach ($resultado as $value) {
+        $id = $value['user_id'];
+        $login = $value['user_login'];
+        $pass = $value['user_password'];
+        $rol = $value['user_rol'];
+        echo "<option value=$id>" . $login . "</option>";
+    }
+    echo "</select>";
+}
 //funcion que elimina el usuario
     public function eliminarUsuario($id)
     {
         $conexion = database::conexion();
-        $consulta = "DELETE FROM usuarios WHERE  id=:id";
+        $consulta = "DELETE FROM usuarios WHERE  user_id=:user_id";
         $consultaPreparada = $conexion->prepare($consulta);
-        $consultaPreparada->bindValue(':id', $id);
+        $consultaPreparada->bindValue(':user_id', $id);
         $consultaPreparada->execute();
     }
 
@@ -56,10 +78,11 @@ class CrudUsuario
     public function insertarUsuario($usuario)
     {
         $conexion = Database::conexion();
-        $insertar = $conexion->prepare('INSERT INTO usuarios values(NULL,:user,:password,FALSE)');
-        $insertar->bindValue(':user', $usuario->user());
-        $insertar->bindValue(':password', $usuario->get_password());
-        $consultaPreparada->execute();
+        $insertar = $conexion->prepare('INSERT INTO `usuarios` values(NULL,:user_login,:user_password,:user_rol)');
+        $insertar->bindValue(':user_login', $usuario->get_user_login());
+        $insertar->bindValue(':user_password', $usuario->get_user_password());
+        $insertar->bindValue(':user_rol', $usuario->get_user_rol());
+        $insertar->execute();
     }
 
 //funcion que actualiza los valores en la base de datos
@@ -67,12 +90,12 @@ class CrudUsuario
     {
         try {
             $conexion = database::conexion();
-            $id = $usuario->get_id();
-            $actualizacion = "UPDATE usuarios SET user=:user, password=:password, id=:id WHERE id=$id";
+            $id = $usuario->get_user_id();
+            $actualizacion = "UPDATE usuarios SET user_login=:user_login, user_password=:user_password, user_rol=:user_rol WHERE user_id=$id";
             $consultaPreparada = $conexion->prepare($actualizacion);
-            $consultaPreparada->bindValue(':user', $usuario->user());
-            $consultaPreparada->bindValue(':password', $usuario->get_password());
-            $consultaPreparada->bindValue(':id', $usuario->get_id());
+            $consultaPreparada->bindValue(':user_login', $usuario->get_user_login());
+            $consultaPreparada->bindValue(':user_password', $usuario->get_user_password());
+            $consultaPreparada->bindValue(':user_rol', $usuario->get_user_rol());
             $consultaPreparada->execute();
             $exito = 1;
             return $exito;
