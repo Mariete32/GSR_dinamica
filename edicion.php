@@ -17,7 +17,9 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
     $rol = $usuario->get_user_rol();
     //creamos el objeto usuario con los datos introducidos
     //$login = new Usuario($_POST["usuario"], $_POST["contraseña"]);
-
+    //$cookie = $_POST["usuario"];
+    // Guardar el valor de la variable de sesión en una cookie
+    //setcookie('sesion', $cookie, time() + 60, '/'); // 86400 segundos = 1 día (86400 * 30)
     //si el usuario o contraseña son incorrectos la bbdd no devuelve el id
     if ($rol == 0 || $rol == null) {
         header("Location: ./login.php?error=1");
@@ -33,7 +35,7 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
     //} else {
     //  $_SESSION["nivel"] = 2;
     //}
-  //si ya estamos logueados no nos redirije a login.php
+    //si ya estamos logueados no nos redirije a login.php
 } else if (!isset($_SESSION["nivel"])) {
     header("Location: ./login.php");
 //si se selecciona un año, mostramos la junta directiva de ese año en otro select
@@ -52,6 +54,11 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
 } else if (isset($_POST["recursoSeleccionado"])) {
     $recursoSeleccionado = $_POST["recursoSeleccionado"];
 
+    //si seleccionamos usuario, mostramos sus datos en el formulario para su modificacion o eliminacion
+} else if (isset($_POST["rutaRecurso"])) {
+    $rutaRecurso = $_POST["rutaRecurso"];
+} else if (isset($_POST["usuarioSeleccionado"])) {
+    $usuarioSeleccionado = $_POST["usuarioSeleccionado"];
     //----------------JUNTA DIRECTIVA--------------
     //si seleccionamos eliminar desde el formulario, eliminamos el directivo en la BBDD
 } else if (isset($_POST["idEliminarDirectivo"])) {
@@ -109,19 +116,46 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
     $eventoEliminado->eliminarEvento($idEliminar);
 //si seleccionamos crear desde el formulario, insertamos el directivo en la BBDD
 } else if (isset($_POST["eventoCrear"])) {
-  var_dump($_POST);
-  $TituloNew = $_POST["TituloNew"];
-  $fechaNew = $_POST["fechaNew"];
-  $fechaLimiteNew = $_POST["fechaLimiteNew"];
-  $DescripcionNew = $_POST["DescripcionNew"];
-  $Urlimg = $_POST["Urlimg"];
-  if (isset($_POST["suscripcionNew"])) {
-    $suscripcionNew = $_POST["suscripcionNew"];
-    $suscripcionNew = ($suscripcionNew == "on") ? 1 : 0;
-  } else { $suscripcionNew = 0;}
-  $eventoNuevo = new Evento($fechaNew, $fechaLimiteNew, $TituloNew, $DescripcionNew,  $suscripcionNew, $Urlimg);
-  $eventoCreado = new CrudEventos();
-  $exito = $eventoCreado->insertarEvento($eventoNuevo);
+    var_dump($_POST);
+    $TituloNew = $_POST["TituloNew"];
+    $fechaNew = $_POST["fechaNew"];
+    $fechaLimiteNew = $_POST["fechaLimiteNew"];
+    $DescripcionNew = $_POST["DescripcionNew"];
+    $Urlimg = $_POST["Urlimg"];
+    if (isset($_POST["suscripcionNew"])) {
+        $suscripcionNew = $_POST["suscripcionNew"];
+        $suscripcionNew = ($suscripcionNew == "on") ? 1 : 0;
+    } else { $suscripcionNew = 0;}
+    $eventoNuevo = new Evento($fechaNew, $fechaLimiteNew, $TituloNew, $DescripcionNew, $suscripcionNew, $Urlimg);
+    $eventoCreado = new CrudEventos();
+    $exito = $eventoCreado->insertarEvento($eventoNuevo);
+
+//-----------------------------USUARIOS--------------------------
+    //si seleccionamos eliminar desde el formulario, eliminamos el directivo en la BBDD
+} else if (isset($_POST["idEliminarUsuario"])) {
+    $idEliminar = $_POST["idEliminarUsuario"];
+    $usuarioEliminado = new CrudUsuario();
+    $usuarioEliminado->eliminarUsuario($idEliminar);
+
+//si seleccionamos crear desde el formulario, insertamos el directivo en la BBDD
+} else if (isset($_POST["usuarioCrear"])) {
+    $loginNew = $_POST["loginNew"];
+    $passwordNew = $_POST["passwordNew"];
+    $rolNew = $_POST["rolNew"];
+    $usuarioNuevo = new Usuario($loginNew, $passwordNew, $rolNew);
+    $usuarioCreado = new CrudUsuario();
+    $exito = $usuarioCreado->insertarUsuario($usuarioNuevo);
+
+//si seleccionamos modificar desde el formulario, modificamos el directivo en la BBDD
+} else if (isset($_POST["idModificarUsuario"])) {
+    $loginNew = $_POST["loginNew"];
+    $passwordNew = $_POST["passwordNew"];
+    $rolNew = $_POST["rolNew"];
+    $usuarioEditado = new Usuario($loginNew, $passwordNew, $rolNew);
+    $usuarioEditado->set_user_id($_POST["idModificarUsuario"]);
+    $usuarioCreado = new CrudUsuario();
+    $usuarioCreado->editarUsuario($usuarioEditado);
+
     //-----------------------------RECURSO--------------------------
     //si seleccionamos modificar desde el formulario, modificamos el recurso en la BBDD
 } else if (isset($_POST["idModificarRecurso"])) {
@@ -163,53 +197,53 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
         //estamos moviendo el archivo a una carpeta con la ruta "ruta/a/la/carpeta/" y utilizando el nombre original del archivo.
         if ($tipoNew == "FM_imagen") {
             $nombreNuevo = $tipoFM . $_FILES['imagenNew']['name'];
-            $rutaNew='./imagenes/directiva/' . $nombreNuevo;
+            $rutaNew = './imagenes/directiva/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], './imagenes/directiva/' . $nombreNuevo);
         } else if ($tipoNew == "FMI_imagen") {
             $nombreNuevo = $tipoFMI . $_FILES['imagenNew']['name'];
-            $rutaNew='./imagenes/directiva/' . $nombreNuevo;
+            $rutaNew = './imagenes/directiva/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], './imagenes/directiva/' . $nombreNuevo);
         } else if ($tipoNew == "P_imagen") {
             $nombreNuevo = $tipoP . $_FILES['imagenNew']['name'];
-            $rutaNew='./imagenes/directiva/' . $nombreNuevo;
+            $rutaNew = './imagenes/directiva/' . $nombreNuevo;
 
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], './imagenes/directiva/' . $nombreNuevo);
         } else if ($tipoNew == "PI_imagen") {
             $nombreNuevo = $tipoPI . $_FILES['imagenNew']['name'];
-            $rutaNew='./imagenes/directiva/' . $nombreNuevo;
+            $rutaNew = './imagenes/directiva/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], './imagenes/directiva/' . $nombreNuevo);
 
             //cambiamos el nombre de la imagen por uno estandar en la carpeta imagenesEventos
         } else if ($tipoNew == "Evento_imagen") {
             $nombreNuevo = $tipoEVENTO . $_FILES['imagenNew']['name'];
-            $rutaNew='./imagenes/imagenesEventos/' . $nombreNuevo;
+            $rutaNew = './imagenes/imagenesEventos/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], './imagenes/imagenesEventos/' . $nombreNuevo);
 
             //cambiamos el nombre de la imagen por uno estandar en la carpeta Bocetos
         } else if ($tipoNew == "Boceto_imagen") {
             $nombreNuevo = $tipoBOCETO . $_FILES['imagenNew']['name'];
-            $rutaNew='./imagenes/Bocetos/' . $nombreNuevo;
+            $rutaNew = './imagenes/Bocetos/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], './imagenes/Bocetos/' . $nombreNuevo);
 
             //cambiamos el nombre de la imagen por uno estandar en la carpeta Premios
         } else if ($tipoNew == "Premio_imagen") {
             $nombreNuevo = $tipoPREMIO . $_FILES['imagenNew']['name'];
-            $rutaNew='./llibrets/' . $nombreNuevo;
+            $rutaNew = './llibrets/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], './imagenes/Premios/' . $nombreNuevo);
         } else if ($tipoNew == "pdf_llibret") {
             $nombreNuevo = $tipoLLIBRET . $_FILES['imagenNew']['anyoNew'];
-            $rutaNew='./llibrets/' . $nombreNuevo;
+            $rutaNew = './llibrets/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], './llibrets/' . $nombreNuevo);
         }
-        $recursoNuevo = new Recurso($nombreNew, $anyoNew, $tipoNew,  $rutaNew);
+        $recursoNuevo = new Recurso($nombreNew, $anyoNew, $tipoNew, $rutaNew);
         $directivoCreado = new CrudRecurso();
         $exito = $directivoCreado->insertarDirectivo($recursoNuevo);
     }
@@ -553,6 +587,11 @@ if ($_SESSION["nivel"] == 1) {
         echo '</div>';
         echo '<button type="submit" class="m-2 btn m-1  btn-primary">Crear</button>';
         echo '</form>';
+        echo ' <form action=inscritos.php method=POST class="mt-4 col-lg-3 col-md-4 col-sm-12">';
+        $eventos = new CrudEventos();
+        $eventos->nombresEventosSuscripcion();
+        echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
+        echo '</form>';
     }
     echo '</div>';
     echo '</div>';
@@ -593,7 +632,6 @@ if ($_SESSION["nivel"] == 1) {
         $anyo = $recurso->get_rec_anyo();
         $tipo = $recurso->get_rec_tipo();
         $url = $recurso->get_rec_url();
-        //falta crear la url cuando envie formulario--------------------------------
         $idEliminarRecurso = $recursoSeleccionado;
         $idModificarRecurso = $recursoSeleccionado;
         echo ' <form action=edicion.php method=POST class="mt-4 border col-lg-4 col-md-8 col-sm-12">';
@@ -658,70 +696,70 @@ if ($_SESSION["nivel"] == 1) {
     echo '</div>';
     echo '</div>';
     echo '<hr>';
-//mostramos los formularios para crear, modificar o eliminar fallera mayor infantil
+    //
+    //..............USUARIOS..................
+    //
+    //mostramos los formularios para crear, modificar o eliminar usuarios
+    echo '<p class="mt-2"><strong> EDITAR USUARIO</strong></p>';
+
     echo '<div class="container">';
     echo '<div class="row">';
     echo ' <form action=edicion.php method=POST class="mt-4 col-lg-2 col-md-4 col-sm-12">';
-    $presidentesInfantiles = new CrudFallerasInfantiles();
-    $presidentesInfantiles->nombresFallerasMayoresInfantiles();
+    $usuarios = new CrudUsuario();
+    $usuarios->nombresUsuarios();
     echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
     echo '</form>';
-    if (isset($idFalleraMayorInfantil)) {
-        $datosFalleraMayorInfantil = new CrudFallerasInfantiles();
-        $falleraMayorInfantil = $datosFalleraMayorInfantil->datosFalleraInfantilId($idFalleraMayorInfantil);
-        $nombre = $falleraMayorInfantil->get_nombre();
-        $apellidos = $falleraMayorInfantil->get_apellidos();
-        $anyo = $falleraMayorInfantil->get_anyo();
-        $imagen = $falleraMayorInfantil->get_imagen();
-        $idEliminar = $idFalleraMayorInfantil;
-        $idModificar = $idFalleraMayorInfantil;
+    if (isset($usuarioSeleccionado)) {
+        $datosUsuarios = new CrudUsuario();
+        $usuario = $datosUsuarios->obtenerDatosUsuario($usuarioSeleccionado);
+        $login = $usuario->get_user_login();
+        $password = $usuario->get_user_password();
+        $rol = $usuario->get_user_rol();
+        $idEliminarUsuario = $usuarioSeleccionado;
+        $idModificarUsuario = $usuarioSeleccionado;
         echo ' <form action=edicion.php method=POST class="mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group mt-2">';
-        echo '<label for="nombre">Nombre</label>';
-        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" placeholder=' . $nombre . '>';
+        echo '<label for="login">Login</label>';
+        echo '<input type="text" class="form-control" id="login" name="loginNew" value=' . $login . ' placeholder=' . $login . '>';
         echo '</div>';
         echo '<div class="form-group mt-2">';
-        echo '<label for="apellidos">Apellidos</label>';
-        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" placeholder=' . $apellidos . '>';
+        echo '<label for="password">Password</label>';
+        echo '<input type="text" class="form-control" id="password" name="passwordNew" value=' . $password . ' placeholder=' . $password . '>';
         echo '</div>';
         echo '<div class="form-group mt-2">';
-        echo '<label for="anyo">Año</label>';
-        echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="' . $anyo . '">';
+        echo '<label for="rol">Permisos (1=administrador 2=usuario)</label>';
+        echo '<input type="number" class="form-control" min="1" max="2" id="rol" name="rolNew" value=' . $rol . ' placeholder="' . $rol . '">';
         echo '</div>';
         echo '<div class="form-group mt-2">';
-        echo '<label for="imagen" class="form-label">Imagen</label>';
-        echo '<input type="file" class="form-control form-control-sm" id="imagen" name="imagenNew" placeholder="seleccionar" >';
-        echo '<input type=hidden name="idModificar" value="' . $idModificar . '">';
+        echo '<input type=hidden name="idModificarUsuario" value="' . $idModificarUsuario . '">';
         echo '</div>';
         echo '<button type="submit" class="m-2 btn btn-septiembre">Modificar</button>';
         echo '</form>';
         echo '<form action=edicion.php method=POST class= " mt-4 col-lg-2 col-md-4 col-sm-12">';
         echo '<div class="form-group mt-2">';
         echo '<label for="eliminar">Nombre</label>';
-        echo '<input type="text" class="form-control" id="eliminar"  placeholder="' . $nombre . ' ' . $apellidos . '">';
-        echo '<input type=hidden name="idEliminar" value="' . $idEliminar . '">';
+        echo '<input type="text" class="form-control" id="eliminar"  placeholder="' . $login . '">';
+        echo '<input type=hidden name="idEliminarUsuario" value="' . $idEliminarUsuario . '">';
         echo '</div>';
         echo '<button type="submit" class="btn m-1  btn-danger">Eliminar</button>';
         echo '</form>';
     } else {
-        //formulario de crear nuevo presidente
+        //formulario de crear nuevo usuario
         echo ' <form action=edicion.php method=POST class=" mt-4 border col-lg-4 col-md-8 col-sm-12">';
         echo '<div class="form-group mt-2">';
-        echo '<label for="nombre">Nombre</label>';
-        echo '<input type="text" class="form-control" id="nombre" name="nombreNew" aria-describedby="nombreHelp" placeholder="Nombre">';
+        echo '<label for="login">Login</label>';
+        echo '<input type="text" class="form-control" id="login" name="loginNew" aria-describedby="loginHelp" placeholder="login">';
         echo '</div>';
         echo '<div class="form-group mt-2">';
-        echo '<label for="apellidos">Apellidos</label>';
-        echo '<input type="text" class="form-control" id="apellidos" name="apellidosNew" placeholder="Apellidos">';
+        echo '<label for="password">Password</label>';
+        echo '<input type="text" class="form-control" id="password" name="passwordNew" placeholder="password">';
         echo '</div>';
         echo '<div class="form-group mt-2">';
-        echo '<label for="anyo">Año</label>';
-        echo '<input type="number" class="form-control" id="anyo" name="anyoNew" placeholder="Año">';
+        echo '<label for="rol">Permisos (1=administrador 2=usuario)</label>';
+        echo '<input type="number" class="form-control" id="rol" name="rolNew" placeholder="Rol">';
         echo '</div>';
         echo '<div class="form-group mt-2">';
-        echo '<label for="imagen">Imagen</label>';
-        echo '<input type="file" class="form-control form-control-sm" id="imagen" name="imagenNew" placeholder="seleccionar">';
-        echo '<input type=hidden name="falleraCrear" value="crear">';
+        echo '<input type=hidden name="usuarioCrear" value="crear">';
         echo '</div>';
         echo '<button type="submit" class="m-2 btn m-1  btn-primary">Crear</button>';
         echo '</form>';
@@ -731,8 +769,122 @@ if ($_SESSION["nivel"] == 1) {
 }
 echo '</div>';
 echo '</div>';
+
 if ($_SESSION["nivel"] == 2) {
-    echo $_SESSION["nivel"];
+    //
+    //..............EVENTOS..................
+    //
+    //mostramos los formularios para crear, modificar o eliminar eventos
+    echo '<p class="mt-2"><strong> EDITAR EVENTOS</strong></p>';
+    echo '<div class="container">';
+    echo '<div class="row">';
+    echo ' <form action=edicion.php method=POST class="mt-4 col-lg-3 col-md-4 col-sm-12">';
+    $eventos = new CrudEventos();
+    $eventos->nombresEventos();
+    echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
+    echo '</form>';
+    if (isset($eve_id)) {
+        $evento = $eventos->datosEvento($eve_id);
+        $fechaBBDD = $evento->get_eve_fecha();
+        $fecha = new DateTime($fechaBBDD); // Crear objeto DateTime a partir del string
+        $fecha = date_format($fecha, 'd/m/Y'); // Formatear la fecha
+        $eve_fecha_limite_inscripcion = $evento->get_eve_fecha_limite_inscripcion();
+        $eve_titulo = $evento->get_eve_titulo();
+        $eve_detalles = $evento->get_eve_detalles();
+        $eve_suscripcion = $evento->get_eve_suscripcion();
+        $eve_suscripcion = ($eve_suscripcion == 0) ? " " : "checked";
+        $valor = ($eve_suscripcion == "checked") ? 1 : 0;
+        $eve_url_img = $evento->get_eve_url_img();
+        $idEliminarEvento = $eve_id;
+        $idModificarEvento = $eve_id;
+        echo ' <form action=edicion.php method=POST class="mt-4 border col-lg-4 col-md-8 col-sm-12">';
+        echo '<div class="form-group mt-2">';
+        echo '<label for="Titulo">Titulo</label>';
+        echo '<input type="text" class="form-control" id="Titulo" name="TituloNew" value="' . $eve_titulo . ' " placeholder=' . $eve_titulo . '>';
+        echo '</div>';
+        echo '<div class="form-group mt-2">';
+        echo '<label for="Descripcion">Descripcion</label>';
+        echo '<input type="text" class="form-control" id="Descripcion" name="DescripcionNew" value="' . $eve_detalles . '" placeholder=' . $eve_detalles . '>';
+        echo '</div>';
+        echo '<div class="form-group mt-2">';
+        echo '<label for="Fecha">Fecha</label>';
+        echo '<input type="date" class="form-control" id="Fecha" name="FechaNew" value="' . $fechaBBDD . '" >';
+        echo '</div>';
+        echo '<div class="form-group mt-2">';
+        echo '<label for="fechaLimite">Fecha límite de inscripción</label>';
+        echo '<input type="date" class="form-control" id="fechaLimite" name="fechaLimiteNew" value="' . $eve_fecha_limite_inscripcion . '">';
+        echo '</div>';
+        echo '<div class="form-group mt-2">';
+        echo '<label for="Urlimg">Selecciona imagen</label>';
+        echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
+        echo "<option value='$eve_url_img'> $eve_url_img</option>";
+        //mostramos las rutas de todas las imagenes
+        $recurso = new CrudRecurso();
+        $recurso->urlEventos();
+        echo '<div class="form-group mt-2 m-2">';
+        echo "<input class='form-check-input' type='checkbox' name='suscripcionNew' id='validationFormCheck1' $eve_suscripcion>";
+        echo '<label class="form-check-label" for="validationFormCheck1">';
+        echo '  Se requiere inscribirse al evento';
+        echo '</label>';
+        echo '</div>';
+        echo '</div>';
+        echo '<div class="form-group mt-2">';
+        echo '<input type=hidden name="idModificarEvento" value="' . $idModificarEvento . '">';
+        echo '</div>';
+        echo '<button type="submit" class="m-2 btn btn-septiembre">Modificar</button>';
+        echo '</form>';
+        echo '<form action=edicion.php method=POST class= "mt-4 col-lg-2 col-md-4 col-sm-12">';
+        echo '<div class="form-group mt-2">';
+        echo '<label for="eliminar">Nombre</label>';
+        echo '<input type="text" class="form-control" id="eliminar"  placeholder="' . $eve_titulo . ' ' . $fecha . '">';
+        echo '<input type=hidden name="idEliminarEvento" value="' . $idEliminarEvento . '">';
+        echo '</div>';
+        echo '<button type="submit" class="btn m-1  btn-danger">Eliminar</button>';
+        echo '</form>';
+    } else {
+        //formulario de crear nuevo evento
+        echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class=" mt-4 border col-lg-4 col-md-8 col-sm-12">';
+        echo '<div class="form-group mt-2">';
+        echo '<label for="Titulo">Titulo</label>';
+        echo '<input type="text" class="form-control" id="Titulo" name="TituloNew" aria-describedby="TituloHelp" placeholder="Titulo">';
+        echo '</div>';
+        echo '<div class="form-group mt-2">';
+        echo '<label for="Descripcion">Descripcion</label>';
+        echo '<input type="text" class="form-control" id="Descripcion" name="DescripcionNew" placeholder="Descripcion">';
+        echo '</div>';
+        echo '<div class="form-group mt-2">';
+        echo '<label for="fecha">Fecha</label>';
+        echo '<input type="date" class="form-control" id="fecha" name="fechaNew" placeholder="Fecha">';
+        echo '</div>';
+        echo '<div class="form-group mt-2">';
+        echo '<label for="fechaLimite">Fecha límite de inscripción</label>';
+        echo '<input type="date" class="form-control" id="fechaLimite" name="fechaLimiteNew" placeholder="fechaLimite">';
+        echo '</div>';
+        echo '<div class="form-group mt-2">';
+        echo '<label for="Urlimg">Selecciona ruta imagen</label>';
+        echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
+        echo "<option> Seleccionar imagen</option>";
+        //mostramos las rutas de todas las imagenes
+        $recurso = new CrudRecurso();
+        $recurso->urlEventos();
+        echo '<div class="form-group mt-2 m-2">';
+        echo '<input class="form-check-input" type="checkbox"  id="validationFormCheck1" >';
+        echo '<label class="form-check-label" for="validationFormCheck1">';
+        echo '  Se requiere inscribirse al evento';
+        echo '</label>';
+        echo '</div>';
+        echo '<input type=hidden name="eventoCrear" value="crear">';
+        echo '</div>';
+        echo '<button type="submit" class="m-2 btn m-1  btn-primary">Crear</button>';
+        echo '</form>';
+        echo ' <form action=inscritos.php method=POST class="mt-4 col-lg-3 col-md-4 col-sm-12">';
+        $eventos = new CrudEventos();
+        $eventos->nombresEventosSuscripcion();
+        echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
+        echo '</form>';
+    }
+    echo '</div>';
+    echo '</div>';
 }
 ?>
   <footer class="btn-azulclaro footer">
