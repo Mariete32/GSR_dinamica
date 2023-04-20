@@ -101,9 +101,13 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
     /*si tiene marcada la casilla de suscripcion cambiamos el valor de la variable para la BBDD
     en caso contrario le asignamos un 0*/
     if (isset($_POST["suscripcionNew"])) {
-        $suscripcionNew = $_POST["suscripcionNew"];
-        $suscripcionNew = ($suscripcionNew == "on") ? 1 : 0;
-    } else { $suscripcionNew = 0;}
+      $fechaLimiteNew = $_POST["fechaLimiteNew"];
+      $suscripcionNew = $_POST["suscripcionNew"];
+      $suscripcionNew = ($suscripcionNew == "on") ? 1 : 0;
+    } else { 
+      $suscripcionNew = 0;
+      $fechaLimiteNew = NULL;
+    }
     $eventoEditado = new Evento($fechaNew, $fechaLimiteNew, $tituloNew, $descripcionNew, $suscripcionNew, $urlimg);
     $eventoEditado->set_eve_id($_POST["idModificarEvento"]);
     $eventoCreado = new CrudEventos();
@@ -118,14 +122,17 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
 } else if (isset($_POST["eventoCrear"])) {
     var_dump($_POST);
     $TituloNew = $_POST["TituloNew"];
-    $fechaNew = $_POST["fechaNew"];
-    $fechaLimiteNew = $_POST["fechaLimiteNew"];
     $DescripcionNew = $_POST["DescripcionNew"];
+    $fechaNew = $_POST["fechaNew"];
     $Urlimg = $_POST["Urlimg"];
     if (isset($_POST["suscripcionNew"])) {
-        $suscripcionNew = $_POST["suscripcionNew"];
-        $suscripcionNew = ($suscripcionNew == "on") ? 1 : 0;
-    } else { $suscripcionNew = 0;}
+      $fechaLimiteNew = $_POST["fechaLimiteNew"];
+      $suscripcionNew = $_POST["suscripcionNew"];
+      $suscripcionNew = ($suscripcionNew == "on") ? 1 : 0;
+    } else { 
+      $suscripcionNew = 0;
+      $fechaLimiteNew = NULL;
+    }
     $eventoNuevo = new Evento($fechaNew, $fechaLimiteNew, $TituloNew, $DescripcionNew, $suscripcionNew, $Urlimg);
     $eventoCreado = new CrudEventos();
     $exito = $eventoCreado->insertarEvento($eventoNuevo);
@@ -337,6 +344,9 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="libros.php">Llibrets</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="directiva.php">Junta directiva</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="imagenes.php">Himno</a>

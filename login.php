@@ -92,6 +92,9 @@ if (isset($_COOKIE['sesion'])) {
               <a class="nav-link active" aria-current="page" href="libros.php">Llibrets</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="directiva.php">Junta directiva</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="imagenes.php">Himno</a>
             </li>
             <li class="nav-item">

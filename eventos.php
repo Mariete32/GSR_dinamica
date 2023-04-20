@@ -105,6 +105,9 @@ if (isset($_POST["Nombre"]) && isset($_POST["Apellidos"])) {
               <a class="nav-link active" aria-current="page" href="libros.php">Llibrets</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="directiva.php">Junta directiva</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="imagenes.php">Himno</a>
             </li>
             <li class="nav-item">
@@ -138,7 +141,10 @@ if (isset($_POST["Nombre"]) && isset($_POST["Apellidos"])) {
       target="_blank">pronóstico para 7 dias Valencia</a></div>
   <script async src="https://app1.weatherwidget.org/js/?id=ww_720bcd72f1778"></script>
   <?php
+  $fecha_actual = date('Y-m-d');
+
   $eventos = new CrudEventos();
+  $eventos->eliminarEventosPasados($fecha_actual);
   $eventos->eventos();
   ?>
 

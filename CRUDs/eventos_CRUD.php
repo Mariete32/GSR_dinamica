@@ -188,7 +188,22 @@ public function nombresEventosSuscripcion()
             return $exito;
         }
     }
-
+//funcion que elimina los eventos pasados
+public function eliminarEventosPasados($date)
+{
+    try {
+        $conexion = database::conexion();
+        $consulta = "DELETE FROM eventos WHERE DATE(eve_fecha) < :date";
+        $consultaPreparada = $conexion->prepare($consulta);
+        $consultaPreparada->bindValue(':date', $date);
+        $consultaPreparada->execute();
+        $exito = 1;
+        return $exito;
+    } catch (exception $e) {
+        $exito = 0;
+        return $exito;
+    }
+}
 //funcion que actualiza los valores en la base de datos
     public static function editarEvento($evento)
     {
