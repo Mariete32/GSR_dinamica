@@ -1,9 +1,9 @@
-<?php
+<?php/*
 session_start();
 if (isset($_COOKIE['sesion'])) {
   var_dump($_COOKIE['sesion']);
   header("Location: ./edicion.php");
-}
+}*/
 
 ?>
 <!DOCTYPE html>

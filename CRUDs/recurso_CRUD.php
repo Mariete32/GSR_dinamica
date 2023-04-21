@@ -99,6 +99,46 @@ public function nombresRecursos($tipoRecurso)
     echo "</select>";
 }
 
+    //funcion que muestra las fotos de las FM y FMI en cards
+    public function cardsFalleras()
+    {
+        $conexion = database::conexion();
+        $consulta = "SELECT * FROM `recurso` WHERE `rec_tipo`='FM_imagen' || `rec_tipo`='FMI_imagen' ORDER BY `rec_anyo` DESC";
+        $consultaPreparada = $conexion->prepare($consulta);
+        $consultaPreparada->execute();
+        $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($resultado as $value) {
+            $id = $value['rec_id'];
+            $nombre = $value['rec_nombre'];
+            $anyo = $value['rec_anyo'];
+            $tipo = $value['rec_tipo'];
+            $url = $value['rec_url'];
+            echo '<div class="col-sm-4">';
+            echo '<div class="cardFM">';
+            echo '<div class="image">';
+            echo "<img src=$url />";
+            echo '</div>';
+            echo '<div class="card-inner">';
+            echo ' <div class="header">';
+            if ($tipo="FM_imagen") {
+                echo "   <h4 class='text-center'>Fallera mayor $anyo</h4>";
+            } else {
+                echo "   <h4 class='text-center'>Fallera mayor infantil $anyo</h4>";
+            }
+            echo '</div>';
+            
+            /*echo "    <h3>Sub-Head</h2>";
+            
+            echo '<div class="content">';
+            echo '  <p>Content area</p>';
+            echo ' </div>';*/
+            echo '   </div>';
+            echo '</div>';
+            echo '</div>';
+        }
+        echo '</select>';
+    }
+
 //funcion que elimina el evento
 public function eliminarRecurso($idrecurso)
 {

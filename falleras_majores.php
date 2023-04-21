@@ -1,4 +1,8 @@
+<?php
+require_once "./CRUDs/recurso_CRUD.php";
 
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,6 +13,7 @@
   <script src="anos_historia.js"></script>
   <link rel="stylesheet" href="estilos.css">
   <link rel="stylesheet" href="estilos2.css">
+  <link rel="stylesheet" href="estilosFM.css">
   <title>GSR</title>
 </head>
 
@@ -121,191 +126,14 @@
 
   <div class="container">
     <div class="row mt-3">
-      <div class="col-6 text-center">
-        <p class="display-7">FM 2022-2023</p>
-        <p class="display-8"></p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/" alt="">
-      </div>
-      <div class="col-6 text-center">
-        <p class="display-7">FM infantil 2022-2023</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/" alt="">
-      </div>
+      <?php
+      $falleras= new CrudRecurso();
+      $falleras->cardsFalleras();
+      
+      ?>
     </div>
   </div>
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-6 text-center">
-        <p class="display-7">FM 2020-2021</p>
-        <p class="display-8">Amparo P. P.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/Amparo.jpg" alt="">
-      </div>
-      <div class="col-6 text-center">
-        <p class="display-7">FM infantil 2020-2021</p>
-        <p class="display-8">Elisabeth M.B.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/Elisabeth.jpg" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="container ">
-    <div class="row mt-5">
-      <div class="col-6 text-center">
-        <p  class="display-7">FM 2019-2020</p>
-        <p  class="display-8">Alba G.R.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/Alba_.jpeg" alt="">
-      </div>
-      <div class="col-6 text-center">
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-6 text-center">
-        <p class="display-7">FM 2018-2019</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/" alt="">
-      </div>
-      <div class="col-6 text-center">
-        <p class="display-7">FM infantil 2018-2019</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-6 text-center">
-        <p class="display-7">FM 2017-2018</p>
-        <p class="display-8">Carmen P.C.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/CarmenPorta.jpg" alt="">
-      </div>
-      <div class="col-6 text-center">
-        <p class="display-7">FM infantil 2017-2018</p>
-        <p class="display-8">Azara</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/Azara.jpg" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-6 text-center">
-        <p class="display-7">FM 2016-2017</p>
-        <p class="display-8">Francisca G. L.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/2016.jpg" alt="">
-      </div>
-      <div class="col-6 text-center">
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-6 text-center">
-        <p class="display-7">FM 2015-2016</p>
-        <p class="display-8">Aida F. P.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/Aida-2016.jpg" alt="">
-      </div>
-      <div class="col-6 text-center">
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-6 text-center">
-        <p class="display-7">FM 2014-2015</p>
-        <p class="display-8">Raquel F. G.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/Raquel.jpg" alt="">
-      </div>
-      <div class="col-6 text-center">
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-6 text-center">
-        <p class="display-7">FM 2013-2014</p>
-        <p class="display-8">Mapi C. J.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/mapi.bmp" alt="">
-      </div>
-      <div class="col-6 text-center">
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-6 text-center">
-        <p class="display-7">FM 2000-2001</p>
-        <p class="display-8">Maria Jose R. F.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/MariaJose.jpg" alt="">
-      </div>
-      <div class="col-6 text-center">
-        <p class="display-7">FM infantil 2000-2001</p>
-        <p class="display-8">Alba G. R.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/Alba-2001.jpg" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-6 text-center">
-        <p class="display-7">FM 1999-2000</p>
-        <p class="display-8">Sonia N. T.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/Sonia-2000.jpg" alt="">
-      </div>
-      <div class="col-6 text-center">
-        <p class="display-7">FM infantil 1999-2000</p>
-        <p class="display-8">Aida F. P.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/Aida-2000.jpg" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-6 text-center">
-        <p class="display-7">FM 1997-1998</p>
-        <p class="display-8">Victoria P. V.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/Victoria-1998.jpg" alt="">
-      </div>
-      <div class="col-6 text-center">
-        <p class="display-7">FM infantil 1997-1998</p>
-        <p class="display-8">Maria Dolores L. P.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/MariaDolores-1998.jpg" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-6 text-center">
-        <p class="display-7">FM 1996-1997</p>
-        <p class="display-8">Paloma R. L.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/Paloma-1997.jpg" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-6 text-center">
-        <p class="display-7">FM 1995-1996</p>
-        <p class="display-8">Mª Jose G. L.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/MJose-1996.jpg" alt="">
-      </div>
-      <div class="col-6 text-center">
-        <p class="display-7">FM infantil 1995-1996</p>
-        <p class="display-8">Raquel F. G.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/Raquel-1996.jpg" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-6 text-center">
-        <p class="display-7">FM 1981-1982</p>
-        <p class="display-8">Esperanza R.R.</p>
-        <img class="fallera w-100 h-auto" src="imagenes/Falleras_mayores/Esperanza-1982.jpg" alt="">
-      </div>
-    </div>
-  </div>
+  
   
   <footer class="btn-azulclaro footer">
     <div class="text-center">
