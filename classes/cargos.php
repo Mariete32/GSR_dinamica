@@ -4,7 +4,6 @@ require_once "./classes/Junta_directiva.php";
 class car_tipo extends Junta_directiva{
 
     protected $car_tipo;
-
     protected $car_id;
     protected $car_nivel;
     public function __construct($jun_nombre,$jun_apellidos,$jun_img,$jun_anyo,$jun_car_tipo_id, $car_tipo, $car_id,$car_nivel)

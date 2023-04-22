@@ -26,13 +26,14 @@ public function listadoCargos()
 public function cargoActual($id)
 {
     $conexion = database::conexion();
-    $consulta = "SELECT car_id,car_tipo FROM cargos WHERE car_id=:car_id";
+    $consulta = "SELECT car_tipo FROM cargos WHERE car_id=:car_id";
     $consultaPreparada = $conexion->prepare($consulta);
     $consultaPreparada->bindValue(':car_id', $id);
     $consultaPreparada->execute();
     $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
     foreach ($resultado as $value) {
         $cargo = $value['car_tipo'];
+        
     }
     return $cargo;
 }

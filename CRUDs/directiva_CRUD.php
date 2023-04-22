@@ -4,48 +4,50 @@ require_once './classes/cargos.php';
 require_once './BBDD/database.php';
 class CrudDirectiva
 {
-    public function __construct(){}
+    public function __construct()
+    {}
 
 //funcion que imprime la junta directiva actual en una tabla
-    public function directivosActuales(){
+    public function directivosActuales()
+    {
         $conexion = database::conexion();
         $consulta = "SELECT directiva.jun_nombre, directiva.jun_apellidos, directiva.jun_anyo, cargos.car_tipo, cargos.car_id FROM directiva JOIN cargos ON directiva.`jun_cargo_id` = cargos.car_id ORDER BY directiva.jun_anyo DESC LIMIT 22";
         $consultaPreparada = $conexion->prepare($consulta);
         $consultaPreparada->execute();
         $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-        $presidenteInfantil ="";
+        $presidenteInfantil = "";
         $falleraMayorInfantil = "";
-        $presidente ="";
+        $presidente = "";
         foreach ($resultado as $value) {
             $nombre = $value['jun_nombre'];
             $apellidos = $value['jun_apellidos'];
             $anyo = $value['jun_anyo'];
             $tipo = $value['car_tipo'];
             $id = $value['car_id'];
-            if ($id==1) {$presidente =$nombre." ".$apellidos;}
-            if ($id==2) {$secretario =$nombre." ".$apellidos;}
-            if ($id==3) {$vicesecretario =$nombre." ".$apellidos;}
-            if ($id==4) {$vicepresidente1 =$nombre." ".$apellidos;}
-            if ($id==5) {$vicepresidente2 =$nombre." ".$apellidos;}
-            if ($id==6) {$vicepresidente3 =$nombre." ".$apellidos;}
-            if ($id==7) {$vicepresidente4 =$nombre." ".$apellidos;}
-            if ($id==8) {$tesorero =$nombre." ".$apellidos;}
-            if ($id==9) {$contador =$nombre." ".$apellidos;}
-            if ($id==10) {$vicecontador =$nombre." ".$apellidos;}
-            if ($id==11) {$festejos =$nombre." ".$apellidos;}
-            if ($id==12) {$diversas =$nombre." ".$apellidos;}
-            if ($id==13) {$eventos =$nombre." ".$apellidos;}
-            if ($id==14) {$protocolo =$nombre." ".$apellidos;}
-            if ($id==15) {$deportes =$nombre." ".$apellidos;}
-            if ($id==16) {$bar =$nombre." ".$apellidos;}
-            if ($id==17) {$casal =$nombre." ".$apellidos;}
-            if ($id==18) {$infantiles =$nombre." ".$apellidos;}
-            if ($id==19) {$bibliotecario =$nombre." ".$apellidos;}
-            if ($id==20) {$falleraMayor =$nombre." ".$apellidos;}
-            if ($id==21) {$falleraMayorInfantil =$nombre." ".$apellidos;}
-            if ($id==22) {$presidenteInfantil =$nombre." ".$apellidos;}            
-        }    
-        echo '<div class="table-responsive m-3">';    
+            if ($id == 1) {$presidente = $nombre . " " . $apellidos;}
+            if ($id == 2) {$secretario = $nombre . " " . $apellidos;}
+            if ($id == 3) {$vicesecretario = $nombre . " " . $apellidos;}
+            if ($id == 4) {$vicepresidente1 = $nombre . " " . $apellidos;}
+            if ($id == 5) {$vicepresidente2 = $nombre . " " . $apellidos;}
+            if ($id == 6) {$vicepresidente3 = $nombre . " " . $apellidos;}
+            if ($id == 7) {$vicepresidente4 = $nombre . " " . $apellidos;}
+            if ($id == 8) {$tesorero = $nombre . " " . $apellidos;}
+            if ($id == 9) {$contador = $nombre . " " . $apellidos;}
+            if ($id == 10) {$vicecontador = $nombre . " " . $apellidos;}
+            if ($id == 11) {$festejos = $nombre . " " . $apellidos;}
+            if ($id == 12) {$diversas = $nombre . " " . $apellidos;}
+            if ($id == 13) {$eventos = $nombre . " " . $apellidos;}
+            if ($id == 14) {$protocolo = $nombre . " " . $apellidos;}
+            if ($id == 15) {$deportes = $nombre . " " . $apellidos;}
+            if ($id == 16) {$bar = $nombre . " " . $apellidos;}
+            if ($id == 17) {$casal = $nombre . " " . $apellidos;}
+            if ($id == 18) {$infantiles = $nombre . " " . $apellidos;}
+            if ($id == 19) {$bibliotecario = $nombre . " " . $apellidos;}
+            if ($id == 20) {$falleraMayor = $nombre . " " . $apellidos;}
+            if ($id == 21) {$falleraMayorInfantil = $nombre . " " . $apellidos;}
+            if ($id == 22) {$presidenteInfantil = $nombre . " " . $apellidos;}
+        }
+        echo '<div class="table-responsive m-3">';
         echo '<table class=" mx-auto col-12 table table-striped table-hover">';
         echo '<thead>';
         echo '    <tr>';
@@ -135,64 +137,70 @@ class CrudDirectiva
     }
 
 //funcion que imprime los años en un select
-public function anyos()
-{
-    $conexion = database::conexion();
-    $consulta = "SELECT DISTINCT jun_anyo FROM directiva ORDER BY jun_anyo DESC";
-    $consultaPreparada = $conexion->prepare($consulta);
-    $consultaPreparada->execute();
-    $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-    echo '<label for="directiva">seleciona año</label>';
-    echo "<select id='directiva'class='form-select form-select-md' name='anyos' >";
-    echo "<option selected>Seleccionar</option>";
-    foreach ($resultado as $value) {
-        $anyo = $value['jun_anyo'];
-        echo "<option value=$anyo>" . $anyo . "</option>";
+    public function anyos()
+    {
+        $conexion = database::conexion();
+        $consulta = "SELECT DISTINCT jun_anyo FROM directiva ORDER BY jun_anyo DESC";
+        $consultaPreparada = $conexion->prepare($consulta);
+        $consultaPreparada->execute();
+        $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
+        echo '<label for="directiva">seleciona año</label>';
+        echo "<select id='directiva'class='form-select form-select-md' name='anyos' >";
+        if (isset($_POST["anyos"])) {
+            $anyos = $_POST["anyos"];
+            echo "<option selected>$anyos</option>";
+        } else {
+            echo "<option selected>Seleccionar</option>";
+        }
+
+        foreach ($resultado as $value) {
+            $anyo = $value['jun_anyo'];
+            echo "<option value=$anyo>" . $anyo . "</option>";
+        }
+        echo "</select>";
     }
-    echo "</select>";
-}
 //funcion que imprime el nombre de los directivos en un select
-public function nombresDirectivos($anyo)
-{
-    $conexion = database::conexion();
-    $consulta = "SELECT * FROM directiva WHERE jun_anyo=$anyo";
-    $consultaPreparada = $conexion->prepare($consulta);
-    $consultaPreparada->execute();
-    $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-    
-    echo '<label for="directivos">Selecciona directivo</label>';
-    echo "<select id='directivos'class='form-select form-select-sm' name='directivo' >";
-    echo "<option selected>Selecciona</option>";
-    foreach ($resultado as $value) {
-        $id = $value['jun_id'];
-        $nombre = $value['jun_nombre'];
-        $apellidos = $value['jun_apellidos'];
-        $nombreCompleto = $nombre . ' ' . $apellidos ;
-        echo "<option value=$id>" . $nombreCompleto . "</option>";
+    public function nombresDirectivos($anyo)
+    {
+        $conexion = database::conexion();
+        $consulta = "SELECT * FROM directiva WHERE jun_anyo=$anyo";
+        $consultaPreparada = $conexion->prepare($consulta);
+        $consultaPreparada->execute();
+        $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
+
+        echo '<label for="directivos">Selecciona directivo</label>';
+        echo "<select id='directivos'class='form-select form-select-MD' name='directivo' >";
+        echo "<option selected>Seleccionar</option>";
+        foreach ($resultado as $value) {
+            $id = $value['jun_id'];
+            $nombre = $value['jun_nombre'];
+            $apellidos = $value['jun_apellidos'];
+            $nombreCompleto = $nombre . ' ' . $apellidos;
+            echo "<option value=$id>" . $nombreCompleto . "</option>";
+        }
+        echo "</select>";
     }
-    echo "</select>";
-}
 
 //funcion que devuelve una clase directivo con sus datos
-public function datosDirectivoID($id){
-    $conexion = database::conexion();
-    $consulta = "SELECT * FROM directiva WHERE jun_id= :jun_id";
-    $consultaPreparada = $conexion->prepare($consulta);
-    $consultaPreparada->bindValue(':jun_id', $id);
-    $consultaPreparada->execute();
-    $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($resultado as $value) {
-        $jun_nombre = $value["jun_nombre"];
-        $jun_apellidos = $value["jun_apellidos"];
-        $jun_img = $value["jun_img"];
-        $jun_anyo = $value["jun_anyo"];
-        $jun_cargo_id = $value["jun_cargo_id"];
+    public function datosDirectivoID($id)
+    {
+        $conexion = database::conexion();
+        $consulta = "SELECT * FROM directiva WHERE jun_id= :jun_id";
+        $consultaPreparada = $conexion->prepare($consulta);
+        $consultaPreparada->bindValue(':jun_id', $id);
+        $consultaPreparada->execute();
+        $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($resultado as $value) {
+            $jun_nombre = $value["jun_nombre"];
+            $jun_apellidos = $value["jun_apellidos"];
+            $jun_img = $value["jun_img"];
+            $jun_anyo = $value["jun_anyo"];
+            $jun_cargo_id = $value["jun_cargo_id"];
 
-        $directivo = new Junta_directiva($jun_nombre, $jun_apellidos, $jun_img, $jun_anyo, $jun_cargo_id);
+            $directivo = new Junta_directiva($jun_nombre, $jun_apellidos, $jun_img, $jun_anyo, $jun_cargo_id);
+        }
+        return $directivo;
     }
-    return $directivo;
-}
-
 
 //funcion que elimina el directivo
     public function eliminarDirectivo($idDirectivo)
