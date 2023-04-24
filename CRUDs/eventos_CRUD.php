@@ -130,7 +130,7 @@ public function nombresEventos()
     $consultaPreparada = $conexion->prepare($consulta);
     $consultaPreparada->execute();
     $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-    echo '<label for="evento">Seleciona evento a modificar</label>';
+    echo '<label for="evento"><strong>Seleciona evento a modificar</strong></label>';
     echo "<select id='evento' class=' form-select form-select-md mt-2' name='eve_id' >";
     foreach ($resultado as $value) {
         $eve_id = $value["eve_id"];
@@ -156,7 +156,7 @@ public function nombresEventosSuscripcion()
     $consultaPreparada->bindValue(':suscripcion', $suscripcion);
     $consultaPreparada->execute();
     $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-    echo '<label for="evento">Ver lista de isncritos al evento</label>';
+    echo '<label for="evento"><strong>Ver lista de isncritos al evento</strong></label>';
     echo "<select id='evento' class=' form-select form-select-md mt-2' name='eve_id' >";
     foreach ($resultado as $value) {
         $eve_id = $value["eve_id"];

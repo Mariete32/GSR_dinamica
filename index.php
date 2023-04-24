@@ -1,3 +1,9 @@
+<?php
+session_start();
+$conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'" : "style='background-color: #e3f2fd;'";
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,14 +12,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="anos_historia.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="estilos.css">
   <link rel="stylesheet" href="estilos2.css">
   <title>GSR</title>
 </head>
 
 <body>
-  
-  
+
+
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v14.0"
     nonce="IX9rRk67"></script>
@@ -53,7 +60,9 @@
         </div>
       </div>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light btn-azulclaro">
+    <?php
+echo "<nav class='navbar navbar-expand-lg navbar-light' $conectado>";
+?>
       <div class="container-fluid ">
         <a class="navbar-brand " href="index.html">INICIO</a>
         <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -102,15 +111,30 @@
               <a class="nav-link active" aria-current="page" href="contacto.php">Contacto</a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
-                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-              </svg>
-              </a>
-            </li>
+            <?php
+            // cambiamos el icono de login por el de logout y editar con se esta logueado
+              if (isset($_SESSION["usuario"])) {
+                  echo '<li class="nav-item">';
+                  echo '<a class="nav-link active" aria-current="page" href="edicion.php"><img src="./imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+                  echo '</a>';
+                  echo ' </li>';
+                  echo '<li class="nav-item">';
+                  echo '<a class="nav-link active" aria-current="page" href="logout.php"><img src="./imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+                  echo '</a>';
+                  echo ' </li>';
 
+              } else {
+                  echo '<li class="nav-item">';
+                  echo '<a class="nav-link active" aria-current="page" href="login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">';
+                  echo '<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>';
+                  echo '<path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>';
+                  echo '<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>';
+                  echo '</svg>';
+                  echo '</a>';
+                  echo ' </li>';
+              }
+?>
+              </li>
             </li>
           </ul>
         </div>
@@ -163,7 +187,7 @@ if (isset($_COOKIE["id"])) {
     </div>
     <a class="mx-5 link-dark nav-link" href="aviso_legal.html">Aviso legal</a>
     <div>
-    
+
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

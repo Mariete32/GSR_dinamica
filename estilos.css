@@ -4,7 +4,6 @@
  * Copyright 2011-2021 The Bootstrap Authors
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * Se añade en la linea 594 display-7 y display-8 para la pagina de falleras mayores
  */
 :root {
   --bs-blue: #0d6efd;
@@ -49,7 +48,7 @@
   --bs-azulclaro: #e3f2fd;
   --bs-azulclarosecundario: #F4E0D1;
   --bs-azulclarosombra: #B7C8D6;
-  --bs-mayo: #18AA41;
+  --bs-mayo: #3d9d57;
   --bs-junio: #0c48c9;
   --bs-julio: #A71FB0;
   --bs-agosto: #F5523C;
@@ -592,29 +591,6 @@ progress {
   }
 }
 
-.display-7 {
-  font-size: calc(1.1rem + 0.3vw);
-  font-weight: 300;
-  line-height: 1.2;
-}
-
-@media (min-width: 1200px) {
-  .display-7 {
-    font-size: 2rem;
-  }
-}
-
-.display-8 {
-  font-size: calc(1rem + 0.1);
-  font-weight: 300;
-  line-height: 1.2;
-}
-
-@media (min-width: 1200px) {
-  .display-8 {
-    font-size: 1.5rem;
-  }
-}
 .list-unstyled {
   padding-left: 0;
   list-style: none;
@@ -4080,43 +4056,43 @@ fieldset:disabled .btn {
 
 .btn-mayo {
   color: #000;
-  background-color: #18AA41;
-  border-color: #18AA41;
+  background-color: #3d9d57;
+  border-color: #3d9d57;
 }
 
 .btn-mayo:hover {
   color: #000;
-  background-color: #3bb75e;
-  border-color: #2fb354;
+  background-color: #5aac70;
+  border-color: #50a768;
 }
 
 .btn-check:focus + .btn-mayo, .btn-mayo:focus {
   color: #000;
-  background-color: #3bb75e;
-  border-color: #2fb354;
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(20, 145, 55, 0.5);
-          box-shadow: 0 0 0 0.25rem rgba(20, 145, 55, 0.5);
+  background-color: #5aac70;
+  border-color: #50a768;
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(52, 133, 74, 0.5);
+          box-shadow: 0 0 0 0.25rem rgba(52, 133, 74, 0.5);
 }
 
 .btn-check:checked + .btn-mayo,
 .btn-check:active + .btn-mayo, .btn-mayo:active, .btn-mayo.active,
 .show > .btn-mayo.dropdown-toggle {
   color: #000;
-  background-color: #46bb67;
-  border-color: #2fb354;
+  background-color: #64b179;
+  border-color: #50a768;
 }
 
 .btn-check:checked + .btn-mayo:focus,
 .btn-check:active + .btn-mayo:focus, .btn-mayo:active:focus, .btn-mayo.active:focus,
 .show > .btn-mayo.dropdown-toggle:focus {
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(20, 145, 55, 0.5);
-          box-shadow: 0 0 0 0.25rem rgba(20, 145, 55, 0.5);
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(52, 133, 74, 0.5);
+          box-shadow: 0 0 0 0.25rem rgba(52, 133, 74, 0.5);
 }
 
 .btn-mayo:disabled, .btn-mayo.disabled {
   color: #000;
-  background-color: #18AA41;
-  border-color: #18AA41;
+  background-color: #3d9d57;
+  border-color: #3d9d57;
 }
 
 .btn-junio {
@@ -5251,36 +5227,36 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-mayo {
-  color: #18AA41;
-  border-color: #18AA41;
+  color: #3d9d57;
+  border-color: #3d9d57;
 }
 
 .btn-outline-mayo:hover {
   color: #000;
-  background-color: #18AA41;
-  border-color: #18AA41;
+  background-color: #3d9d57;
+  border-color: #3d9d57;
 }
 
 .btn-check:focus + .btn-outline-mayo, .btn-outline-mayo:focus {
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(24, 170, 65, 0.5);
-          box-shadow: 0 0 0 0.25rem rgba(24, 170, 65, 0.5);
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(61, 157, 87, 0.5);
+          box-shadow: 0 0 0 0.25rem rgba(61, 157, 87, 0.5);
 }
 
 .btn-check:checked + .btn-outline-mayo,
 .btn-check:active + .btn-outline-mayo, .btn-outline-mayo:active, .btn-outline-mayo.active, .btn-outline-mayo.dropdown-toggle.show {
   color: #000;
-  background-color: #18AA41;
-  border-color: #18AA41;
+  background-color: #3d9d57;
+  border-color: #3d9d57;
 }
 
 .btn-check:checked + .btn-outline-mayo:focus,
 .btn-check:active + .btn-outline-mayo:focus, .btn-outline-mayo:active:focus, .btn-outline-mayo.active:focus, .btn-outline-mayo.dropdown-toggle.show:focus {
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(24, 170, 65, 0.5);
-          box-shadow: 0 0 0 0.25rem rgba(24, 170, 65, 0.5);
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(61, 157, 87, 0.5);
+          box-shadow: 0 0 0 0.25rem rgba(61, 157, 87, 0.5);
 }
 
 .btn-outline-mayo:disabled, .btn-outline-mayo.disabled {
-  color: #18AA41;
+  color: #3d9d57;
   background-color: transparent;
 }
 
@@ -7655,13 +7631,13 @@ fieldset:disabled .btn {
 }
 
 .alert-mayo {
-  color: #0e6627;
-  background-color: #d1eed9;
-  border-color: #bae6c6;
+  color: #255e34;
+  background-color: #d8ebdd;
+  border-color: #c5e2cd;
 }
 
 .alert-mayo .alert-link {
-  color: #0b521f;
+  color: #1e4b2a;
 }
 
 .alert-junio {
@@ -8428,19 +8404,19 @@ fieldset:disabled .btn {
 }
 
 .list-group-item-mayo {
-  color: #0e6627;
-  background-color: #d1eed9;
+  color: #255e34;
+  background-color: #d8ebdd;
 }
 
 .list-group-item-mayo.list-group-item-action:hover, .list-group-item-mayo.list-group-item-action:focus {
-  color: #0e6627;
-  background-color: #bcd6c3;
+  color: #255e34;
+  background-color: #c2d4c7;
 }
 
 .list-group-item-mayo.list-group-item-action.active {
   color: #fff;
-  background-color: #0e6627;
-  border-color: #0e6627;
+  background-color: #255e34;
+  border-color: #255e34;
 }
 
 .list-group-item-junio {
@@ -9468,11 +9444,11 @@ fieldset:disabled .btn {
   } ]
 } */
 .carousel-control-prev-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23437691'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
 }
 
 .carousel-control-next-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23437691'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
 }
 
 .carousel-indicators {
@@ -9507,7 +9483,7 @@ fieldset:disabled .btn {
   margin-left: 3px;
   text-indent: -999px;
   cursor: pointer;
-  background-color: #adaca7;
+  background-color: #fff;
   background-clip: padding-box;
   border: 0;
   border-top: 10px solid transparent;
@@ -9531,11 +9507,11 @@ fieldset:disabled .btn {
 .carousel-caption {
   position: absolute;
   right: 15%;
-  bottom: -1.5rem;
+  bottom: 1.25rem;
   left: 15%;
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
-  color: black;
+  color: #fff;
   text-align: center;
 }
 
@@ -9991,11 +9967,11 @@ fieldset:disabled .btn {
 }
 
 .link-mayo {
-  color: #18AA41;
+  color: #3d9d57;
 }
 
 .link-mayo:hover, .link-mayo:focus {
-  color: #46bb67;
+  color: #64b179;
 }
 
 .link-junio {
@@ -10601,7 +10577,7 @@ fieldset:disabled .btn {
 }
 
 .border-mayo {
-  border-color: #18AA41 !important;
+  border-color: #3d9d57 !important;
 }
 
 .border-junio {
@@ -14133,7 +14109,6 @@ fieldset:disabled .btn {
   .d-xxl-none {
     display: none !important;
   }
-  
   .flex-xxl-fill {
     -webkit-box-flex: 1 !important;
         -ms-flex: 1 1 auto !important;

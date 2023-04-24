@@ -144,13 +144,13 @@ class CrudDirectiva
         $consultaPreparada = $conexion->prepare($consulta);
         $consultaPreparada->execute();
         $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-        echo '<label for="directiva">seleciona año</label>';
+        echo '<label for="directiva"><strong>seleciona año</strong></label>';
         echo "<select id='directiva'class='form-select form-select-md' name='anyos' >";
         if (isset($_POST["anyos"])) {
             $anyos = $_POST["anyos"];
             echo "<option selected>$anyos</option>";
         } else {
-            echo "<option selected>Seleccionar</option>";
+            echo "<option selected disabled value=''>Seleccionar</option>";
         }
 
         foreach ($resultado as $value) {
@@ -167,10 +167,9 @@ class CrudDirectiva
         $consultaPreparada = $conexion->prepare($consulta);
         $consultaPreparada->execute();
         $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-
-        echo '<label for="directivos">Selecciona directivo</label>';
+        echo '<label for="directivos"><strong>Selecciona directivo</strong></label>';
         echo "<select id='directivos'class='form-select form-select-MD' name='directivo' >";
-        echo "<option selected>Seleccionar</option>";
+        echo "<option selected disabled value=''>Seleccionar</option>";
         foreach ($resultado as $value) {
             $id = $value['jun_id'];
             $nombre = $value['jun_nombre'];

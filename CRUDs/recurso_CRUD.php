@@ -18,7 +18,7 @@ public function datosRecurso($rec_id){
         $rec_tipo = $value["rec_tipo"];
         $rec_anyo = $value["rec_anyo"];
         $rec_url = $value["rec_url"];
-        $recurso = new Recurso($rec_nombre, $rec_tipo, $rec_anyo, $rec_url);
+        $recurso = new Recurso($rec_nombre, $rec_anyo, $rec_tipo, $rec_url);
     }
     return $recurso;
 }
@@ -27,7 +27,6 @@ public function datosRecurso($rec_id){
     {
         $directorio = "./imagenes/directiva"; // reemplaza "ruta/a/la/carpeta" con la ruta real de la carpeta que quieres leer
         $archivos = scandir($directorio);
-        
         foreach ($archivos as $archivo) {
             // comprueba si el archivo es una imagen
             if (in_array(pathinfo($archivo, PATHINFO_EXTENSION), array('jpg', 'jpeg', 'png', 'gif'))) {
@@ -64,14 +63,13 @@ public function datosRecurso($rec_id){
         $premios= "Premio_imagen";
         $bocetos = "Boceto_imagen";
         $llibrets = "pdf_llibret";
-        echo "<option value=$eventos> Imagen de eventos</option>";
-        echo "<option value=$fm>Imagen de fallera mayor</option>";
-        echo "<option value=$fmi>Imagen de fallera mayor infantil</option>";
-        echo "<option value=$presidente>Imagen de presidente</option>";
-        echo "<option value=$presidenteInfantil>Imagen de presidente infantil</option>";
-
-        echo "<option value=$premios>Imagen de premio de monumento</option>";
-        echo "<option value=$bocetos>Imagen de monumento</option>";
+        echo "<option value=$eventos> Imagenes de eventos</option>";
+        echo "<option value=$fm>Imagenes de fallera mayor</option>";
+        echo "<option value=$fmi>Imagenes de fallera mayor infantil</option>";
+        echo "<option value=$presidente>Imagenes de presidente</option>";
+        echo "<option value=$presidenteInfantil>Imagenes de presidente infantil</option>";
+        echo "<option value=$premios>Imagenes de premio de monumento</option>";
+        echo "<option value=$bocetos>Imagenes de monumento</option>";
         echo "<option value=$llibrets>PDF de llibret</option>";
         echo "</select>";
     }
@@ -85,8 +83,8 @@ public function nombresRecursos($tipoRecurso)
     $consultaPreparada->execute();
     $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
     echo '<label for="recurso">Selecciona recurso</label>';
-    echo "<select id='recurso'class='form-select form-select-sm' name='recursoSeleccionado' >";
-    echo "<option selected>Selecciona</option>";
+    echo "<select id='recurso'class='form-select form-select-md' name='recursoSeleccionado' >";
+    echo "<option selected disabled value=''> Selecciona...</option>";
     foreach ($resultado as $value) {
         $id = $value['rec_id'];
         $nombre = $value['rec_nombre'];
