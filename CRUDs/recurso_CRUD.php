@@ -82,7 +82,7 @@ public function nombresRecursos($tipoRecurso)
     $consultaPreparada = $conexion->prepare($consulta);
     $consultaPreparada->execute();
     $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-    echo '<label for="recurso">Selecciona recurso</label>';
+    echo '<label class="fw-bold" for="recurso">Selecciona recurso</label>';
     echo "<select id='recurso'class='form-select form-select-md' name='recursoSeleccionado' >";
     echo "<option selected disabled value=''> Selecciona...</option>";
     foreach ($resultado as $value) {

@@ -50,10 +50,9 @@ public function nombresUsuarios()
     $consultaPreparada = $conexion->prepare($consulta);
     $consultaPreparada->execute();
     $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-    echo '<label for="recurso">Selecciona usuario</label>';
-    echo "<select id='recurso'class='form-select form-select-sm' name='usuarioSeleccionado' >";
-    echo "<option selected>Selecciona</option>";
-    //quitamos el primer elemento de administrador para que no se pueda modificar o eliminar
+    echo '<label class="fw-bold" for="recurso">Selecciona usuario</label>';
+    echo "<select id='recurso'class='form-select form-select-md' name='usuarioSeleccionado' >";
+    echo "<option selected disabled value=''> Selecciona...</option>";    //quitamos el primer elemento de administrador para que no se pueda modificar o eliminar
     array_shift($resultado);
     foreach ($resultado as $value) {
         $id = $value['user_id'];

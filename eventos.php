@@ -1,4 +1,7 @@
 <?php
+session_start();
+$conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'" : "style='background-color: #e3f2fd;'";
+
 require_once "./classes/inscritos.php";
 require_once "./CRUDs/inscritos_CRUD.php";
 require_once "./CRUDs/eventos_CRUD.php";
@@ -71,7 +74,9 @@ if (isset($_POST["Nombre"]) && isset($_POST["Apellidos"])) {
         </div>
       </div>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light btn-azulclaro">
+    <?php
+echo "<nav class='navbar navbar-expand-lg navbar-light' $conectado>";
+?>
       <div class="container-fluid ">
         <a class="navbar-brand " href="index.html">INICIO</a>
         <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -120,15 +125,30 @@ if (isset($_POST["Nombre"]) && isset($_POST["Apellidos"])) {
               <a class="nav-link active" aria-current="page" href="contacto.php">Contacto</a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
-                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-              </svg>
-              </a>
-            </li>
+            <?php
+            // cambiamos el icono de login por el de logout y editar con se esta logueado
+              if (isset($_SESSION["usuario"])) {
+                  echo '<li class="nav-item">';
+                  echo '<a class="nav-link active" aria-current="page" href="edicion.php"><img src="./imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+                  echo '</a>';
+                  echo ' </li>';
+                  echo '<li class="nav-item">';
+                  echo '<a class="nav-link active" aria-current="page" href="logout.php"><img src="./imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+                  echo '</a>';
+                  echo ' </li>';
 
+              } else {
+                  echo '<li class="nav-item">';
+                  echo '<a class="nav-link active" aria-current="page" href="login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">';
+                  echo '<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>';
+                  echo '<path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>';
+                  echo '<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>';
+                  echo '</svg>';
+                  echo '</a>';
+                  echo ' </li>';
+              }
+?>
+              </li>
             </li>
           </ul>
         </div>
