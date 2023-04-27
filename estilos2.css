@@ -30,53 +30,12 @@ body {
     height: 400px;
     
   }
-.card {
-    border-radius: 15px;
-    box-shadow: 1px 5px 60px 5px #B7C8D6;
-   }  
-   .card .card-border-top {
-    width: 80%;
-    height: 10px;
-    margin: auto;
-    border-radius: 15px 15px;
-   }
-   
-   .card h1 {
-    text-align: center;
-    display: block;
-   }
-   
-   .card .job {
-    font-weight: 400;
-    color: white;
-    display: block;
-    text-align: center;
-    padding-top: 3px;
-    font-size: 12px;
-   }
-   
-   .card .img {
-    width: 70%;
-    height: 100px;
-    border-radius: 15px;
-    margin:  20px auto;
-    
-   }
+
 .rrss{
     width: 30px;
     height: 30px;
     margin: 10px;
     
-}
-
-.footer{
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
 }
 .fallera{
     width: auto;
@@ -85,4 +44,13 @@ body {
 .colaboradores{
     float: right;
     border-left: thin solid rgb(204, 204, 204);
+}
+.footer{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }

@@ -111,30 +111,23 @@ public function nombresRecursos($tipoRecurso)
             $anyo = $value['rec_anyo'];
             $tipo = $value['rec_tipo'];
             $url = $value['rec_url'];
-            echo '<div class="col-sm-4">';
-            echo '<div class="cardFM">';
-            echo '<div class="image">';
-            echo "<img src=$url />";
+            
+            echo '<div class="col-lg-4 col-md-6 col-sm-12">';
+            echo '   <div class="card mt-4" style="width: 18rem; ">';
+            echo '   <div style=" height: 370px;">';
+            echo "<img src='$url' class='card-img-top mh-100' alt='...'>";
             echo '</div>';
-            echo '<div class="card-inner">';
-            echo ' <div class="header">';
+            echo ' <div class="card-body">';
             if ($tipo="FM_imagen") {
-                echo "   <h4 class='text-center'>Fallera mayor $anyo</h4>";
+                echo "   <h4 class=' card-title text-center'>Fallera mayor $anyo</h4>";
             } else {
-                echo "   <h4 class='text-center'>Fallera mayor infantil $anyo</h4>";
+                echo "   <h4 class=' card-title text-center'>Fallera mayor infantil $anyo</h4>";
             }
-            echo '</div>';
-            
-            /*echo "    <h3>Sub-Head</h2>";
-            
-            echo '<div class="content">';
-            echo '  <p>Content area</p>';
-            echo ' </div>';*/
-            echo '   </div>';
-            echo '</div>';
-            echo '</div>';
+    echo '</div>';
+    echo ' </div>';
+    echo '  </div>';
         }
-        echo '</select>';
+       
     }
 
 //funcion que elimina el evento
