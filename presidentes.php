@@ -1,6 +1,7 @@
 <?php
 session_start();
 $conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'" : "style='background-color: #e3f2fd;'";
+require_once "./CRUDs/recurso_CRUD.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -140,111 +141,12 @@ echo "<nav class='navbar navbar-expand-lg navbar-light' $conectado>";
   </header>
 
   <div class="container">
-    <div class="row mt-5">
-      <div class="col-12 text-center">
-        <p class="display-7">President 2016 - ...</p>
-        <p class="display-8">Carles B.A.</p>
-        <img class="fallera" src="imagenes/Falleras_mayores/Carles.jpg" alt="">
-      </div>
-      <div class="mt-3 col-lg-4 col-md-4 col-sm-12 text-center m-auto">
-        <p class="display-7">President infantil 2016-2017</p>
-        <p class="display-8">Marco</p>
-        <img class="fallera" src="imagenes/Falleras_mayores/Marcos.jpg" alt="">
-      </div>
-      <div class="mt-3 col-lg-4 col-md-4 col-sm-12 text-center m-auto">
-        <p class="display-7">President infantil 2017-2018</p>
-        <p class="display-8">Josep N.P.</p>
-        <img class="fallera" src="imagenes/Falleras_mayores/Josep.jpeg" alt="">
-      </div>
-    </div>
-  </div>
-  <hr class="w-75 m-auto mt-2">
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-12 text-center">
-        <p class="display-7">President 2013-2014</p>
-        <p class="display-8">Manuel R.F.</p>
-        <img class="fallera" src="imagenes/Falleras_mayores/Manolo..JPG" alt="">
-      </div>
-    </div>
-  </div>
-  <hr class="w-75 m-auto mt-2">
-
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-12 text-center">
-        <p class="display-7">President 2012-2013</p>
-        <p class="display-8">Angel D. R.</p>
-        <img class="fallera" src="imagenes/Falleras_mayores/Angel-2013.jpg" alt="">
-      </div>     
-    </div>
-  </div>
-  <hr class="w-75 m-auto mt-2">
-
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-12 text-center">
-        <p class="display-7">President 2008-2012</p>
-        <p class="display-8">Javier C. A.</p>
-        <img class="fallera" src="imagenes/Falleras_mayores/Javier-2008.jpg" alt="">
-      </div>     
-    </div>
-  </div>
-  <hr class="w-75 m-auto mt-2">
-
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-12 text-center">
-        <p class="display-7">President 2000-2008</p>
-        <p class="display-8">Alan D. R.</p>
-        <img class="fallera" src="imagenes/Falleras_mayores/Alan.jpg" alt="">
-      </div>
-      <div class="mt-3 col-lg-4 col-md-4 col-sm-12 text-center m-auto">
-        <p class="display-7">President infantil 2000-2001</p>
-        <p class="display-8">David F. P.</p>
-        <img class="fallera" src="imagenes/Falleras_mayores/" alt="">
-      </div>
-      <div class="mt-3 col-lg-4 col-md-4 col-sm-12 text-center m-auto">
-        <p class="display-7">President infantil 2001-2004</p>
-        <p class="display-8">Adrian D. J.</p>
-        <img class="fallera" src="imagenes/Falleras_mayores/Adrian-2004.jpg" alt="">
-      </div>
-      <div class="mt-3 col-lg-4 col-md-4 col-sm-12 text-center m-auto">
-        <p class="display-7">President infantil 2006-2007</p>
-        <p class="display-8">Aitor D. J.</p>
-        <img class="fallera" src="imagenes/Falleras_mayores/Aitor-2007.jpg" alt="">
-      </div>
-    </div>
-  </div>
-  <hr class="w-75 m-auto mt-2">
-
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-12 text-center">
-        <p class="display-7">President ...-2000</p>
-        <p class="display-8">Jose M. R.</p>
-        <img class="fallera" src="imagenes/Falleras_mayores/muñoz.jpg" alt="">
-      </div>
-      <div class="mt-3 col-lg-4 col-md-4 col-sm-12 text-center m-auto">
-        <p class="display-7">President infantil 1997-1999</p>
-        <p class="display-8">Francisco F. G.</p>
-        <img class="fallera" src="imagenes/Falleras_mayores/Fran-1997.jpg" alt="">
-      </div>
-      <div class="mt-3 col-lg-4 col-md-4 col-sm-12 text-center m-auto">
-        <p class="display-7">President infantil 1999-2000</p>
-        <p class="display-8">David F. P.</p>
-        <img class="fallera" src="imagenes/Falleras_mayores/" alt="">
-      </div>
-    </div>
-  </div>
-  <hr class="w-75 m-auto mt-2">
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-12 text-center">
-        <p class="display-7">President 1982-...</p>
-        <p class="display-8"></p>
-        <img class="fallera" src="imagenes/Falleras_mayores/" alt="">
-      </div>     
+    <div class="row mt-3">
+      <?php
+      $presidentes= new CrudRecurso();
+      $presidentes->cardsPresidentes();
+      
+      ?>
     </div>
   </div>
   <footer class="btn-azulclaro footer">

@@ -1,6 +1,8 @@
 <?php
 session_start();
 $conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'" : "style='background-color: #e3f2fd;'";
+
+require_once "./CRUDs/recurso_CRUD.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -138,102 +140,12 @@ echo "<nav class='navbar navbar-expand-lg navbar-light' $conectado>";
       </div>
     </nav>
   </header>
+  <?php
+      $falleras= new CrudRecurso();
+      $falleras->listadoLLibret();
+      
+      ?>
 
-  <div class="accordion accordion-flush" id="accordionFlushExample">
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-headingOne">
-        <button class="accordion-button collapsed d-block text-center" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-          Llibret 2021</button>
-      </h2>
-      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body"><center><iframe class="libros" src="" allow="autoplay"></iframe>        
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-headingTwo">
-        <button class="accordion-button collapsed d-block text-center" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-          Llibret 2020
-        </button>
-      </h2>
-      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body"><center><iframe class="libros" src="" allow="autoplay"></iframe>        
-        </div>        </center>
-        </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-headingfour">
-        <button class="accordion-button collapsed d-block text-center" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
-          Llibret 2019
-        </button>
-      </h2>
-      <div id="flush-collapsefour" class="accordion-collapse collapse" aria-labelledby="flush-headingfour" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body"><center><iframe class="libros" src="" allow="autoplay"></iframe>        
-        </div>
-        </center>
-        </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-headingfive">
-        <button class="accordion-button collapsed d-block text-center" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefive" aria-expanded="false" aria-controls="flush-collapsefive">
-          Llibret 2018
-        </button>
-      </h2>
-      <div id="flush-collapsefive" class="accordion-collapse collapse" aria-labelledby="flush-headingfive" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body"><center><iframe class="libros" src="" allow="autoplay"></iframe>        
-        </div>
-        </center>
-        </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-headingsix">
-        <button class="accordion-button collapsed d-block text-center" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsesix" aria-expanded="false" aria-controls="flush-collapsesix">
-          Llibret 2017
-        </button>
-      </h2>
-      <div id="flush-collapsesix" class="accordion-collapse collapse" aria-labelledby="flush-headingsix" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body"><center><iframe class="libros" src="" allow="autoplay"></iframe>        
-        </div>
-        </center>
-        </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-headingseven">
-        <button class="accordion-button collapsed d-block text-center" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseseven" aria-expanded="false" aria-controls="flush-collapseseven">
-          Llibret 2016
-        </button>
-      </h2>
-      <div id="flush-collapseseven" class="accordion-collapse collapse" aria-labelledby="flush-headingseven" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body"><center><iframe class="libros" src="https://drive.google.com/file/d/1gk4CqO0hBiVwnjqJarEe48iUyephme1V/preview" allow="autoplay"></iframe>        
-        </div>
-        </center>
-        </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-headingeight">
-        <button class="accordion-button collapsed d-block text-center" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseeight" aria-expanded="false" aria-controls="flush-collapseeight">
-          Llibret 2015
-        </button>
-      </h2>
-      <div id="flush-collapseeight" class="accordion-collapse collapse" aria-labelledby="flush-headingeight" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body"><center><iframe class="libros" src="" allow="autoplay"></iframe>        
-        </div>
-        </center>
-        </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-headingnine">
-        <button class="accordion-button collapsed d-block text-center" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsenine" aria-expanded="false" aria-controls="flush-collapsenine">
-          Llibret 2014
-        </button>
-      </h2>
-      <div id="flush-collapsenine" class="accordion-collapse collapse" aria-labelledby="flush-headingnine" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body"><center><iframe class="libros" src="" allow="autoplay"></iframe>        
-        </div>
-        </center>
-        </div>
-    </div>
-  </div>
 
   <footer class="btn-azulclaro footer">
     <div class="text-center">

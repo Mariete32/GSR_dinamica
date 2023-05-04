@@ -36,7 +36,7 @@ public function datosRecurso($rec_id){
         }
         echo "</select>";
     }
-//funcion que imprime las url de las imagenes de los eventos en un select
+//funcion que imprime las url de las imagenes en un select del formulario eventos
     public function urlEventos()
     {
         $directorio = "./imagenes/imagenesEventos"; // reemplaza "ruta/a/la/carpeta" con la ruta real de la carpeta que quieres leer
@@ -92,7 +92,7 @@ public function nombresRecursos($tipoRecurso)
         $tipo = $value['rec_tipo'];
         $url = $value['rec_url'];
         $nombreCompleto = $nombre . ' ' . $anyo ;
-        echo "<option value=$id>" . $nombreCompleto . "</option>";
+        echo "<option value=$id> $nombreCompleto </option>";
     }
     echo "</select>";
 }
@@ -118,7 +118,8 @@ public function nombresRecursos($tipoRecurso)
             echo "<img src='$url' class='card-img-top mh-100' alt='...'>";
             echo '</div>';
             echo ' <div class="card-body">';
-            if ($tipo="FM_imagen") {
+            if ($tipo=="FM_imagen") {
+                
                 echo "   <h4 class=' card-title text-center'>Fallera mayor $anyo</h4>";
             } else {
                 echo "   <h4 class=' card-title text-center'>Fallera mayor infantil $anyo</h4>";
@@ -130,6 +131,70 @@ public function nombresRecursos($tipoRecurso)
        
     }
 
+    //funcion que muestra las fotos de presidentes en cards
+    public function cardsPresidentes()
+    {
+        $conexion = database::conexion();
+        $consulta = "SELECT * FROM `recurso` WHERE `rec_tipo`='P_imagen' || `rec_tipo`='PI_imagen' ORDER BY `rec_anyo` DESC";
+        $consultaPreparada = $conexion->prepare($consulta);
+        $consultaPreparada->execute();
+        $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($resultado as $value) {
+            $id = $value['rec_id'];
+            $nombre = $value['rec_nombre'];
+            $anyo = $value['rec_anyo'];
+            $tipo = $value['rec_tipo'];
+            $url = $value['rec_url'];
+            
+            echo '<div class="col-lg-4 col-md-6 col-sm-12">';
+            echo '   <div class="card mt-4" style="width: 18rem; ">';
+            echo '   <div style=" height: 370px;">';
+            echo "<img src='$url' class='card-img-top mh-100' alt='...'>";
+            echo '</div>';
+            echo ' <div class="card-body">';
+            if ($tipo=="P_imagen") {
+                
+                echo "   <h4 class=' card-title text-center'>Presidente $anyo</h4>";
+            } else {
+                echo "   <h4 class=' card-title text-center'>Presidente infantil $anyo</h4>";
+            }
+    echo '</div>';
+    echo ' </div>';
+    echo '  </div>';
+        }
+       
+    }
+
+//funcion que muestra los llibrets
+public function listadoLLibret()
+{
+    $conexion = database::conexion();
+    $consulta = "SELECT * FROM `recurso` WHERE `rec_tipo`='pdf_llibret' ORDER BY `rec_anyo` DESC";
+    $consultaPreparada = $conexion->prepare($consulta);
+    $consultaPreparada->execute();
+    $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
+    echo '<div class="accordion accordion-flush" id="accordionFlushExample">';
+    foreach ($resultado as $value) {
+        $id = $value['rec_id'];
+        $nombre = $value['rec_nombre'];
+        $anyo = $value['rec_anyo'];
+        $tipo = $value['rec_tipo'];
+        $url = $value['rec_url'];
+        $titulo= $nombre." ".$anyo;
+        
+        echo ' <div class="accordion-item">';
+        echo "  <h2 class='accordion-header' id='flush-heading$id'>";
+        echo "   <button class='accordion-button collapsed d-block text-center' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse$id' aria-expanded='false' aria-controls='flush-collapseOne'>";
+        echo "      $nombre $anyo</button>";
+        echo '  </h2>';
+        echo "  <div id='flush-collapse$id' class='accordion-collapse collapse' aria-labelledby='flush-heading$id' data-bs-parent='#accordionFlushExample'>";
+        echo "   <div class='accordion-body'><center><iframe class='libros' src='$url' allow='autoplay'></iframe>";     
+        echo '   </div>';
+        echo '  </div>';
+        echo '</div>';
+    }
+   
+}
 //funcion que elimina el evento
 public function eliminarRecurso($idrecurso)
 {
@@ -168,7 +233,7 @@ public static function editarRecurso($recurso)
     }
 }
 //funcion que inserta un recurso en la bbdd
-public function insertarDirectivo($recurso)
+public function insertarRecurso($recurso)
 {
     try {
         $conexion = Database::conexion();

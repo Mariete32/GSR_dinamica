@@ -201,6 +201,7 @@ class CrudDirectiva
         return $directivo;
     }
 
+    
 //funcion que elimina el directivo
     public function eliminarDirectivo($idDirectivo)
     {
