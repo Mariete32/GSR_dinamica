@@ -1,8 +1,29 @@
 <?php
 session_start();
-if (isset($_SESSION["usuario"])) {
-  header("Location: ./vista/edicion.php");
-}
+$conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'" : "style='background-color: #e3f2fd;'";
+require_once "../controlador/BBDD/database.php";
+require_once "../controlador/CRUDs/directiva_CRUD.php";
+require_once "../controlador/CRUDs/eventos_CRUD.php";
+require_once "../controlador/CRUDs/cargos_CRUD.php";
+require_once "../controlador/CRUDs/recurso_CRUD.php";
+require_once "../controlador/CRUDs/inscritos_CRUD.php";
+require_once "../controlador/CRUDs/usuarios_CRUD.php";
+require_once "../controlador/CRUDs/falleras_mayores_crud.php";
+require_once "../controlador/CRUDs/falleras_mayores_infantiles_crud.php";
+require_once "../controlador/CRUDs/presidentes_CRUD.php";
+require_once "../controlador/CRUDs/presidentes_infantiles_CRUD.php";
+require_once '../modelo/classes/Recurso.php';
+require_once '../modelo/classes/cargos.php';
+require_once "../modelo/classes/cuotas.php";
+require_once "../modelo/classes/evento.php";
+require_once "../modelo/classes/fallera_infantil.php";
+require_once "../modelo/classes/fallera_mayor.php";
+require_once "../modelo/classes/inscritos.php";
+require_once "../modelo/classes/junta_directiva.php";
+require_once "../modelo/classes/presidente_infantil.php";
+require_once "../modelo/classes/presidente.php";
+require_once "../modelo/classes/recurso.php";
+require_once "../modelo/classes/usuarios.php";
 
 ?>
 <!DOCTYPE html>
@@ -13,22 +34,26 @@ if (isset($_SESSION["usuario"])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="anos_historia.js"></script>
-
   <link rel="stylesheet" href="estilos.css">
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="estilos2.css">
   <title>GSR</title>
 </head>
 
 <body>
+
+
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v14.0"
+    nonce="IX9rRk67"></script>
   <header>
     <div class="container">
       <div class="row">
         <div class="align-self-center col-lg-2 col-md-2 col-sm-3 col-3">
-          <img src="imagenes/escudo-falla.jpg" class="img-fluid rounded float-start"
+          <img src="../imagenes/escudo-falla.jpg" class="img-fluid rounded float-start"
             alt="falla Guillem Sorolla i Recaredo">
         </div>
         <div class="align-self-center text-center col-lg-8 col-md-8 col-sm-6 col-6">
-          <p class="display-4">Falla Guillem Sorolla i Recaredo</p>
+          <p class="display-4" id="nombreFalla">Falla Guillem Sorolla i Recaredo</p>
           <p class="h3" id="historia"></p>
         </div>
         <div class="align-self-center col-lg-2 col-md-2 col-sm-3 col-3">
@@ -36,7 +61,7 @@ if (isset($_SESSION["usuario"])) {
           <a href="https://www.labrujitagenerosa.es/loteria-empresas-verlot.php?GadMS=1">
             <svg class="align-self-center col-12" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"
               width="300px" id="blobSvg" filter="blur(0px)" style="opacity: 1;" transform="rotate(-9)">
-              <image x="0" y="0" width="100%" height="100%" clip-path="url(#shape)" href="imagenes/loteria.jpeg"
+              <image x="0" y="0" width="100%" height="100%" clip-path="url(#shape)" href="../imagenes/loteria.jpeg"
                 preserveAspectRatio="none"></image>
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -56,8 +81,9 @@ if (isset($_SESSION["usuario"])) {
         </div>
       </div>
     </div>
-
-    <nav class="navbar navbar-expand-lg navbar-light btn-azulclaro">
+    <?php
+    echo "<div $conectado><div class='container'>  <nav class='navbar navbar-expand-lg navbar-light' >";
+    ?>
       <div class="container-fluid ">
         <a class="navbar-brand " href="index.html">INICIO</a>
         <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -74,9 +100,6 @@ if (isset($_SESSION["usuario"])) {
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="eventos.php">Eventos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="juntas.php">Juntas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="falleras_majores.php">Falleras mayores</a>
@@ -97,71 +120,41 @@ if (isset($_SESSION["usuario"])) {
               <a class="nav-link active" aria-current="page" href="imagenes.php">Himno</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="programacion_fallera.php">Semana fallera</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="cuotas.php">Cuotas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="contacto.php">Contacto</a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
-                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-              </svg>
-              </a>
-            </li>
+            <?php
+            // cambiamos el icono de login por el de logout y editar con se esta logueado
+            if (isset($_SESSION["usuario"])) {
+                echo '<li class="nav-item">';
+                echo '<a class="nav-link active" aria-current="page" href="edicion.php"><img src="..//imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+                echo '</a>';
+                echo ' </li>';
+                echo '<li class="nav-item">';
+                echo '<a class="nav-link active" aria-current="page" href="logout.php"><img src="..//imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+                echo '</a>';
+                echo ' </li>';
 
+            } else {
+                echo '<li class="nav-item">';
+                echo '<a class="nav-link active" aria-current="page" href="login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">';
+                echo '<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>';
+                echo '<path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>';
+                echo '<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>';
+                echo '</svg>';
+                echo '</a>';
+                echo ' </li>';
+            }
+            ?>
+              </li>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-  </header>
-  <center>
-  <form action="edicion.php" method="POST" class="form1 card1 mt-3 ">
-    <div class="card_header1">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-        <path fill="none" d="M0 0h24v24H0z"></path>
-        <path fill="currentColor" d="M4 15h2v5h12V4H6v5H4V3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6zm6-4V8l5 4-5 4v-3H2v-2h8z"></path>
-      </svg>
-      <h1 class="form_heading1">Sign in</h1>
     </div>
-    <div class="field1">
-      <label for="usuario">usuario</label>
-      <input class="input1" name="usuario" type="text" placeholder="Usuario" id="usuario">
     </div>
-    <div class="field1">
-      <label for="contraseña">contraseña</label>
-      <input class="input1" name="contraseña" type="contraseña" placeholder="Contraseña" id="contraseña">
-    </div>
-    <div class="field1">
-      <button class="button1">Log in</button>
-    </div>
-  </form>
-  
-  <footer class="btn-azulclaro footer">
-    <div class="text-center">
-      <p class="">Síguenos en: </p>
-      <a class="mx-2 link-light" href="https://www.facebook.com/guillemsorolla/">
-        <img src="./imagenes/_facebook.png" class="rrss" alt="">
-      </a>
-      <a class="mx-2 link-light" href="https://twitter.com/fguillemsor_rec">
-        <img src="./imagenes/_twitter.png" class="rrss" alt="">
-      </a>
-      <a class="mx-2 link-light" href="https://www.instagram.com/fallaguillemsorolla_recaredo/">
-        <img src="./imagenes/Instagram_icon.png.webp" class="rrss" alt="">
-      </a>
-    </div>
-    <a class="mx-5 link-dark nav-link" href="aviso_legal.html">Aviso legal</a>
-
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
-</body>
-
-</html>
+    </header>

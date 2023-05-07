@@ -1,4 +1,6 @@
-
+<?php
+require_once './plantillas/header.php';
+?>
   <div class="container">
     <div class="row ">
 
@@ -7,13 +9,13 @@
       <div class="text-center ">
         <div class="">
           <a class="m-2 link-light" href="https://www.facebook.com/guillemsorolla/">
-            <img src="./imagenes/_facebook.png" class="rrss" alt="">
+            <img src="..//imagenes/_facebook.png" class="rrss" alt="">
           </a>
           <a class="m-2 link-light" href="https://twitter.com/fguillemsor_rec">
-            <img src="./imagenes/_twitter.png" class="rrss" alt="">
+            <img src="../imagenes/_twitter.png" class="rrss" alt="">
           </a>
           <a class="m-2 link-light" href="https://www.instagram.com/fallaguillemsorolla_recaredo/">
-            <img src="./imagenes/Instagram_icon.png.webp" class="rrss" alt="">
+            <img src="../imagenes/Instagram_icon.png.webp" class="rrss" alt="">
           </a>
         </div>
       </div>
@@ -29,7 +31,7 @@
     </center>
   </div>
   <?php
-require_once './vista/directiva.php';
+require_once './plantillas/footer.php';
 ?>
     
 </body>

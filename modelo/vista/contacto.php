@@ -29,7 +29,7 @@
     </center>
   </div>
   <?php
-require_once './vista/directiva.php';
+require_once './vista/plantillas/footer.php';
 ?>
     
 </body>

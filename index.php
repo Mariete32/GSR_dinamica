@@ -1,9 +1,31 @@
 <?php
 session_start();
 $conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'" : "style='background-color: #e3f2fd;'";
+require_once "./controlador/BBDD/database.php";
+require_once "./controlador/CRUDs/directiva_CRUD.php";
+require_once "./controlador/CRUDs/eventos_CRUD.php";
+require_once "./controlador/CRUDs/cargos_CRUD.php";
+require_once "./controlador/CRUDs/recurso_CRUD.php";
+require_once "./controlador/CRUDs/inscritos_CRUD.php";
+require_once "./controlador/CRUDs/usuarios_CRUD.php";
+require_once "./controlador/CRUDs/falleras_mayores_crud.php";
+require_once "./controlador/CRUDs/falleras_mayores_infantiles_crud.php";
+require_once "./controlador/CRUDs/presidentes_CRUD.php";
+require_once "./controlador/CRUDs/presidentes_infantiles_CRUD.php";
+require_once './modelo/classes/Recurso.php';
+require_once './modelo/classes/cargos.php';
+require_once "./modelo/classes/cuotas.php";
+require_once "./modelo/classes/evento.php";
+require_once "./modelo/classes/fallera_infantil.php";
+require_once "./modelo/classes/fallera_mayor.php";
+require_once "./modelo/classes/inscritos.php";
+require_once "./modelo/classes/junta_directiva.php";
+require_once "./modelo/classes/presidente_infantil.php";
+require_once "./modelo/classes/presidente.php";
+require_once "./modelo/classes/recurso.php";
+require_once "./modelo/classes/usuarios.php";
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -12,7 +34,6 @@ $conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="anos_historia.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="estilos.css">
   <link rel="stylesheet" href="estilos2.css">
   <title>GSR</title>
@@ -28,7 +49,7 @@ $conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'
     <div class="container">
       <div class="row">
         <div class="align-self-center col-lg-2 col-md-2 col-sm-3 col-3">
-          <img src="imagenes/escudo-falla.jpg" class="img-fluid rounded float-start"
+          <img src="./imagenes/escudo-falla.jpg" class="img-fluid rounded float-start"
             alt="falla Guillem Sorolla i Recaredo">
         </div>
         <div class="align-self-center text-center col-lg-8 col-md-8 col-sm-6 col-6">
@@ -40,7 +61,7 @@ $conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'
           <a href="https://www.labrujitagenerosa.es/loteria-empresas-verlot.php?GadMS=1">
             <svg class="align-self-center col-12" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"
               width="300px" id="blobSvg" filter="blur(0px)" style="opacity: 1;" transform="rotate(-9)">
-              <image x="0" y="0" width="100%" height="100%" clip-path="url(#shape)" href="imagenes/loteria.jpeg"
+              <image x="0" y="0" width="100%" height="100%" clip-path="url(#shape)" href="./imagenes/loteria.jpeg"
                 preserveAspectRatio="none"></image>
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -61,8 +82,8 @@ $conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'
       </div>
     </div>
     <?php
-echo "<nav class='navbar navbar-expand-lg navbar-light' $conectado>";
-?>
+    echo "<div $conectado><div class='container'>  <nav class='navbar navbar-expand-lg navbar-light' >";
+    ?>
       <div class="container-fluid ">
         <a class="navbar-brand " href="index.html">INICIO</a>
         <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -79,9 +100,6 @@ echo "<nav class='navbar navbar-expand-lg navbar-light' $conectado>";
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="eventos.php">Eventos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="juntas.php">Juntas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="falleras_majores.php">Falleras mayores</a>
@@ -102,9 +120,6 @@ echo "<nav class='navbar navbar-expand-lg navbar-light' $conectado>";
               <a class="nav-link active" aria-current="page" href="imagenes.php">Himno</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="programacion_fallera.php">Semana fallera</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="cuotas.php">Cuotas</a>
             </li>
             <li class="nav-item">
@@ -113,35 +128,36 @@ echo "<nav class='navbar navbar-expand-lg navbar-light' $conectado>";
 
             <?php
             // cambiamos el icono de login por el de logout y editar con se esta logueado
-              if (isset($_SESSION["usuario"])) {
-                  echo '<li class="nav-item">';
-                  echo '<a class="nav-link active" aria-current="page" href="edicion.php"><img src="./imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
-                  echo '</a>';
-                  echo ' </li>';
-                  echo '<li class="nav-item">';
-                  echo '<a class="nav-link active" aria-current="page" href="logout.php"><img src="./imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
-                  echo '</a>';
-                  echo ' </li>';
+            if (isset($_SESSION["usuario"])) {
+                echo '<li class="nav-item">';
+                echo '<a class="nav-link active" aria-current="page" href="edicion.php"><img src="./imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+                echo '</a>';
+                echo ' </li>';
+                echo '<li class="nav-item">';
+                echo '<a class="nav-link active" aria-current="page" href="logout.php"><img src="./imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+                echo '</a>';
+                echo ' </li>';
 
-              } else {
-                  echo '<li class="nav-item">';
-                  echo '<a class="nav-link active" aria-current="page" href="login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">';
-                  echo '<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>';
-                  echo '<path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>';
-                  echo '<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>';
-                  echo '</svg>';
-                  echo '</a>';
-                  echo ' </li>';
-              }
-?>
+            } else {
+                echo '<li class="nav-item">';
+                echo '<a class="nav-link active" aria-current="page" href="login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">';
+                echo '<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>';
+                echo '<path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>';
+                echo '<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>';
+                echo '</svg>';
+                echo '</a>';
+                echo ' </li>';
+            }
+            ?>
               </li>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-  </header>
-
+    </div>
+    </div>
+    </header>
   <div class="container ">
     <div class="row col-12 mt-2 ">
       <div class="col-lg-10 col-md-10 col-sm-12 ">
