@@ -91,6 +91,7 @@ public function nombresRecursos($tipoRecurso)
         $anyo = $value['rec_anyo'];
         $tipo = $value['rec_tipo'];
         $url = $value['rec_url'];
+        $url = "../$url";
         $nombreCompleto = $nombre . ' ' . $anyo ;
         echo "<option value=$id> $nombreCompleto </option>";
     }
@@ -111,7 +112,7 @@ public function nombresRecursos($tipoRecurso)
             $anyo = $value['rec_anyo'];
             $tipo = $value['rec_tipo'];
             $url = $value['rec_url'];
-            
+            $url = "../$url";
             echo '<div class="col-lg-4 col-md-6 col-sm-12">';
             echo '   <div class="card mt-4" style="width: 18rem; ">';
             echo '   <div style=" height: 370px;">';
@@ -145,7 +146,7 @@ public function nombresRecursos($tipoRecurso)
             $anyo = $value['rec_anyo'];
             $tipo = $value['rec_tipo'];
             $url = $value['rec_url'];
-            
+            $url = "../$url";
             echo '<div class="col-lg-4 col-md-6 col-sm-12">';
             echo '   <div class="card mt-4" style="width: 18rem; ">';
             echo '   <div style=" height: 370px;">';
@@ -180,6 +181,7 @@ public function listadoLLibret()
         $anyo = $value['rec_anyo'];
         $tipo = $value['rec_tipo'];
         $url = $value['rec_url'];
+        $url = "../$url";
         $titulo= $nombre." ".$anyo;
         
         echo ' <div class="accordion-item">';

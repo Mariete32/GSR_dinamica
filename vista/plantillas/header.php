@@ -24,6 +24,7 @@ require_once "../modelo/classes/presidente_infantil.php";
 require_once "../modelo/classes/presidente.php";
 require_once "../modelo/classes/recurso.php";
 require_once "../modelo/classes/usuarios.php";
+////background-image: linear-gradient(#fdd7ae, #faead8);   #fdd7ae   #faead8   #cff7fc  #dafccf #fcdbcf   #fccffc
 
 ?>
 <!DOCTYPE html>
@@ -34,12 +35,12 @@ require_once "../modelo/classes/usuarios.php";
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="anos_historia.js"></script>
-  <link rel="stylesheet" href="estilos.css">
-  <link rel="stylesheet" href="estilos2.css">
+  <link rel="stylesheet" href="../estilos.css">
+  <link rel="stylesheet" href="../login.css">
   <title>GSR</title>
 </head>
 
-<body>
+<body style='background-image: linear-gradient(180deg, rgba(255, 221, 144, 0.01), #ffe6c9 85%), radial-gradient(ellipse at top left, rgba(255, 129, 129, 0.5), transparent 50%), radial-gradient(ellipse at top right, rgba(255, 155, 79, 0.5), transparent 50%), radial-gradient(ellipse at center right, rgba(182, 197, 253, 0.5), transparent 50%), radial-gradient(ellipse at center left, rgba(253, 182, 200, 0.5), transparent 50%);'>
 
 
   <div id="fb-root"></div>
@@ -49,7 +50,7 @@ require_once "../modelo/classes/usuarios.php";
     <div class="container">
       <div class="row">
         <div class="align-self-center col-lg-2 col-md-2 col-sm-3 col-3">
-          <img src="../imagenes/escudo-falla.jpg" class="img-fluid rounded float-start"
+          <img src="../imagenes/escudo-falla.png" class="img-fluid rounded float-start"
             alt="falla Guillem Sorolla i Recaredo">
         </div>
         <div class="align-self-center text-center col-lg-8 col-md-8 col-sm-6 col-6">
@@ -85,7 +86,7 @@ require_once "../modelo/classes/usuarios.php";
     echo "<div $conectado><div class='container'>  <nav class='navbar navbar-expand-lg navbar-light' >";
     ?>
       <div class="container-fluid ">
-        <a class="navbar-brand " href="index.html">INICIO</a>
+        <a class="navbar-brand " href="../index.php">INICIO</a>
         <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -158,3 +159,4 @@ require_once "../modelo/classes/usuarios.php";
     </div>
     </div>
     </header>
+    <main >

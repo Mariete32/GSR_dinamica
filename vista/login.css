@@ -103,7 +103,7 @@ html {
     color: #bcbcdf;
   }
   
-  label {
+  .label {
     color: #B2BAC8;
     font-size: 14px;
     display: block;
@@ -126,3 +126,4 @@ html {
   .button1:hover {
     background-color: #5f5f9c;
   }
+

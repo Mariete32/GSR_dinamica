@@ -27,6 +27,7 @@ class CrudEventos
             $detalles = $value['eve_detalles'];
             $suscripcion = $value['eve_suscripcion'];
             $url = $value['eve_url_img'];
+            $url="../$url";
             if ($mes == 1) {$mes = "enero";}
             if ($mes == 2) {$mes = "febrero";}
             if ($mes == 3) {$mes = "marzo";}

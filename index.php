@@ -39,7 +39,7 @@ require_once "./modelo/classes/usuarios.php";
   <title>GSR</title>
 </head>
 
-<body>
+<body style='background-image: linear-gradient(180deg, rgba(255, 221, 144, 0.01), #ffe6c9 85%), radial-gradient(ellipse at top left, rgba(255, 129, 129, 0.5), transparent 50%), radial-gradient(ellipse at top right, rgba(255, 155, 79, 0.5), transparent 50%), radial-gradient(ellipse at center right, rgba(182, 197, 253, 0.5), transparent 50%), radial-gradient(ellipse at center left, rgba(253, 182, 200, 0.5), transparent 50%);'>
 
 
   <div id="fb-root"></div>
@@ -49,7 +49,7 @@ require_once "./modelo/classes/usuarios.php";
     <div class="container">
       <div class="row">
         <div class="align-self-center col-lg-2 col-md-2 col-sm-3 col-3">
-          <img src="./imagenes/escudo-falla.jpg" class="img-fluid rounded float-start"
+          <img src="./imagenes/escudo-falla.png" class="img-fluid rounded float-start"
             alt="falla Guillem Sorolla i Recaredo">
         </div>
         <div class="align-self-center text-center col-lg-8 col-md-8 col-sm-6 col-6">
@@ -85,7 +85,7 @@ require_once "./modelo/classes/usuarios.php";
     echo "<div $conectado><div class='container'>  <nav class='navbar navbar-expand-lg navbar-light' >";
     ?>
       <div class="container-fluid ">
-        <a class="navbar-brand " href="index.html">INICIO</a>
+        <a class="navbar-brand " href="index.php">INICIO</a>
         <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -93,48 +93,48 @@ require_once "./modelo/classes/usuarios.php";
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="historia.php">Historia</a>
+              <a class="nav-link active" aria-current="page" href="./vista/historia.php">Historia</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="premios.php">Premios</a>
+              <a class="nav-link active" aria-current="page" href="./vista/premios.php">Premios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="eventos.php">Eventos</a>
+              <a class="nav-link active" aria-current="page" href="./vista/eventos.php">Eventos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="falleras_majores.php">Falleras mayores</a>
+              <a class="nav-link active" aria-current="page" href="./vista/falleras_majores.php">Falleras mayores</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="presidentes.php">Presidentes</a>
+              <a class="nav-link active" aria-current="page" href="./vista/presidentes.php">Presidentes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="monumentos.php">Fallas</a>
+              <a class="nav-link active" aria-current="page" href="./vista/monumentos.php">Fallas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="libros.php">Llibrets</a>
+              <a class="nav-link active" aria-current="page" href="./vista/libros.php">Llibrets</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="directiva.php">Junta directiva</a>
+              <a class="nav-link active" aria-current="page" href="./vista/directiva.php">Junta directiva</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="imagenes.php">Himno</a>
+              <a class="nav-link active" aria-current="page" href="./vista/imagenes.php">Himno</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="cuotas.php">Cuotas</a>
+              <a class="nav-link active" aria-current="page" href="./vista/cuotas.php">Cuotas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="contacto.php">Contacto</a>
+              <a class="nav-link active" aria-current="page" href="./vista/contacto.php">Contacto</a>
             </li>
 
             <?php
             // cambiamos el icono de login por el de logout y editar con se esta logueado
             if (isset($_SESSION["usuario"])) {
                 echo '<li class="nav-item">';
-                echo '<a class="nav-link active" aria-current="page" href="edicion.php"><img src="./imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+                echo '<a class="nav-link active" aria-current="page" href="./vista/edicion.php"><img src="./imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
                 echo '</a>';
                 echo ' </li>';
                 echo '<li class="nav-item">';
-                echo '<a class="nav-link active" aria-current="page" href="logout.php"><img src="./imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+                echo '<a class="nav-link active" aria-current="page" href="./vista/logout.php"><img src="./imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
                 echo '</a>';
                 echo ' </li>';
 
@@ -170,7 +170,8 @@ require_once "./modelo/classes/usuarios.php";
       </aside>
     </div>
   </div>
-  <footer class="btn-azulclaro footer">
+
+<footer class="btn-plata footer">
     <div class="text-center">
       <p class="">Síguenos en: </p>
       <a class="mx-2 link-light" href="https://www.facebook.com/guillemsorolla/">
@@ -184,9 +185,9 @@ require_once "./modelo/classes/usuarios.php";
       </a>
     </div>
     <a class="mx-5 link-dark nav-link" href="aviso_legal.html">Aviso legal</a>
-    <div>
 
   </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>

@@ -1,4 +1,5 @@
-<footer class="btn-azulclaro footer">
+</main>
+<footer class="btn-plata footer">
     <div class="text-center">
       <p class="">Síguenos en: </p>
       <a class="mx-2 link-light" href="https://www.facebook.com/guillemsorolla/">

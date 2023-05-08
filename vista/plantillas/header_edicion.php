@@ -1,6 +1,30 @@
 <?php
-session_start();
+
 $conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'" : "style='background-color: #e3f2fd;'";
+require_once "../controlador/BBDD/database.php";
+require_once "../controlador/CRUDs/directiva_CRUD.php";
+require_once "../controlador/CRUDs/eventos_CRUD.php";
+require_once "../controlador/CRUDs/cargos_CRUD.php";
+require_once "../controlador/CRUDs/recurso_CRUD.php";
+require_once "../controlador/CRUDs/inscritos_CRUD.php";
+require_once "../controlador/CRUDs/usuarios_CRUD.php";
+require_once "../controlador/CRUDs/falleras_mayores_crud.php";
+require_once "../controlador/CRUDs/falleras_mayores_infantiles_crud.php";
+require_once "../controlador/CRUDs/presidentes_CRUD.php";
+require_once "../controlador/CRUDs/presidentes_infantiles_CRUD.php";
+require_once '../modelo/classes/Recurso.php';
+require_once '../modelo/classes/cargos.php';
+require_once "../modelo/classes/cuotas.php";
+require_once "../modelo/classes/evento.php";
+require_once "../modelo/classes/fallera_infantil.php";
+require_once "../modelo/classes/fallera_mayor.php";
+require_once "../modelo/classes/inscritos.php";
+require_once "../modelo/classes/junta_directiva.php";
+require_once "../modelo/classes/presidente_infantil.php";
+require_once "../modelo/classes/presidente.php";
+require_once "../modelo/classes/recurso.php";
+require_once "../modelo/classes/usuarios.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -11,13 +35,13 @@ $conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="anos_historia.js"></script>
   <link rel="stylesheet" href="estilos.css">
-  <link rel="stylesheet" href="estilos2.css">
+  <link rel="stylesheet" href="login.css">
   <title>GSR</title>
 </head>
 
-<body>
-  
-  
+<body style='background-image: linear-gradient(180deg, rgba(255, 221, 144, 0.01), #ffe6c9 85%), radial-gradient(ellipse at top left, rgba(255, 129, 129, 0.5), transparent 50%), radial-gradient(ellipse at top right, rgba(255, 155, 79, 0.5), transparent 50%), radial-gradient(ellipse at center right, rgba(182, 197, 253, 0.5), transparent 50%), radial-gradient(ellipse at center left, rgba(253, 182, 200, 0.5), transparent 50%);'>
+
+
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v14.0"
     nonce="IX9rRk67"></script>
@@ -25,7 +49,7 @@ $conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'
     <div class="container">
       <div class="row">
         <div class="align-self-center col-lg-2 col-md-2 col-sm-3 col-3">
-          <img src="imagenes/escudo-falla.jpg" class="img-fluid rounded float-start"
+          <img src="../imagenes/escudo-falla.jpg" class="img-fluid rounded float-start"
             alt="falla Guillem Sorolla i Recaredo">
         </div>
         <div class="align-self-center text-center col-lg-8 col-md-8 col-sm-6 col-6">
@@ -37,7 +61,7 @@ $conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'
           <a href="https://www.labrujitagenerosa.es/loteria-empresas-verlot.php?GadMS=1">
             <svg class="align-self-center col-12" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"
               width="300px" id="blobSvg" filter="blur(0px)" style="opacity: 1;" transform="rotate(-9)">
-              <image x="0" y="0" width="100%" height="100%" clip-path="url(#shape)" href="imagenes/loteria.jpeg"
+              <image x="0" y="0" width="100%" height="100%" clip-path="url(#shape)" href="../imagenes/loteria.jpeg"
                 preserveAspectRatio="none"></image>
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -58,10 +82,10 @@ $conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'
       </div>
     </div>
     <?php
-echo "<nav class='navbar navbar-expand-lg navbar-light' $conectado>";
-?>
+    echo "<div $conectado><div class='container'>  <nav class='navbar navbar-expand-lg navbar-light' >";
+    ?>
       <div class="container-fluid ">
-        <a class="navbar-brand " href="index.html">INICIO</a>
+        <a class="navbar-brand " href="../index.php">INICIO</a>
         <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -76,9 +100,6 @@ echo "<nav class='navbar navbar-expand-lg navbar-light' $conectado>";
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="eventos.php">Eventos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="juntas.php">Juntas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="falleras_majores.php">Falleras mayores</a>
@@ -99,9 +120,6 @@ echo "<nav class='navbar navbar-expand-lg navbar-light' $conectado>";
               <a class="nav-link active" aria-current="page" href="imagenes.php">Himno</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="programacion_fallera.php">Semana fallera</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="cuotas.php">Cuotas</a>
             </li>
             <li class="nav-item">
@@ -110,60 +128,33 @@ echo "<nav class='navbar navbar-expand-lg navbar-light' $conectado>";
 
             <?php
             // cambiamos el icono de login por el de logout y editar con se esta logueado
-              if (isset($_SESSION["usuario"])) {
-                  echo '<li class="nav-item">';
-                  echo '<a class="nav-link active" aria-current="page" href="edicion.php"><img src="./imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
-                  echo '</a>';
-                  echo ' </li>';
-                  echo '<li class="nav-item">';
-                  echo '<a class="nav-link active" aria-current="page" href="logout.php"><img src="./imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
-                  echo '</a>';
-                  echo ' </li>';
+            if (isset($_SESSION["usuario"])) {
+                echo '<li class="nav-item">';
+                echo '<a class="nav-link active" aria-current="page" href="edicion.php"><img src="..//imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+                echo '</a>';
+                echo ' </li>';
+                echo '<li class="nav-item">';
+                echo '<a class="nav-link active" aria-current="page" href="logout.php"><img src="..//imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+                echo '</a>';
+                echo ' </li>';
 
-              } else {
-                  echo '<li class="nav-item">';
-                  echo '<a class="nav-link active" aria-current="page" href="login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">';
-                  echo '<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>';
-                  echo '<path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>';
-                  echo '<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>';
-                  echo '</svg>';
-                  echo '</a>';
-                  echo ' </li>';
-              }
-?>
+            } else {
+                echo '<li class="nav-item">';
+                echo '<a class="nav-link active" aria-current="page" href="login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">';
+                echo '<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>';
+                echo '<path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>';
+                echo '<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>';
+                echo '</svg>';
+                echo '</a>';
+                echo ' </li>';
+            }
+            ?>
               </li>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-  </header>
-
-  <div id="ww_720bcd72f1778" v='1.3' loc='id'
-    a='{"t":"responsive","lang":"es","sl_lpl":1,"ids":["wl4500"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","sl_tof":"5"}'>
-    Weather Data Source: <a href="https://sharpweather.com/es/tiempo_valencia/semana/" id="ww_720bcd72f1778_u"
-      target="_blank">pronóstico para 7 dias Valencia</a></div>
-  <script async src="https://app1.weatherwidget.org/js/?id=ww_720bcd72f1778"></script>
-  
-  <footer class="btn-azulclaro footer">
-    <div class="text-center">
-      <p class="">Síguenos en: </p>
-      <a class="mx-2 link-light" href="https://www.facebook.com/guillemsorolla/">
-        <img src="./imagenes/_facebook.png" class="rrss" alt="">
-      </a>
-      <a class="mx-2 link-light" href="https://twitter.com/fguillemsor_rec">
-        <img src="./imagenes/_twitter.png" class="rrss" alt="">
-      </a>
-      <a class="mx-2 link-light" href="https://www.instagram.com/fallaguillemsorolla_recaredo/">
-        <img src="./imagenes/Instagram_icon.png.webp" class="rrss" alt="">
-      </a>
     </div>
-    <a class="mx-5 link-dark nav-link" href="aviso_legal.html">Aviso legal</a>
-
-  </footer>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
-</body>
+    </div>
+    </header>
