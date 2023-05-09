@@ -102,7 +102,12 @@ html {
   .input1::placeholder {
     color: #bcbcdf;
   }
-  
+  label {
+    color: #000000;
+    font-size: 14px;
+    display: block;
+    padding-bottom: 4px;
+  }
   .label {
     color: #B2BAC8;
     font-size: 14px;

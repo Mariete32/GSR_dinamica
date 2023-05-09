@@ -24,6 +24,7 @@ require_once "../modelo/classes/presidente_infantil.php";
 require_once "../modelo/classes/presidente.php";
 require_once "../modelo/classes/recurso.php";
 require_once "../modelo/classes/usuarios.php";
+////background-image: linear-gradient(#fdd7ae, #faead8);   #fdd7ae   #faead8   #cff7fc  #dafccf #fcdbcf   #fccffc
 
 ?>
 <!DOCTYPE html>
@@ -34,8 +35,8 @@ require_once "../modelo/classes/usuarios.php";
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="anos_historia.js"></script>
-  <link rel="stylesheet" href="estilos.css">
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="../estilos.css">
+  <link rel="stylesheet" href="../login.css">
   <title>GSR</title>
 </head>
 
@@ -49,7 +50,7 @@ require_once "../modelo/classes/usuarios.php";
     <div class="container">
       <div class="row">
         <div class="align-self-center col-lg-2 col-md-2 col-sm-3 col-3">
-          <img src="../imagenes/escudo-falla.jpg" class="img-fluid rounded float-start"
+          <img src="../imagenes/escudo-falla.png" class="img-fluid rounded float-start"
             alt="falla Guillem Sorolla i Recaredo">
         </div>
         <div class="align-self-center text-center col-lg-8 col-md-8 col-sm-6 col-6">
@@ -158,3 +159,4 @@ require_once "../modelo/classes/usuarios.php";
     </div>
     </div>
     </header>
+    <main >

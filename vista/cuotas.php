@@ -1,4 +1,5 @@
 <?php
+require_once "./plantillas/require.php";
 require_once './plantillas/header.php';
 ?>
 <main>
@@ -13,22 +14,11 @@ require_once './plantillas/header.php';
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th class="text-center display-5" scope="row">ADULTOS</th>
-            <td class="text-center display-5">150€</td>
-          </tr>
-          <tr>
-            <th class="text-center display-5" scope="row">NIÑOS 0-2 años</th>
-            <td class="text-center display-5">gratis</td>
-          </tr>
-          <tr>
-            <th class="text-center display-5" scope="row">NIÑOS </th>
-            <td class="text-center display-5">€</td>
-          </tr>
-          <tr>
-            <th class="text-center display-5" scope="row">NIÑOS </th>
-            <td class="text-center display-5">€</td>
-          </tr>
+          <?php
+          $cuotas = new CrudCuotas();
+          $cuotas->mapCuotas();
+          ?>
+          
         </tbody>
       </table>
     </div>

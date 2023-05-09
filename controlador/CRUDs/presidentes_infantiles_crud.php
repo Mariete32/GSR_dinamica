@@ -1,6 +1,6 @@
 <?php
-require_once 'C:/xampp/htdocs/Proyecto_falla/modelo/classes/presidente_infantil.php';
-require_once 'C:/xampp/htdocs/Proyecto_falla/controlador/BBDD/database.php';
+/*require_once 'C:/xampp/htdocs/Proyecto_falla/modelo/classes/presidente_infantil.php';
+require_once 'C:/xampp/htdocs/Proyecto_falla/controlador/BBDD/database.php';*/
 class CrudPresidenteInfantiles{
     public function __construct(){}
 //funcion que imprime el nombre de las Presidentes en un select

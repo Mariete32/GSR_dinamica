@@ -104,12 +104,12 @@ html {
   }
   
   label {
-    color: #113778;
+    color: #000000;
     font-size: 14px;
     display: block;
     padding-bottom: 4px;
   }
-  
+
   .button1 {
     background-color: #7878bd;
     width: 100px;

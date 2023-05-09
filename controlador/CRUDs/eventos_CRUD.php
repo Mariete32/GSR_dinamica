@@ -1,6 +1,6 @@
 <?php
-require_once 'C:/xampp/htdocs/Proyecto_falla/modelo/classes/evento.php';
-require_once 'C:/xampp/htdocs/Proyecto_falla/controlador/BBDD/database.php';
+/*require_once 'C:/xampp/htdocs/Proyecto_falla/modelo/classes/evento.php';
+require_once 'C:/xampp/htdocs/Proyecto_falla/controlador/BBDD/database.php';*/
 class CrudEventos
 {
     public function __construct(){}

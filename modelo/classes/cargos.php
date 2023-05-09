@@ -1,5 +1,5 @@
 <?php
-require_once "C:/xampp/htdocs/Proyecto_falla/modelo/classes/Junta_directiva.php";
+require_once "Junta_directiva.php";
 
 class car_tipo extends Junta_directiva{
 

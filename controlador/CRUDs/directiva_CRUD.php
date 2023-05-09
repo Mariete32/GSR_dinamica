@@ -1,7 +1,7 @@
 <?php
-require_once 'C:/xampp/htdocs/Proyecto_falla/modelo/classes/junta_directiva.php';
+/*require_once 'C:/xampp/htdocs/Proyecto_falla/modelo/classes/junta_directiva.php';
 require_once 'C:/xampp/htdocs/Proyecto_falla/modelo/classes/cargos.php';
-require_once 'C:/xampp/htdocs/Proyecto_falla/controlador/BBDD/database.php';
+require_once 'C:/xampp/htdocs/Proyecto_falla/controlador/BBDD/database.php';*/
 class CrudDirectiva
 {
     public function __construct()

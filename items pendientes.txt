@@ -1,7 +1,0 @@
-CREAR CUADRO DE TURNOS DE BARRA
-CREAR HISTORIA DE FALLA 125 AÑOS EN EL TITULO
-ORDENAR LOS EVENTOS POR PROXIMIDAD
-CREAR TABLA COLABORADORES
-tabla de cuotas
-insertar fotos monumentos y crear tabla monumentos
-insertar fotos premios y crear tabla premios

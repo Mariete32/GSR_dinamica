@@ -1,7 +1,7 @@
 <?php
-require_once 'C:/xampp/htdocs/Proyecto_falla/modelo/classes/Recurso.php';
+/*require_once 'C:/xampp/htdocs/Proyecto_falla/modelo/classes/Recurso.php';
 require_once 'C:/xampp/htdocs/Proyecto_falla/modelo/classes/cargos.php';
-require_once 'C:/xampp/htdocs/Proyecto_falla/controlador/BBDD/database.php';
+require_once 'C:/xampp/htdocs/Proyecto_falla/controlador/BBDD/database.php';*/
 class CrudRecurso{
     public function __construct()
     {}
@@ -25,7 +25,7 @@ public function datosRecurso($rec_id){
 //funcion que imprime las url de las imagenes de los directivos en un select
     public function listadoRecurso()
     {
-        $directorio = "./imagenes/directiva"; // reemplaza "ruta/a/la/carpeta" con la ruta real de la carpeta que quieres leer
+        $directorio = "../imagenes/directiva"; // reemplaza "ruta/a/la/carpeta" con la ruta real de la carpeta que quieres leer
         $archivos = scandir($directorio);
         foreach ($archivos as $archivo) {
             // comprueba si el archivo es una imagen
@@ -39,7 +39,7 @@ public function datosRecurso($rec_id){
 //funcion que imprime las url de las imagenes en un select del formulario eventos
     public function urlEventos()
     {
-        $directorio = "./imagenes/imagenesEventos"; // reemplaza "ruta/a/la/carpeta" con la ruta real de la carpeta que quieres leer
+        $directorio = "../imagenes/imagenesEventos"; // reemplaza "ruta/a/la/carpeta" con la ruta real de la carpeta que quieres leer
         $archivos = scandir($directorio);
         
         foreach ($archivos as $archivo) {
@@ -113,17 +113,17 @@ public function nombresRecursos($tipoRecurso)
             $tipo = $value['rec_tipo'];
             $url = $value['rec_url'];
             $url = "../$url";
-            echo '<div class="col-lg-4 col-md-6 col-sm-12">';
-            echo '   <div class="card mt-4" style="width: 18rem; ">';
+            echo '<div class=" col-lg-4 col-md-6 col-sm-12">';
+            echo '   <div class="card m-auto mt-4" style="width: 18rem; ">';
             echo '   <div style=" height: 370px;">';
             echo "<img src='$url' class='card-img-top mh-100' alt='...'>";
             echo '</div>';
             echo ' <div class="card-body">';
             if ($tipo=="FM_imagen") {
                 
-                echo "   <h4 class=' card-title text-center'>Fallera mayor $anyo</h4>";
+                echo "   <h5 class=' card-title text-center'>Fallera mayor $anyo</h5>";
             } else {
-                echo "   <h4 class=' card-title text-center'>Fallera mayor infantil $anyo</h4>";
+                echo "   <h5 class=' card-title text-center'>Fallera mayor infantil $anyo</h5>";
             }
     echo '</div>';
     echo ' </div>';
@@ -148,7 +148,7 @@ public function nombresRecursos($tipoRecurso)
             $url = $value['rec_url'];
             $url = "../$url";
             echo '<div class="col-lg-4 col-md-6 col-sm-12">';
-            echo '   <div class="card mt-4" style="width: 18rem; ">';
+            echo '   <div class="card m-auto mt-4" style="width: 18rem; ">';
             echo '   <div style=" height: 370px;">';
             echo "<img src='$url' class='card-img-top mh-100' alt='...'>";
             echo '</div>';

@@ -1,4 +1,5 @@
 <?php
+require_once "./plantillas/require.php";
 if (isset($_SESSION["usuario"])) {
   header("Location: ./edicion.php");
 }

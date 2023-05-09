@@ -1,12 +1,13 @@
 <?php
 //require_once "./BBDD/database.php";
-require_once "../modelo/classes/usuarios.php";
+/*require_once "../modelo/classes/usuarios.php";
 require_once "../controlador/CRUDs/directiva_CRUD.php";
 require_once "../controlador/CRUDs/eventos_CRUD.php";
 require_once "../controlador/CRUDs/cargos_CRUD.php";
 require_once "../controlador/CRUDs/recurso_CRUD.php";
 require_once "../controlador/CRUDs/inscritos_CRUD.php";
-require_once "../controlador/CRUDs/usuarios_CRUD.php";
+require_once "../controlador/CRUDs/usuarios_CRUD.php";*/
+require_once "./plantillas/require.php";
 session_start();
 var_dump($_POST);
 //si los campos estan rellenos
@@ -209,59 +210,59 @@ if (isset($_POST["recursoCrear"])) {
         if ($tipoNew == "FM_imagen") {
           $_FILES['imagenNew']['name']=$tipoFM .$nombreNew."_".$anyoNew.".jpg";
             $nombreNuevo = $_FILES['imagenNew']['name'];
-            $rutaNew = './imagenes/directiva/' . $nombreNuevo;
+            $rutaNew = '../imagenes/directiva/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
-            move_uploaded_file($_FILES['imagenNew']['tmp_name'], './imagenes/directiva/' . $nombreNuevo);
+            move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../imagenes/directiva/' . $nombreNuevo);
         } else if ($tipoNew == "FMI_imagen") {
           $_FILES['imagenNew']['name']=$tipoFMI .$nombreNew."_".$anyoNew.".jpg";
             $nombreNuevo = $_FILES['imagenNew']['name'];
-            $rutaNew = './imagenes/directiva/' . $nombreNuevo;
+            $rutaNew = '../imagenes/directiva/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
-            move_uploaded_file($_FILES['imagenNew']['tmp_name'], './imagenes/directiva/' . $nombreNuevo);
+            move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../imagenes/directiva/' . $nombreNuevo);
         } else if ($tipoNew == "P_imagen") {
           $_FILES['imagenNew']['name']=$tipoP .$nombreNew."_".$anyoNew.".jpg";
             $nombreNuevo = $_FILES['imagenNew']['name'];
-            $rutaNew = './imagenes/directiva/' . $nombreNuevo;
+            $rutaNew = '../imagenes/directiva/' . $nombreNuevo;
 
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
-            move_uploaded_file($_FILES['imagenNew']['tmp_name'], './imagenes/directiva/' . $nombreNuevo);
+            move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../imagenes/directiva/' . $nombreNuevo);
         } else if ($tipoNew == "PI_imagen") {
           $_FILES['imagenNew']['name']=$tipoPI .$nombreNew."_".$anyoNew.".jpg";
             $nombreNuevo = $_FILES['imagenNew']['name'];
-            $rutaNew = './imagenes/directiva/' . $nombreNuevo;
+            $rutaNew = '../imagenes/directiva/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
-            move_uploaded_file($_FILES['imagenNew']['tmp_name'], './imagenes/directiva/' . $nombreNuevo);
+            move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../imagenes/directiva/' . $nombreNuevo);
 
             //cambiamos el nombre de la imagen por uno estandar en la carpeta imagenesEventos
         } else if ($tipoNew == "Evento_imagen") {
           $_FILES['imagenNew']['name']=$tipoEVENTO .$nombreNew."_".$anyoNew.".jpg";
             $nombreNuevo = $_FILES['imagenNew']['name'];
-            $rutaNew = './imagenes/imagenesEventos/' . $nombreNuevo;
+            $rutaNew = '../imagenes/imagenesEventos/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
-            move_uploaded_file($_FILES['imagenNew']['tmp_name'], './imagenes/imagenesEventos/' . $nombreNuevo);
+            move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../imagenes/imagenesEventos/' . $nombreNuevo);
 
             //cambiamos el nombre de la imagen por uno estandar en la carpeta Bocetos
         } else if ($tipoNew == "Boceto_imagen") {
           $_FILES['imagenNew']['name']=$tipoBOCETO .$nombreNew."_".$anyoNew.".jpg";
             $nombreNuevo = $_FILES['imagenNew']['name'];
-            $rutaNew = './imagenes/Bocetos/' . $nombreNuevo;
+            $rutaNew = '../imagenes/Bocetos/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
-            move_uploaded_file($_FILES['imagenNew']['tmp_name'], './imagenes/Bocetos/' . $nombreNuevo);
+            move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../imagenes/Bocetos/' . $nombreNuevo);
 
             //cambiamos el nombre de la imagen por uno estandar en la carpeta Premios
         } else if ($tipoNew == "Premio_imagen") {
           $_FILES['imagenNew']['name']=$tipoPREMIO .$nombreNew."_".$anyoNew.".jpg";
             $nombreNuevo = $_FILES['imagenNew']['name'];
-            $rutaNew = './llibrets/' . $nombreNuevo;
+            $rutaNew = '../llibrets/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
-            move_uploaded_file($_FILES['imagenNew']['tmp_name'], './imagenes/Premios/' . $nombreNuevo);
+            move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../imagenes/Premios/' . $nombreNuevo);
         } else if ($tipoNew == "pdf_llibret") {
           //$_FILES['imagenNew']['name']=$_FILES['imagenNew']['name'].$anyoNew.".pdf";
             $nombreNuevo =$tipoLLIBRET. $anyoNew.".pdf";
-            $rutaNew = './llibrets/' . $nombreNuevo;
+            $rutaNew = '../llibrets/' . $nombreNuevo;
             $nombreNew = "llibret";
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
-            move_uploaded_file($_FILES['imagenNew']['tmp_name'], './llibrets/' . $nombreNuevo);
+            move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../llibrets/' . $nombreNuevo);
         }
         $recursoNuevo = new Recurso($nombreNew, $anyoNew, $tipoNew, $rutaNew);
         $recursoCreado = new CrudRecurso();
@@ -605,7 +606,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '</div>';
         echo '<div class="form-group mt-2 col-lg-6 col-md-6 col-sm-12">';
         echo '<label class="fw-bold" for="anyo">Año</label>';
-        echo '<input type="number" class="form-control" id="anyo" min="2000" name="anyoNew" placeholder="Año" required>';
+        echo '<input type="number" class="form-control" id="anyo" min="1900" name="anyoNew" placeholder="Año" required>';
         echo '</div>';
         echo '</div>';
         echo '<div class="row ">';

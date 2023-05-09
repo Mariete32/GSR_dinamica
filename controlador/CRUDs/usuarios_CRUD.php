@@ -1,5 +1,5 @@
 <?php
-require_once "C:/xampp/htdocs/Proyecto_falla/modelo/classes/usuarios.php";
+/*require_once "C:/xampp/htdocs/Proyecto_falla/modelo/classes/usuarios.php";*/
 class CrudUsuario
 {
     public function __construct()

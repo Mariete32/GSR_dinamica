@@ -1,6 +1,6 @@
 <?php
-require_once 'C:/xampp/htdocs/Proyecto_falla/modelo/classes/presidente.php';
-require_once 'C:/xampp/htdocs/Proyecto_falla/controlador/BBDD/database.php';
+/*require_once 'C:/xampp/htdocs/Proyecto_falla/modelo/classes/presidente.php';
+require_once 'C:/xampp/htdocs/Proyecto_falla/controlador/BBDD/database.php';*/
 class CrudPresidentes{
     public function __construct(){}
 

@@ -1,6 +1,6 @@
 <?php
-require_once 'C:/xampp/htdocs/Proyecto_falla/modelo/classes/fallera_mayor.php';
-require_once 'C:/xampp/htdocs/Proyecto_falla/controlador/BBDD/database.php';
+//require_once 'C:/xampp/htdocs/Proyecto_falla/modelo/classes/fallera_mayor.php';
+//require_once 'C:/xampp/htdocs/Proyecto_falla/controlador/BBDD/database.php';
 class CrudFalleras
 {
     public function __construct()

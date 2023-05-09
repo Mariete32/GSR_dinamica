@@ -1,7 +1,7 @@
 <?php
 session_start();
 $conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'" : "style='background-color: #e3f2fd;'";
-require_once "../controlador/BBDD/database.php";
+/*require_once "../controlador/BBDD/database.php";
 require_once "../controlador/CRUDs/directiva_CRUD.php";
 require_once "../controlador/CRUDs/eventos_CRUD.php";
 require_once "../controlador/CRUDs/cargos_CRUD.php";
@@ -23,9 +23,9 @@ require_once "../modelo/classes/junta_directiva.php";
 require_once "../modelo/classes/presidente_infantil.php";
 require_once "../modelo/classes/presidente.php";
 require_once "../modelo/classes/recurso.php";
-require_once "../modelo/classes/usuarios.php";
+require_once "../modelo/classes/usuarios.php";*/
 ////background-image: linear-gradient(#fdd7ae, #faead8);   #fdd7ae   #faead8   #cff7fc  #dafccf #fcdbcf   #fccffc
-
+//require_once "require.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">

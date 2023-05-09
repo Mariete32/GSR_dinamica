@@ -1,4 +1,5 @@
 <?php
+require_once "./plantillas/require.php";
 require_once './plantillas/header.php';
 ?>
   <div class="container">

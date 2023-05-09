@@ -1,7 +1,8 @@
 <?php
-require_once "../modelo/classes/inscritos.php";
+require_once "./plantillas/require.php";
+/*require_once "../modelo/classes/inscritos.php";
 require_once "../controlador/CRUDs/inscritos_CRUD.php";
-require_once "../controlador/CRUDs/eventos_CRUD.php";
+require_once "../controlador/CRUDs/eventos_CRUD.php";*/
 
 if (isset($_POST["Nombre"]) && isset($_POST["Apellidos"])) {
   $id=$_POST["eve_id"];
