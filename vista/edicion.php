@@ -53,11 +53,15 @@ if (isset($_POST["directivo"])) {
 if (isset($_POST["eve_id"])) {
     $eve_id = $_POST["eve_id"];
 }
-//si seleccionamos directivo, mostramos sus datos en el formulario para su modificacion o eliminacion
-if (isset($_POST["rutaRecurso"])) {
-    $rutaRecurso = $_POST["rutaRecurso"];}
-if (isset($_POST["recursoSeleccionado"])) {
-    $recursoSeleccionado = $_POST["recursoSeleccionado"];
+//si seleccionamos premio, mostramos sus datos en el formulario para su modificacion o eliminacion
+if (!isset($_POST["idEliminarRecurso"])) {
+    if (isset($_POST["rutaRecurso"])) {
+        $rutaRecurso = $_POST["rutaRecurso"];}
+    if (isset($_POST["recursoSeleccionado"])) {
+        $recursoSeleccionado = $_POST["recursoSeleccionado"];
+    }
+} else{
+    
 }
 //si seleccionamos usuario, mostramos sus datos en el formulario para su modificacion o eliminacion
 if (isset($_POST["usuarioSeleccionado"])) {
@@ -237,7 +241,7 @@ if (isset($_POST["recursoCrear"])) {
         } else if ($tipoNew == "Evento_imagen") {
           $_FILES['imagenNew']['name']=$tipoEVENTO .$nombreNew."_".$anyoNew.".jpg";
             $nombreNuevo = $_FILES['imagenNew']['name'];
-            $rutaNew = '../imagenes/imagenesEventos/' . $nombreNuevo;
+            $rutaNew = './imagenes/imagenesEventos/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../imagenes/imagenesEventos/' . $nombreNuevo);
 
@@ -245,7 +249,7 @@ if (isset($_POST["recursoCrear"])) {
         } else if ($tipoNew == "Boceto_imagen") {
           $_FILES['imagenNew']['name']=$tipoBOCETO .$nombreNew."_".$anyoNew.".jpg";
             $nombreNuevo = $_FILES['imagenNew']['name'];
-            $rutaNew = '../imagenes/Bocetos/' . $nombreNuevo;
+            $rutaNew = './imagenes/Bocetos/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../imagenes/Bocetos/' . $nombreNuevo);
 
@@ -253,7 +257,7 @@ if (isset($_POST["recursoCrear"])) {
         } else if ($tipoNew == "Premio_imagen") {
           $_FILES['imagenNew']['name']=$tipoPREMIO .$nombreNew."_".$anyoNew.".jpg";
             $nombreNuevo = $_FILES['imagenNew']['name'];
-            $rutaNew = '../llibrets/' . $nombreNuevo;
+            $rutaNew = './imagenes/Premios/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../imagenes/Premios/' . $nombreNuevo);
         } else if ($tipoNew == "pdf_llibret") {
@@ -545,6 +549,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
         echo '</form>';}
     if (isset($recursoSeleccionado) && isset($rutaRecurso)) {
+        var_dump($rutaRecurso);
         $datosRecurso = new CrudRecurso();
         $recurso = $datosRecurso->datosRecurso($recursoSeleccionado);
         $nombre = $recurso->get_rec_nombre();
@@ -592,7 +597,7 @@ if ($_SESSION["nivel"] == 1) {
        // echo '<input type="text" class="form-control" id="eliminar"  placeholder="' . $nombre . ' ' . $anyo . '">';
         //echo '<input type=hidden name="idEliminarRecurso" value="' . $idEliminarRecurso . '">';
        // echo '</div>';
-        echo '<button name="idEliminarRecurso" value="' . $idEliminarRecurso . ' type="submit" class="btn m-1 mx-5  btn-danger">Eliminar</button>';
+        echo "<button name='idEliminarRecurso' value='$idEliminarRecurso'type='submit' class='btn m-1 mx-5  btn-danger'>Eliminar</button>";
         echo '</form>';
         echo '</div>';
     } else {

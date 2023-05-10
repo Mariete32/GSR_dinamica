@@ -165,6 +165,34 @@ public function nombresRecursos($tipoRecurso)
         }
        
     }
+//funcion que muestra las fotos de los premios en cards
+public function cardsPremios()
+{
+    $conexion = database::conexion();
+    $consulta = "SELECT * FROM `recurso` WHERE `rec_tipo`='Premio_imagen' ORDER BY `rec_anyo` DESC";
+    $consultaPreparada = $conexion->prepare($consulta);
+    $consultaPreparada->execute();
+    $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($resultado as $value) {
+        $id = $value['rec_id'];
+        $nombre = $value['rec_nombre'];
+        $anyo = $value['rec_anyo'];
+        $tipo = $value['rec_tipo'];
+        $url = $value['rec_url'];
+        $url = "../$url";
+        echo '<div class=" col-lg-3 col-md-4 col-sm-12">';
+        echo '   <div class="card m-auto mt-4" style="width: 14rem; ">';
+        echo '   <div style=" height: 370px;">';
+        echo "<img src='$url' class='card-img-top mh-100' alt='...'>";
+        echo '</div>';
+        echo ' <div class="card-body">'; 
+        echo "   <h5 class=' card-title text-center'>$nombre $anyo</h5>";
+echo '</div>';
+echo ' </div>';
+echo '  </div>';
+    }
+   
+}
 
 //funcion que muestra los llibrets
 public function listadoLLibret()

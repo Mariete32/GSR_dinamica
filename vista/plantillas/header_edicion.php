@@ -36,7 +36,7 @@ require_once "../modelo/classes/usuarios.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="anos_historia.js"></script>
   <link rel="stylesheet" href="../estilos.css">
-  <link rel="stylesheet" href="../login.css">
+  <link rel="stylesheet" href="../estilos2.css">
   <title>GSR</title>
 </head>
 
