@@ -34,7 +34,7 @@ require_once "./modelo/classes/usuarios.php";
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="anos_historia.js"></script>
-  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="estilazos.css">
   <link rel="stylesheet" href="estilos2.css">
   <title>GSR</title>
 </head>
@@ -82,7 +82,7 @@ require_once "./modelo/classes/usuarios.php";
       </div>
     </div>
     <?php
-    echo "<div $conectado><div class='container'>  <nav class='navbar navbar-expand-lg navbar-light' >";
+    echo "<div $conectado><div class='container'>  <nav class='p-0 navbar navbar-expand-lg navbar-light' >";
     ?>
       <div class="container-fluid ">
         <a class="navbar-brand " href="index.php">INICIO</a>
@@ -184,7 +184,7 @@ require_once "./modelo/classes/usuarios.php";
         <img src="./imagenes/Instagram_icon.png.webp" class="rrss" alt="">
       </a>
     </div>
-    <a class="mx-5 link-dark nav-link" href="aviso_legal.html">Aviso legal</a>
+    <a class="mx-5 link-dark nav-link active" href="aviso_legal.html">Aviso legal</a>
 
   </footer>
 

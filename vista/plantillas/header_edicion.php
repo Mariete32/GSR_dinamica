@@ -35,7 +35,7 @@ require_once "../modelo/classes/usuarios.php";
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="anos_historia.js"></script>
-  <link rel="stylesheet" href="../estilos.css">
+  <link rel="stylesheet" href="../estilazos.css">
   <link rel="stylesheet" href="../estilos2.css">
   <title>GSR</title>
 </head>
@@ -83,7 +83,7 @@ require_once "../modelo/classes/usuarios.php";
       </div>
     </div>
     <?php
-    echo "<div $conectado><div class='container'>  <nav class='navbar navbar-expand-lg navbar-light' >";
+    echo "<div $conectado><div class='container'>  <nav class='p-0 navbar navbar-expand-sm navbar-light' >";
     ?>
       <div class="container-fluid ">
         <a class="navbar-brand " href="../index.php">INICIO</a>
@@ -94,54 +94,54 @@ require_once "../modelo/classes/usuarios.php";
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="historia.php">Historia</a>
+              <a class="nav-link active " aria-current="page" href="historia.php">Historia</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="premios.php">Premios</a>
+              <a class="nav-link active " aria-current="page" href="premios.php">Premios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="eventos.php">Eventos</a>
+              <a class="nav-link active " aria-current="page" href="eventos.php">Eventos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="falleras_majores.php">Falleras mayores</a>
+              <a class="nav-link active " aria-current="page" href="falleras_majores.php">Falleras mayores</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="presidentes.php">Presidentes</a>
+              <a class="nav-link active " aria-current="page" href="presidentes.php">Presidentes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="monumentos.php">Fallas</a>
+              <a class="nav-link active " aria-current="page" href="monumentos.php">Fallas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="libros.php">Llibrets</a>
+              <a class="nav-link active " aria-current="page" href="libros.php">Llibrets</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="directiva.php">Junta directiva</a>
+              <a class="nav-link active " aria-current="page" href="directiva.php">Junta directiva</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="imagenes.php">Himno</a>
+              <a class="nav-link active " aria-current="page" href="imagenes.php">Himno</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="cuotas.php">Cuotas</a>
+              <a class="nav-link active " aria-current="page" href="cuotas.php">Cuotas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="contacto.php">Contacto</a>
+              <a class="nav-link active " aria-current="page" href="contacto.php">Contacto</a>
             </li>
 
             <?php
             // cambiamos el icono de login por el de logout y editar con se esta logueado
             if (isset($_SESSION["usuario"])) {
                 echo '<li class="nav-item">';
-                echo '<a class="nav-link active" aria-current="page" href="edicion.php"><img src="..//imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+                echo '<a class="nav-link active " aria-current="page" href="edicion.php"><img src="..//imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
                 echo '</a>';
                 echo ' </li>';
                 echo '<li class="nav-item">';
-                echo '<a class="nav-link active" aria-current="page" href="logout.php"><img src="..//imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+                echo '<a class="nav-link active " aria-current="page" href="logout.php"><img src="..//imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
                 echo '</a>';
                 echo ' </li>';
 
             } else {
                 echo '<li class="nav-item">';
-                echo '<a class="nav-link active" aria-current="page" href="login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">';
+                echo '<a class="nav-link active " aria-current="page" href="login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">';
                 echo '<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>';
                 echo '<path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>';
                 echo '<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>';

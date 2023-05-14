@@ -49,23 +49,39 @@ if (isset($_POST["anyos"])) {
 }
 //si seleccionamos directivo, mostramos sus datos en el formulario para su modificacion o eliminacion
 if (isset($_POST["directivo"])) {
-    $idDirectivo = $_POST["directivo"];}
+    $idDirectivo = $_POST["directivo"];
+}
+
+//si seleccionamos evento, mostramos sus datos en el formulario para su modificacion o eliminacion
 if (isset($_POST["eve_id"])) {
     $eve_id = $_POST["eve_id"];
+    ?><script>window.addEventListener('load', function() {
+        scrollEvento(); // Llamada a la función después del evento load
+      });</script><?php
 }
-//si seleccionamos premio, mostramos sus datos en el formulario para su modificacion o eliminacion
+//si seleccionamos recurso, mostramos sus datos en el formulario para su modificacion o eliminacion
 if (!isset($_POST["idEliminarRecurso"])) {
     if (isset($_POST["rutaRecurso"])) {
-        $rutaRecurso = $_POST["rutaRecurso"];}
+        $rutaRecurso = $_POST["rutaRecurso"];
+        ?><script>window.addEventListener('load', function() {
+            scrollRecurso(); // Llamada a la función después del evento load
+          });</script><?php
+    }
     if (isset($_POST["recursoSeleccionado"])) {
         $recursoSeleccionado = $_POST["recursoSeleccionado"];
+        ?><script>window.addEventListener('load', function() {
+            scrollRecurso(); // Llamada a la función después del evento load
+          });</script><?php
     }
-} else{
     
-}
+} 
 //si seleccionamos usuario, mostramos sus datos en el formulario para su modificacion o eliminacion
 if (isset($_POST["usuarioSeleccionado"])) {
-    $usuarioSeleccionado = $_POST["usuarioSeleccionado"];}
+    $usuarioSeleccionado = $_POST["usuarioSeleccionado"];
+    ?><script>window.addEventListener('load', function() {
+        scrollUsuario(); // Llamada a la función después del evento load
+      });</script><?php
+}
 
 //----------------JUNTA DIRECTIVA--------------
 //si seleccionamos eliminar desde el formulario, eliminamos el directivo en la BBDD
@@ -283,16 +299,16 @@ if ($_SESSION["nivel"] == 1) {
     //..............JUNTA DIRECTIVA..................
     //
     //formulario de Seleccion de fallera para insertar los datos en el formulario de modificar
-    echo '<p class="mt-2"><strong> GESTION DE JUNTA DIRECTIVA</strong></p>';
+    echo '<p class="mt-4"><strong> GESTION DE JUNTA DIRECTIVA</strong></p>';
     echo '<div class="container">';
     echo '<div class="row col-12">';
-    echo ' <form action=edicion.php method=POST class= "mt-4 col-lg-2 col-md-4 col-sm-12">';
+    echo ' <form action=edicion.php method=POST class= "mt-4 col-lg-2 border border-dark col-md-4 col-sm-12">';
     $directivo = new CrudDirectiva();
     $directivo->anyos();
     echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
     echo '</form>';
     if (isset($anyos)) {
-        echo ' <form action=edicion.php method=POST class= "mt-4 col-lg-2 col-md-4 col-sm-12">';
+        echo ' <form action=edicion.php method=POST class= "border border-dark mt-4 col-lg-2 col-md-4 col-sm-12">';
         $directivos = $directivo->nombresDirectivos($anyos);
         echo '<input type=hidden name="anyos" value="' . $anyos . '">';
         echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
@@ -307,7 +323,7 @@ if ($_SESSION["nivel"] == 1) {
         $cargoID = $datosDirectivo->get_jun_cargo_id();
         $idEliminar = $idDirectivo;
         $idModificar = $idDirectivo;
-        echo '<form action=edicion.php method=POST class= "mt-4 border col-lg-8 col-md-8 col-sm-12">';
+        echo '<form action=edicion.php method=POST class= "mt-4 border border-dark col-lg-8 col-md-8 col-sm-12">';
         echo '<div class="row">';
         echo '<div class="form-group mt-2 col-lg-6 col-md-6 col-sm-12">';
         echo '<label for="nombre"><strong>Nombre</strong></label>';
@@ -360,7 +376,8 @@ if ($_SESSION["nivel"] == 1) {
 
     } else {
         // Formulario de crear un directivo
-        echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class="mt-4 border col-lg-8 col-md-8 col-sm-12">';
+        echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class="mt-4 border border-dark
+  col-lg-8 col-md-8 col-sm-12">';
         echo '<div class="row ">';
         echo '<div class="form-group mt-2 col-lg-6 col-md-6 col-sm-12">';
         echo '<label for="nombre"><strong>Nombre</strong></label>';
@@ -384,7 +401,7 @@ if ($_SESSION["nivel"] == 1) {
         $listaCargos = new CrudCargos();
         $listaCargos->listadoCargos();
         echo '</div>';
-        echo '<div class="form-group mt-2 col-lg-4 col-md-6 col-sm-12">';
+        echo '<div class="form-group  mt-2 col-lg-4 col-md-6 col-sm-12">';
         echo '<label for="Urlimg"><strong>Selecciona ruta imagen</strong></label>';
         echo "<select id='Urlimg'class='form-select form-select-sm' name='Urlimg' >";
         echo "<option > Selecciona...</option>";
@@ -408,13 +425,13 @@ if ($_SESSION["nivel"] == 1) {
     echo '<div class="container">';
     echo '<div class="row col-12">';
     echo '<div class="row col-lg-3 col-md-3 col-sm-12">';
-    echo ' <form action=edicion.php method=POST class="mt-4 col-12">';
+    echo ' <form action=edicion.php method=POST class="border border-dark mt-4 col-12">';
     $eventos = new CrudEventos();
     $eventos->nombresEventos();
     echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
     echo '</form>';
     echo '</form>';
-    echo ' <form action=inscritos.php method=POST class="mt-4 col-12">';
+    echo ' <form action=inscritos.php method=POST class="border border-dark mt-4 col-12">';
     $eventos = new CrudEventos();
     $eventos->nombresEventosSuscripcion();
     echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
@@ -435,7 +452,8 @@ if ($_SESSION["nivel"] == 1) {
         $idEliminarEvento = $eve_id;
         $idModificarEvento = $eve_id;
         echo '<div class="row col-lg-9 col-md-9 col-sm-12">';
-        echo ' <form action=edicion.php method=POST class="m-4 border ">';
+        echo ' <form action=edicion.php method=POST class="m-4 border border-dark
+ ">';
         echo '<div class="row ">';
         echo '<div class="form-group mt-2 col-lg-4 col-md-6 col-sm-12">';
         echo '<label for="Titulo"><strong>Titulo</strong></label>';
@@ -479,7 +497,8 @@ if ($_SESSION["nivel"] == 1) {
     } else {
         //formulario de crear nuevo evento
         echo '<div class="row col-lg-9 col-md-9 col-sm-12">';
-        echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class="col-12 mt-4 border ">';
+        echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class="col-12 mt-4 border border-dark
+ ">';
         echo '<div class="row ">';
         echo '<div class="form-group mt-2 col-lg-4 col-md-6 col-sm-12">';
         echo '<label for="Titulo"><strong>Titulo</strong></label>';
@@ -533,7 +552,7 @@ if ($_SESSION["nivel"] == 1) {
     echo '<p class="mt-5"><strong> GESTION DE ARCHIVOS</strong></p>';
     echo '<div class="container">';
     echo '<div class="row col-12">';
-    echo ' <form action=edicion.php method=POST class="mt-4 col-lg-3 col-md-3 col-sm-12">';
+    echo ' <form action=edicion.php method=POST class="border border-dark mt-4 col-lg-3 col-md-3 col-sm-12">';
     echo '<label class="fw-bold" for="rutaRecurso">Selecciona fichero</label>';
     echo "<select id='rutaRecurso'class='form-select form-select-md' name='rutaRecurso' >";
     echo "<option selected disabled value=''> Selecciona...</option>";
@@ -543,7 +562,7 @@ if ($_SESSION["nivel"] == 1) {
     echo '</form>';
     //con la ruta del recurso tenemos que hacer otro select con los recursos de esa ruta
     if (isset($rutaRecurso)) {
-        echo ' <form action=edicion.php method=POST class= "mt-4 col-lg-2 col-md-2 col-sm-12">';
+        echo ' <form action=edicion.php method=POST class= "border border-dark mt-4 col-lg-2 col-md-2 col-sm-12">';
         $recursos = $recurso->nombresRecursos($rutaRecurso);
         echo '<input type=hidden name="rutaRecurso" value="' . $rutaRecurso . '">';
         echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
@@ -559,7 +578,7 @@ if ($_SESSION["nivel"] == 1) {
         $idEliminarRecurso = $recursoSeleccionado;
         $idModificarRecurso = $recursoSeleccionado;
         echo '<div class="row col-lg-7 col-md-7 col-sm-12">';
-        echo ' <form action=edicion.php method=POST class="mt-4 border ">';
+        echo ' <form action=edicion.php method=POST class="mt-4 border border-dark">';
         echo '<div class="row ">';
         echo '<div class="form-group mt-2 col-lg-4 col-md-4 col-sm-12">';
         echo '<label class="fw-bold" for="nombre">Nombre</label>';
@@ -603,7 +622,7 @@ if ($_SESSION["nivel"] == 1) {
     } else {
         //formulario de crear nuevo recuso
         echo '<div class="row col-lg-7 col-md-7 col-sm-12">';
-        echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class="mt-4  border ">';
+        echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class="mt-4  border border-dark">';
         echo '<div class="row ">';
         echo '<div class="form-group mt-2 col-lg-6 col-md-6 col-sm-12">';
         echo '<label class="fw-bold" for="nombre">Nombre</label>';
@@ -643,7 +662,7 @@ if ($_SESSION["nivel"] == 1) {
     echo '<p class="mt-5"><strong> GESTION DE USUARIOS</strong></p>';
     echo '<div class="container">';
     echo '<div class="row">';
-    echo ' <form action=edicion.php method=POST class="mt-4 col-lg-2 col-md-4 col-sm-12">';
+    echo ' <form action=edicion.php method=POST class="border border-dark mt-4 col-lg-2 col-md-4 col-sm-12">';
     $usuarios = new CrudUsuario();
     $usuarios->nombresUsuarios();
     echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
@@ -657,7 +676,7 @@ if ($_SESSION["nivel"] == 1) {
         $idEliminarUsuario = $usuarioSeleccionado;
         $idModificarUsuario = $usuarioSeleccionado;
         echo '<div class="row col-lg-10 col-md-10 col-sm-12">';
-        echo ' <form action=edicion.php method=POST class="mt-4 border ">';
+        echo ' <form action=edicion.php method=POST class="mt-4 border border-dark">';
         echo '<div class="row ">';
         echo '<div class="form-group mt-2 col-lg-3 col-md-3 col-sm-12">';
         echo '<label class="fw-bold" for="login">Login</label>';
@@ -689,7 +708,7 @@ if ($_SESSION["nivel"] == 1) {
     } else {
         //formulario de crear nuevo usuario
         echo '<div class="row col-lg-10 col-md-10 col-sm-12">';
-        echo ' <form action=edicion.php method=POST class=" mt-4 border ">';
+        echo ' <form action=edicion.php method=POST class=" mt-4 border border-dark">';
         echo '<div class="row ">';
         echo '<div class="form-group mt-2 col-lg-3 col-md-3 col-sm-12">';
         echo '<label class="fw-bold" for="login">Login</label>';
@@ -726,13 +745,13 @@ if ($_SESSION["nivel"] == 2) {
     echo '<div class="container">';
     echo '<div class="row col-12">';
     echo '<div class="row col-lg-3 col-md-3 col-sm-12">';
-    echo ' <form action=edicion.php method=POST class="mt-4 col-12">';
+    echo ' <form action=edicion.php method=POST class="border border-dark mt-4 col-12">';
     $eventos = new CrudEventos();
     $eventos->nombresEventos();
     echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
     echo '</form>';
     echo '</form>';
-    echo ' <form action=inscritos.php method=POST class="mt-4 col-12">';
+    echo ' <form action=inscritos.php method=POST class="border border-dark mt-4 col-12">';
     $eventos = new CrudEventos();
     $eventos->nombresEventosSuscripcion();
     echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
@@ -753,7 +772,7 @@ if ($_SESSION["nivel"] == 2) {
         $idEliminarEvento = $eve_id;
         $idModificarEvento = $eve_id;
         echo '<div class="row col-lg-9 col-md-9 col-sm-12">';
-        echo ' <form action=edicion.php method=POST class="m-4 border ">';
+        echo ' <form action=edicion.php method=POST class="m-4 border border-dark">';
         echo '<div class="row ">';
         echo '<div class="form-group mt-2 col-lg-4 col-md-6 col-sm-12">';
         echo '<label for="Titulo"><strong>Titulo</strong></label>';
@@ -797,7 +816,7 @@ if ($_SESSION["nivel"] == 2) {
     } else {
         //formulario de crear nuevo evento
         echo '<div class="row col-lg-9 col-md-9 col-sm-12">';
-        echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class="col-12 mt-4 border ">';
+        echo ' <form action=edicion.php method=POST enctype="multipart/form-data" class="col-12 mt-4 border border-dark">';
         echo '<div class="row ">';
         echo '<div class="form-group mt-2 col-lg-4 col-md-6 col-sm-12">';
         echo '<label for="Titulo"><strong>Titulo</strong></label>';

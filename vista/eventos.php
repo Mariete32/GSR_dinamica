@@ -35,7 +35,7 @@ require_once './plantillas/header.php';
   <div class="container">
     <div class="row col-lg-12">
       <!-- action="https://formsubmit.co/d551e9122ec63de4621fdfbe72141e52" -->
-      <form class="row g-3 mb-3" action=eventos.php  method="POST">
+      <form class="row g-3 mb-3 border-dark" action=eventos.php  method="POST">
         <?php
         $eventos->eventosSuscripcion()
         ?>

@@ -126,3 +126,9 @@ html {
   .button1:hover {
     background-color: #5f5f9c;
   }
+  .navbar .nav-item:hover {
+    background-color: #f8f9fa;
+  }
+  .navbar .nav-item:hover .nav-link {
+    color: #007bff;
+  }

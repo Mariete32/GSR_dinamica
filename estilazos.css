@@ -5,6 +5,10 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ .navbar .nav-item:hover {
+  background-color: #989cab;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -6293,8 +6297,8 @@ fieldset:disabled .btn {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
 }
 
 .navbar > .container,
@@ -14693,4 +14697,4 @@ fieldset:disabled .btn {
     display: none !important;
   }
 }
-/*# sourceMappingURL=estilos.css.map */
+/*# sourceMappingURL=estilazos.css.map */

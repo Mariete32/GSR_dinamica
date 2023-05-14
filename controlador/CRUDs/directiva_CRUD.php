@@ -16,8 +16,27 @@ class CrudDirectiva
         $consultaPreparada->execute();
         $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
         $presidenteInfantil = "";
-        $falleraMayorInfantil = "";
         $presidente = "";
+        $secretario = "";
+        $vicesecretario = "";
+        $vicepresidente1 = "";
+        $vicepresidente2 = "";
+        $vicepresidente3 = "";
+        $vicepresidente4 = "";
+        $tesorero = "";
+        $contador = "";
+        $vicecontador = "";
+        $festejos = "";
+        $diversas = "";
+        $eventos = "";
+        $protocolo = "";
+        $deportes = "";
+        $bar = "";
+        $casal = "";
+        $infantiles = "";
+        $bibliotecario = "";
+        $falleraMayor = "";
+        $falleraMayorInfantil = "";
         foreach ($resultado as $value) {
             $nombre = $value['jun_nombre'];
             $apellidos = $value['jun_apellidos'];
@@ -48,18 +67,18 @@ class CrudDirectiva
             if ($id == 22) {$presidenteInfantil = $nombre . " " . $apellidos;}
         }
         echo '<div class="table-responsive m-3">';
-        echo '<table class=" mx-auto col-12 table table-striped table-hover">';
-        echo '<thead>';
+        echo '<table class=" mx-auto col-12 table table-striped table-bordered table-striped btn-azulclarosombra table-hover">';
+        echo '<thead class="border-2">';
         echo '    <tr>';
-        echo "        <th class='text-center'>Presidente</th>";
-        echo "       <th class='text-center'>Presidente infantil</th>";
-        echo "       <th class='text-center'>Fallera mayor</th>";
-        echo "      <th class='text-center'>Fallera mayor infantil</th>";
+        echo "        <th class='text-center border-2'>Presidente</th>";
+        echo "       <th class='text-center border-2'>Presidente infantil</th>";
+        echo "       <th class='text-center border-2'>Fallera mayor</th>";
+        echo "      <th class='text-center border-2'>Fallera mayor infantil</th>";
         echo '   </tr>';
         echo '</thead>';
         echo '<tbody>';
         echo '    <tr>';
-        echo "       <td class='text-center'>$presidente</td>";
+        echo "       <td class='text-center border-2'>$presidente</td>";
         echo "       <td class='text-center'>$presidenteInfantil</td>";
         echo "       <td class='text-center'>$falleraMayor</td>";
         echo "       <td class='text-center'>$falleraMayorInfantil</td>";
