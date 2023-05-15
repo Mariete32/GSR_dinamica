@@ -34,16 +34,16 @@ require_once "./modelo/classes/usuarios.php";
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="anos_historia.js"></script>
-  <link active rel="stylesheet" href="estilazos.css">
-  <link active rel="stylesheet" href="footer.css">
-  <link active rel="stylesheet" href="estilos2.css">
-
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link active rel="stylesheet" href="./estilazos.css">
+  <link active rel="stylesheet" href="./footer.css">
+  <link active rel="stylesheet" href="./login.css">
 
   <title>GSR</title>
 </head>
 
 <body style='background-image: linear-gradient(180deg, rgba(255, 221, 144, 0.01), #ffe6c9 85%), radial-gradient(ellipse at top left, rgba(255, 129, 129, 0.5), transparent 50%), radial-gradient(ellipse at top right, rgba(255, 155, 79, 0.5), transparent 50%), radial-gradient(ellipse at center right, rgba(182, 197, 253, 0.5), transparent 50%), radial-gradient(ellipse at center left, rgba(253, 182, 200, 0.5), transparent 50%);'>
-<main>
+
 
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v14.0"
@@ -161,6 +161,7 @@ if (isset($_SESSION["usuario"])) {
     </div>
     </div>
     </header>
+    <main>
   <div class="container ">
     <div class="row col-12 mt-2 ">
       <div class="col-lg-10 col-md-10 col-sm-12 ">
@@ -173,41 +174,15 @@ if (isset($_SESSION["usuario"])) {
       </aside>
     </div>
   </div>
-</main>
-  <footer class="btn-plata footer">
 
-<div class="container">
-<div class="row col-12">
-    <div class="wrapper justify-content-center col-10">
 
-        <div class="icono facebook">
-           <span class="span"><a class="ri-facebook-fill" href="https://www.facebook.com/guillemsorolla/"></a></span>
-        </div>
-
-        <div class="icono instagram">
-           <span class="span"><a class="ri-instagram-line" href="https://www.instagram.com/fallaguillemsorolla_recaredo/"></a></span>
-        </div>
-
-        <div class="icono twitter">
-           <span class="span"><a class="ri-twitter-fill" href="https://twitter.com/fguillemsor_rec"></a></span>
-        </div>
-
-        <div class="icono youtube">
-           <span class="span"><a class="ri-youtube-fill" href="https://www.youtube.com/@fallaguillemsorolla-recare8971/featured"></a></span>
-        </div>
-      </div>
-
-      <div class="col-2 d-flex flex-row justify-content-end p-1">
-       <a class=" link-dark nav-link" href="aviso_legal.html">Aviso legal</a>
-      </div>
-    </div>
-    </div>
-  </footer>
+<?php
+require_once './vista/plantillas/footer.php';
+?>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous">
-  </script>
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

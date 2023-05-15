@@ -30,7 +30,6 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
         $_SESSION["usuario"] = $_POST["usuario"];
         $_SESSION["nivel"] = $rol;
         $conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'" : 'btn-azulclaro';
-        var_dump($conectado);
 
         //si marca recordar credenciales, almacenamos el ID en la coockie
     }
@@ -308,7 +307,7 @@ if ($_SESSION["nivel"] == 1) {
     echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
     echo '</form>';
     if (isset($anyos)) {
-        echo ' <form action=edicion.php method=POST class= "border border-dark mt-4 col-lg-2 col-md-4 col-sm-12">';
+        echo ' <form action=edicion.php method=POST class= "border btn-azulclaro border-dark mt-4 col-lg-2 col-md-4 col-sm-12">';
         $directivos = $directivo->nombresDirectivos($anyos);
         echo '<input type=hidden name="anyos" value="' . $anyos . '">';
         echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
@@ -323,7 +322,7 @@ if ($_SESSION["nivel"] == 1) {
         $cargoID = $datosDirectivo->get_jun_cargo_id();
         $idEliminar = $idDirectivo;
         $idModificar = $idDirectivo;
-        echo '<form action=edicion.php method=POST class= "mt-4 border border-dark col-lg-8 col-md-8 col-sm-12">';
+        echo '<form action=edicion.php method=POST class= "mt-4 btn-azulclaro border border-dark col-lg-8 col-md-8 col-sm-12">';
         echo '<div class="row">';
         echo '<div class="form-group mt-2 col-lg-6 col-md-6 col-sm-12">';
         echo '<label for="nombre"><strong>Nombre</strong></label>';
@@ -452,7 +451,7 @@ if ($_SESSION["nivel"] == 1) {
         $idEliminarEvento = $eve_id;
         $idModificarEvento = $eve_id;
         echo '<div class="row col-lg-9 col-md-9 col-sm-12">';
-        echo ' <form action=edicion.php method=POST class="m-4 border border-dark
+        echo ' <form action=edicion.php method=POST class="m-4 btn-azulclaro border border-dark
  ">';
         echo '<div class="row ">';
         echo '<div class="form-group mt-2 col-lg-4 col-md-6 col-sm-12">';
@@ -562,13 +561,12 @@ if ($_SESSION["nivel"] == 1) {
     echo '</form>';
     //con la ruta del recurso tenemos que hacer otro select con los recursos de esa ruta
     if (isset($rutaRecurso)) {
-        echo ' <form action=edicion.php method=POST class= "border border-dark mt-4 col-lg-2 col-md-2 col-sm-12">';
+        echo ' <form action=edicion.php method=POST class= "border border-dark btn-azulclaro mt-4 col-lg-2 col-md-2 col-sm-12">';
         $recursos = $recurso->nombresRecursos($rutaRecurso);
         echo '<input type=hidden name="rutaRecurso" value="' . $rutaRecurso . '">';
         echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
         echo '</form>';}
     if (isset($recursoSeleccionado) && isset($rutaRecurso)) {
-        var_dump($rutaRecurso);
         $datosRecurso = new CrudRecurso();
         $recurso = $datosRecurso->datosRecurso($recursoSeleccionado);
         $nombre = $recurso->get_rec_nombre();
@@ -578,7 +576,7 @@ if ($_SESSION["nivel"] == 1) {
         $idEliminarRecurso = $recursoSeleccionado;
         $idModificarRecurso = $recursoSeleccionado;
         echo '<div class="row col-lg-7 col-md-7 col-sm-12">';
-        echo ' <form action=edicion.php method=POST class="mt-4 border border-dark">';
+        echo ' <form action=edicion.php method=POST class="mt-4 btn-azulclaro border border-dark">';
         echo '<div class="row ">';
         echo '<div class="form-group mt-2 col-lg-4 col-md-4 col-sm-12">';
         echo '<label class="fw-bold" for="nombre">Nombre</label>';
@@ -676,7 +674,7 @@ if ($_SESSION["nivel"] == 1) {
         $idEliminarUsuario = $usuarioSeleccionado;
         $idModificarUsuario = $usuarioSeleccionado;
         echo '<div class="row col-lg-10 col-md-10 col-sm-12">';
-        echo ' <form action=edicion.php method=POST class="mt-4 border border-dark">';
+        echo ' <form action=edicion.php method=POST class="mt-4 btn-azulclaro border border-dark">';
         echo '<div class="row ">';
         echo '<div class="form-group mt-2 col-lg-3 col-md-3 col-sm-12">';
         echo '<label class="fw-bold" for="login">Login</label>';
@@ -772,7 +770,7 @@ if ($_SESSION["nivel"] == 2) {
         $idEliminarEvento = $eve_id;
         $idModificarEvento = $eve_id;
         echo '<div class="row col-lg-9 col-md-9 col-sm-12">';
-        echo ' <form action=edicion.php method=POST class="m-4 border border-dark">';
+        echo ' <form action=edicion.php method=POST class="m-4 btn-azulclaro border border-dark">';
         echo '<div class="row ">';
         echo '<div class="form-group mt-2 col-lg-4 col-md-6 col-sm-12">';
         echo '<label for="Titulo"><strong>Titulo</strong></label>';

@@ -123,7 +123,7 @@ public function nombresRecursos($tipoRecurso)
                 
                 echo "   <h5 class=' card-title text-center'>Fallera mayor $anyo</h5>";
             } else {
-                echo "   <h5 class=' card-title text-center'>Fallera mayor infantil $anyo</h5>";
+                echo "   <h5 class=' card-title text-center'>FM infantil $anyo</h5>";
             }
     echo '</div>';
     echo ' </div>';
@@ -155,9 +155,9 @@ public function nombresRecursos($tipoRecurso)
             echo ' <div class="card-body">';
             if ($tipo=="P_imagen") {
                 
-                echo "   <h4 class=' card-title text-center'>Presidente $anyo</h4>";
+                echo "   <h5 class=' card-title text-center'>Presidente $anyo</h5>";
             } else {
-                echo "   <h4 class=' card-title text-center'>Presidente infantil $anyo</h4>";
+                echo "   <h5 class=' card-title text-center'>Presidente infantil $anyo</h5>";
             }
     echo '</div>';
     echo ' </div>';
@@ -186,7 +186,7 @@ public function cardsPremios()
         echo "<img src='$url' class='card-img-top mh-100' alt='...'>";
         echo '</div>';
         echo ' <div class="card-body">'; 
-        echo "   <h5 class=' card-title text-center'>$nombre $anyo</h5>";
+        echo "   <h5 class=' card-title text-center'>$anyo</h5>";
 echo '</div>';
 echo ' </div>';
 echo '  </div>';

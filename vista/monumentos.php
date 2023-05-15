@@ -31,25 +31,25 @@ require_once './plantillas/header.php';
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <h5>1912</h5>
-                      <img src="imagenes/bocetos/1912.jpg" class="d-block " alt="1912">
+                      <img src="../imagenes/bocetos/1912.jpg" class="d-block " alt="1912">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1913</h5>
-                      <img src="imagenes/bocetos/1913.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1913.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1915</h5>
-                      <img src="imagenes/bocetos/1915.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1915.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1916</h5>
-                      <img src="imagenes/bocetos/1916.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1916.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
@@ -106,43 +106,43 @@ require_once './plantillas/header.php';
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <h5>1921</h5>
-                      <img src="imagenes/bocetos/1921.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1921.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1922</h5>
-                      <img src="imagenes/bocetos/1922.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1922.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1925</h5>
-                      <img src="imagenes/bocetos/1925.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1925.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1926</h5>
-                      <img src="imagenes/bocetos/1926.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1926.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1927</h5>
-                      <img src="imagenes/bocetos/1927.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1927.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1928</h5>
-                      <img src="imagenes/bocetos/1928.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1928.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1929</h5>
-                      <img src="imagenes/bocetos/1929.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1929.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
@@ -193,25 +193,25 @@ require_once './plantillas/header.php';
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <h5>1930</h5>
-                      <img src="imagenes/bocetos/1930.jpg" class="d-block col-6" alt="...">
+                      <img src="../imagenes/bocetos/1930.jpg" class="d-block col-6" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1931</h5>
-                      <img src="imagenes/bocetos/1931.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1931.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1933</h5>
-                      <img src="imagenes/bocetos/1933.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1933.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1934</h5>
-                      <img src="imagenes/bocetos/1934.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1934.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
@@ -259,13 +259,13 @@ require_once './plantillas/header.php';
                     <div class="carousel-item active">
                       
                       <h5>1942</h5>
-                      <img src="imagenes/bocetos/1942.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1942.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                       <div class="carousel-item">
                       <h5>1944</h5>
-                      <img src="imagenes/bocetos/1944.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1944.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
@@ -329,61 +329,61 @@ require_once './plantillas/header.php';
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <h5>1950</h5>
-                      <img src="imagenes/bocetos/1950.jpg" class="d-block col-6" alt="...">
+                      <img src="../imagenes/bocetos/1950.jpg" class="d-block col-6" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1951</h5>
-                      <img src="imagenes/bocetos/1951.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1951.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1952</h5>
-                      <img src="imagenes/bocetos/1952.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1952.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1953</h5>
-                      <img src="imagenes/bocetos/1953.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1953.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1954</h5>
-                      <img src="imagenes/bocetos/1954.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1954.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1955</h5>
-                      <img src="imagenes/bocetos/1955.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1955.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1956</h5>
-                      <img src="imagenes/bocetos/1956.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1956.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1957</h5>
-                      <img src="imagenes/bocetos/1957.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1957.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1958</h5>
-                      <img src="imagenes/bocetos/1958.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1958.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1959</h5>
-                      <img src="imagenes/bocetos/1959.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1959.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
@@ -444,55 +444,55 @@ require_once './plantillas/header.php';
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <h5>1960</h5>
-                      <img src="imagenes/bocetos/1960.jpg" class="d-block col-6" alt="...">
+                      <img src="../imagenes/bocetos/1960.jpg" class="d-block col-6" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1961</h5>
-                      <img src="imagenes/bocetos/1961.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1961.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1962</h5>
-                      <img src="imagenes/bocetos/1962.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1962.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1963</h5>
-                      <img src="imagenes/bocetos/1963.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1963.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1964</h5>
-                      <img src="imagenes/bocetos/1964.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1964.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1965</h5>
-                      <img src="imagenes/bocetos/1965.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1965.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1966</h5>
-                      <img src="imagenes/bocetos/1966.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1966.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1967</h5>
-                      <img src="imagenes/bocetos/1967.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1967.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1968</h5>
-                      <img src="imagenes/bocetos/1968.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1968.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
@@ -552,49 +552,49 @@ require_once './plantillas/header.php';
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <h5>1972</h5>
-                      <img src="imagenes/bocetos/1972.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1972.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1973</h5>
-                      <img src="imagenes/bocetos/1973.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1973.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1974</h5>
-                      <img src="imagenes/bocetos/1974.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1974.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1975</h5>
-                      <img src="imagenes/bocetos/1975.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1975.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1976</h5>
-                      <img src="imagenes/bocetos/1976.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1976.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1977</h5>
-                      <img src="imagenes/bocetos/1977.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1977.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1978</h5>
-                      <img src="imagenes/bocetos/1978.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1978.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1979</h5>
-                      <img src="imagenes/bocetos/1979.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1979.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
@@ -661,69 +661,69 @@ require_once './plantillas/header.php';
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <h5>1980-1989</h5>
-                      <img src="imagenes/bocetos/1980.jpg" class="d-block col-6" alt="...">
+                      <img src="../imagenes/bocetos/1980.jpg" class="d-block col-6" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                         <h5>1980</h5>
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1981</h5>
-                      <img src="imagenes/bocetos/1981.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1981.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
 
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1982</h5>
-                      <img src="imagenes/bocetos/1982.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1982.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1983</h5>
-                      <img src="imagenes/bocetos/1983.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1983.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1984</h5>
-                      <img src="imagenes/bocetos/1984.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1984.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1985</h5>
-                      <img src="imagenes/bocetos/1985.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1985.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1986</h5>
-                      <img src="imagenes/bocetos/1986.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1986.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1987</h5>
-                      <img src="imagenes/bocetos/1987.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1987.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1988</h5>
-                      <img src="imagenes/bocetos/1988.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1988.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1988</h5>
-                      <img src="imagenes/bocetos/1988-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1988-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1989</h5>
-                      <img src="imagenes/bocetos/1989.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1989.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
@@ -786,61 +786,61 @@ require_once './plantillas/header.php';
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <h5>1990</h5>
-                      <img src="imagenes/bocetos/1990.jpg" class="d-block col-6" alt="...">
+                      <img src="../imagenes/bocetos/1990.jpg" class="d-block col-6" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1991</h5>
-                      <img src="imagenes/bocetos/1991.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1991.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1992</h5>
-                      <img src="imagenes/bocetos/1992.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1992.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1993</h5>
-                      <img src="imagenes/bocetos/1993.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1993.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1994</h5>
-                      <img src="imagenes/bocetos/1994.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1994.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1995</h5>
-                      <img src="imagenes/bocetos/1995.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1995.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1996</h5>
-                      <img src="imagenes/bocetos/1996.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1996.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1997</h5>
-                      <img src="imagenes/bocetos/1997.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1997.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1998</h5>
-                      <img src="imagenes/bocetos/1998.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1998.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>1999</h5>
-                      <img src="imagenes/bocetos/1999.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/1999.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
@@ -909,79 +909,79 @@ require_once './plantillas/header.php';
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <h5>2000</h5>
-                      <img src="imagenes/bocetos/2000.jpg" class="d-block col-6" alt="...">
+                      <img src="../imagenes/bocetos/2000.jpg" class="d-block col-6" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2001</h5>
-                      <img src="imagenes/bocetos/2001.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2001.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2002</h5>
-                      <img src="imagenes/bocetos/2002.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2002.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2003</h5>
-                      <img src="imagenes/bocetos/2003.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2003.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2004</h5>
-                      <img src="imagenes/bocetos/2004.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2004.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2005</h5>
-                      <img src="imagenes/bocetos/2005.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2005.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2006</h5>
-                      <img src="imagenes/bocetos/2006.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2006.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2007</h5>
-                      <img src="imagenes/bocetos/2007.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2007.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2007 infantil</h5>
-                      <img src="imagenes/bocetos/2007-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2007-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2008</h5>
-                      <img src="imagenes/bocetos/2008.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2008.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2008 infantil</h5>
-                      <img src="imagenes/bocetos/2008-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2008-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2009</h5>
-                      <img src="imagenes/bocetos/2009.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2009.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2009 infantil</h5>
-                      <img src="imagenes/bocetos/2009-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2009-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
@@ -1063,121 +1063,121 @@ require_once './plantillas/header.php';
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <h5>2010</h5>
-                      <img src="imagenes/bocetos/2010.jpg" class="d-block col-6" alt="...">
+                      <img src="../imagenes/bocetos/2010.jpg" class="d-block col-6" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2010 infantil</h5>
-                      <img src="imagenes/bocetos/2010-i.jpg" class="d-block col-6" alt="...">
+                      <img src="../imagenes/bocetos/2010-i.jpg" class="d-block col-6" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2011</h5>
-                      <img src="imagenes/bocetos/2011.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2011.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2011 infantil</h5>
-                      <img src="imagenes/bocetos/2011-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2011-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2012</h5>
-                      <img src="imagenes/bocetos/2012.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2012.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2012 infantil</h5>
-                      <img src="imagenes/bocetos/2012-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2012-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2013</h5>
-                      <img src="imagenes/bocetos/2013.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2013.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2013 infantil</h5>
-                      <img src="imagenes/bocetos/2013-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2013-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2014</h5>
-                      <img src="imagenes/bocetos/2014.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2014.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2014 infantil</h5>
-                      <img src="imagenes/bocetos/2014-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2014-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2015</h5>
-                      <img src="imagenes/bocetos/2015.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2015.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2015 infantil</h5>
-                      <img src="imagenes/bocetos/2015-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2015-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2016</h5>
-                      <img src="imagenes/bocetos/2016.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2016.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2016 infantil</h5>
-                      <img src="imagenes/bocetos/2016-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2016-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2017</h5>
-                      <img src="imagenes/bocetos/2017.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2017.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2017 infantil</h5>
-                      <img src="imagenes/bocetos/2017-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2017-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2018</h5>
-                      <img src="imagenes/bocetos/2018.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2018.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2018 infantil</h5>
-                      <img src="imagenes/bocetos/2018-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2018-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2019</h5>
-                      <img src="imagenes/bocetos/2019.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2019.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2019 infantil</h5>
-                      <img src="imagenes/bocetos/2019-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2019-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
@@ -1227,25 +1227,25 @@ require_once './plantillas/header.php';
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <h5>2021</h5>
-                      <img src="imagenes/bocetos/2021.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2021.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2021 infantil</h5>
-                      <img src="imagenes/bocetos/2021-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2021-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2022</h5>
-                      <img src="imagenes/bocetos/2022.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2022.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>
                     <div class="carousel-item">
                       <h5>2022 infantil</h5>
-                      <img src="imagenes/bocetos/2022-i.jpg" class="d-block " alt="...">
+                      <img src="../imagenes/bocetos/2022-i.jpg" class="d-block " alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
                     </div>

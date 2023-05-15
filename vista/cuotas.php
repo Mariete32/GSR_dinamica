@@ -9,8 +9,8 @@ require_once './plantillas/header.php';
       <table class="table">
         <thead>
           <tr>
-            <th scope="col"></th>
-            <th class="text-center display-5" scope="col">CUOTAS 22/23</th>
+            <th class="text-center h3" scope="col">EDAD</th>
+            <th class="text-center h3" scope="col">CUOTAS 22/23</th>
           </tr>
         </thead>
         <tbody>

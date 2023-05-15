@@ -30,15 +30,13 @@ public function mapCuotas()
         if ($id==16) {
             $titulo = "Niños 16-18 años";
         }
-        if ($id==18) {
-            $titulo = "Mujeres";
-        }if ($id==17) {
-            $titulo = "Hombres";
+        if ($id==17) {
+            $titulo = "Adultos";
         }
         $precio = $value['cuota_precio'];
-        echo "<tr>";
-        echo "   <th class='text-center display-5' scope='row'>$titulo</th>";
-        echo "    <td class='text-center display-5'>$precio €</td>";
+        echo "<tr class='border border-bottom border-dark'>";
+        echo "   <th class='text-center h2' scope='row'>$titulo</th>";
+        echo "    <td class='text-center h2'>$precio €</td>";
         echo "  </tr>";
     }
     echo "</select>";

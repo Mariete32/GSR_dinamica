@@ -85,7 +85,7 @@ require_once "../modelo/classes/usuarios.php";*/
       </div>
     </div>
     <?php
-    echo "<div  $conectado><div class='container '>  <nav class='navbar  p-0 navbar-expand-sm navbar-light' >";
+    echo "<div  $conectado><div class='container '>  <nav class='navbar p-0 navbar-expand-sm navbar-light' >";
     ?>
       <div class="container-fluid ">
         <a class="navbar-brand " href="../index.php">INICIO</a>
