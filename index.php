@@ -34,13 +34,16 @@ require_once "./modelo/classes/usuarios.php";
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="anos_historia.js"></script>
-  <link rel="stylesheet" href="estilazos.css">
-  <link rel="stylesheet" href="estilos2.css">
+  <link active rel="stylesheet" href="estilazos.css">
+  <link active rel="stylesheet" href="footer.css">
+  <link active rel="stylesheet" href="estilos2.css">
+
+
   <title>GSR</title>
 </head>
 
 <body style='background-image: linear-gradient(180deg, rgba(255, 221, 144, 0.01), #ffe6c9 85%), radial-gradient(ellipse at top left, rgba(255, 129, 129, 0.5), transparent 50%), radial-gradient(ellipse at top right, rgba(255, 155, 79, 0.5), transparent 50%), radial-gradient(ellipse at center right, rgba(182, 197, 253, 0.5), transparent 50%), radial-gradient(ellipse at center left, rgba(253, 182, 200, 0.5), transparent 50%);'>
-
+<main>
 
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v14.0"
@@ -82,8 +85,8 @@ require_once "./modelo/classes/usuarios.php";
       </div>
     </div>
     <?php
-    echo "<div $conectado><div class='container'>  <nav class='p-0 navbar navbar-expand-lg navbar-light' >";
-    ?>
+echo "<div $conectado><div class='container'>  <nav class='p-0 navbar navbar-expand-lg navbar-light' >";
+?>
       <div class="container-fluid ">
         <a class="navbar-brand " href="index.php">INICIO</a>
         <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -91,64 +94,64 @@ require_once "./modelo/classes/usuarios.php";
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
-          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav mx-5 mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./vista/historia.php">Historia</a>
+              <a class="nav-link my-2 active" aria-current="page" href="./vista/historia.php">Historia</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./vista/premios.php">Premios</a>
+              <a class="nav-link my-2 active" aria-current="page" href="./vista/premios.php">Premios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./vista/eventos.php">Eventos</a>
+              <a class="nav-link my-2 active" aria-current="page" href="./vista/eventos.php">Eventos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./vista/falleras_majores.php">Falleras mayores</a>
+              <a class="nav-link my-2 active" aria-current="page" href="./vista/falleras_majores.php">Falleras mayores</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./vista/presidentes.php">Presidentes</a>
+              <a class="nav-link my-2 active" aria-current="page" href="./vista/presidentes.php">Presidentes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./vista/monumentos.php">Fallas</a>
+              <a class="nav-link my-2 active" aria-current="page" href="./vista/monumentos.php">Fallas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./vista/libros.php">Llibrets</a>
+              <a class="nav-link my-2 active" aria-current="page" href="./vista/libros.php">Llibrets</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./vista/directiva.php">Junta directiva</a>
+              <a class="nav-link my-2 active" aria-current="page" href="./vista/directiva.php">Junta directiva</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./vista/imagenes.php">Himno</a>
+              <a class="nav-link my-2 active" aria-current="page" href="./vista/imagenes.php">Himno</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./vista/cuotas.php">Cuotas</a>
+              <a class="nav-link my-2 active" aria-current="page" href="./vista/cuotas.php">Cuotas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./vista/contacto.php">Contacto</a>
+              <a class="nav-link my-2 active" aria-current="page" href="./vista/contacto.php">Contacto</a>
             </li>
 
             <?php
-            // cambiamos el icono de login por el de logout y editar con se esta logueado
-            if (isset($_SESSION["usuario"])) {
-                echo '<li class="nav-item">';
-                echo '<a class="nav-link active" aria-current="page" href="./vista/edicion.php"><img src="./imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
-                echo '</a>';
-                echo ' </li>';
-                echo '<li class="nav-item">';
-                echo '<a class="nav-link active" aria-current="page" href="./vista/logout.php"><img src="./imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
-                echo '</a>';
-                echo ' </li>';
+// cambiamos el icono de login por el de logout y editar con se esta logueado
+if (isset($_SESSION["usuario"])) {
+    echo '<li class="nav-item">';
+    echo '<a class="nav-link my-2 active" aria-current="page" href="./vista/edicion.php"><img src="./imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+    echo '</a>';
+    echo ' </li>';
+    echo '<li class="nav-item">';
+    echo '<a class="nav-link my-2 active" aria-current="page" href="./vista/logout.php"><img src="./imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+    echo '</a>';
+    echo ' </li>';
 
-            } else {
-                echo '<li class="nav-item">';
-                echo '<a class="nav-link active" aria-current="page" href="./vista/login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">';
-                echo '<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>';
-                echo '<path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>';
-                echo '<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>';
-                echo '</svg>';
-                echo '</a>';
-                echo ' </li>';
-            }
-            ?>
+} else {
+    echo '<li class="nav-item">';
+    echo '<a class="nav-link my-2 active" aria-current="page" href="./vista/login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">';
+    echo '<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>';
+    echo '<path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>';
+    echo '<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>';
+    echo '</svg>';
+    echo '</a>';
+    echo ' </li>';
+}
+?>
               </li>
             </li>
           </ul>
@@ -170,22 +173,35 @@ require_once "./modelo/classes/usuarios.php";
       </aside>
     </div>
   </div>
+</main>
+  <footer class="btn-plata footer">
 
-<footer class="btn-plata footer">
-    <div class="text-center">
-      <p class="">Síguenos en: </p>
-      <a class="mx-2 link-light" href="https://www.facebook.com/guillemsorolla/">
-        <img src="./imagenes/_facebook.png" class="rrss" alt="">
-      </a>
-      <a class="mx-2 link-light" href="https://twitter.com/fguillemsor_rec">
-        <img src="./imagenes/_twitter.png" class="rrss" alt="">
-      </a>
-      <a class="mx-2 link-light" href="https://www.instagram.com/fallaguillemsorolla_recaredo/">
-        <img src="./imagenes/Instagram_icon.png.webp" class="rrss" alt="">
-      </a>
+<div class="container">
+<div class="row col-12">
+    <div class="wrapper justify-content-center col-10">
+
+        <div class="icono facebook">
+           <span class="span"><a class="ri-facebook-fill" href="https://www.facebook.com/guillemsorolla/"></a></span>
+        </div>
+
+        <div class="icono instagram">
+           <span class="span"><a class="ri-instagram-line" href="https://www.instagram.com/fallaguillemsorolla_recaredo/"></a></span>
+        </div>
+
+        <div class="icono twitter">
+           <span class="span"><a class="ri-twitter-fill" href="https://twitter.com/fguillemsor_rec"></a></span>
+        </div>
+
+        <div class="icono youtube">
+           <span class="span"><a class="ri-youtube-fill" href="https://www.youtube.com/@fallaguillemsorolla-recare8971/featured"></a></span>
+        </div>
+      </div>
+
+      <div class="col-2 d-flex flex-row justify-content-end p-1">
+       <a class=" link-dark nav-link" href="aviso_legal.html">Aviso legal</a>
+      </div>
     </div>
-    <a class="mx-5 link-dark nav-link active" href="aviso_legal.html">Aviso legal</a>
-
+    </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
