@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;" : "style='background-color: #e3f2fd;'";
+$conectado = (isset($_SESSION["usuario"])) ? "style='background-color: #9cfbb6;'" : "style='background-color: #e3f2fd;'";
 /*require_once "../controlador/BBDD/database.php";
 require_once "../controlador/CRUDs/directiva_CRUD.php";
 require_once "../controlador/CRUDs/eventos_CRUD.php";
