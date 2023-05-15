@@ -11,7 +11,12 @@ class CrudDirectiva
     public function directivosActuales()
     {
         $conexion = database::conexion();
-        $consulta = "SELECT directiva.jun_nombre, directiva.jun_apellidos, directiva.jun_anyo, cargos.car_tipo, cargos.car_id FROM directiva JOIN cargos ON directiva.`jun_cargo_id` = cargos.car_id ORDER BY directiva.jun_anyo DESC LIMIT 22";
+        $consulta = "SELECT d.jun_nombre, d.jun_apellidos, d.jun_anyo, c.car_tipo, c.car_id 
+        FROM directiva d 
+        INNER JOIN cargos c ON d.jun_cargo_id = c.car_id 
+        WHERE d.jun_anyo = (SELECT MAX(jun_anyo) FROM directiva) 
+        ORDER BY d.jun_anyo 
+        DESC LIMIT 22"; //La cláusula WHERE filtra los registros en función de la condición especificada. En este caso, se seleccionarán solo aquellos registros en los que el valor de jun_anyo en la tabla directiva sea igual al máximo valor de jun_anyo en la misma tabla. Esto asegura que solo se tomen los registros correspondientes al año más alto.
         $consultaPreparada = $conexion->prepare($consulta);
         $consultaPreparada->execute();
         $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
@@ -66,8 +71,9 @@ class CrudDirectiva
             if ($id == 21) {$falleraMayorInfantil = $nombre . " " . $apellidos;}
             if ($id == 22) {$presidenteInfantil = $nombre . " " . $apellidos;}
         }
+        echo '<p class="text-center mt-3"><strong>PRESIDENCIA</strong></p>';
         echo '<div class="table-responsive m-3">';
-        echo '<table class=" mx-auto col-12 table table-striped table-bordered table-striped btn-azulclarosombra table-hover">';
+        echo '<table class=" mx-auto col-12 table table-striped table-bordered border-dark table-striped table-hover">';
         echo '<thead class="border-2">';
         echo '    <tr>';
         echo "        <th class='text-center border-2'>Presidente</th>";
@@ -79,9 +85,9 @@ class CrudDirectiva
         echo '<tbody>';
         echo '    <tr>';
         echo "       <td class='text-center border-2'>$presidente</td>";
-        echo "       <td class='text-center'>$presidenteInfantil</td>";
-        echo "       <td class='text-center'>$falleraMayor</td>";
-        echo "       <td class='text-center'>$falleraMayorInfantil</td>";
+        echo "       <td class='text-center border-2'>$presidenteInfantil</td>";
+        echo "       <td class='text-center border-2'>$falleraMayor</td>";
+        echo "       <td class='text-center border-2'>$falleraMayorInfantil</td>";
         echo '   </tr>';
         echo '</tbody>';
         echo '</table>';
@@ -89,34 +95,34 @@ class CrudDirectiva
 
         echo '<p class="text-center mt-3"><strong>ADMINSITRACIÓN</strong></p>';
         echo '<div class="table-responsive m-3">';
-        echo '<table class="mx-auto col-12 table table-striped table-hover">';
+        echo '<table class="mx-auto col-12 table table-striped table-hover table-bordered border-dark">';
         echo '<thead>';
         echo '    <tr>';
-        echo "        <th class='text-center'>Secretario/a</th>";
-        echo "        <th class='text-center'>Vicepresidente/a</th>";
-        echo "        <th class='text-center'>Vicepresidente/a 1</th>";
-        echo "        <th class='text-center'>Vicepresidente/a 2</th>";
-        echo "        <th class='text-center'>Vicepresidente/a 3</th>";
-        echo "        <th class='text-center'>Vicepresidente/a 4</th>";
-        echo "        <th class='text-center'>Tesorero/a</th>";
-        echo "        <th class='text-center'>Contador/a</th>";
-        echo "        <th class='text-center'>Vicecontador/a</th>";
-        echo "        <th class='text-center'>Bibliotecario/a</th>";
+        echo "        <th class='text-center border-2'>Secretario/a</th>";
+        echo "        <th class='text-center border-2'>Vicepresidente/a</th>";
+        echo "        <th class='text-center border-2'>Vicepresidente/a 1</th>";
+        echo "        <th class='text-center border-2'>Vicepresidente/a 2</th>";
+        echo "        <th class='text-center border-2'>Vicepresidente/a 3</th>";
+        echo "        <th class='text-center border-2'>Vicepresidente/a 4</th>";
+        echo "        <th class='text-center border-2'>Tesorero/a</th>";
+        echo "        <th class='text-center border-2'>Contador/a</th>";
+        echo "        <th class='text-center border-2'>Vicecontador/a</th>";
+        echo "        <th class='text-center border-2'>Bibliotecario/a</th>";
 
         echo '   </tr>';
         echo '</thead>';
         echo '<tbody>';
         echo '    <tr>';
-        echo "       <td class='text-center'>$secretario</td>";
-        echo "       <td class='text-center'>$vicesecretario</td>";
-        echo "       <td class='text-center'>$vicepresidente1</td>";
-        echo "       <td class='text-center'>$vicepresidente2</td>";
-        echo "       <td class='text-center'>$vicepresidente3</td>";
-        echo "       <td class='text-center'>$vicepresidente4</td>";
-        echo "       <td class='text-center'>$tesorero</td>";
-        echo "       <td class='text-center'>$contador</td>";
-        echo "       <td class='text-center'>$vicecontador</td>";
-        echo "       <td class='text-center'>$bibliotecario</td>";
+        echo "       <td class='text-center border-2'>$secretario</td>";
+        echo "       <td class='text-center border-2'>$vicesecretario</td>";
+        echo "       <td class='text-center border-2'>$vicepresidente1</td>";
+        echo "       <td class='text-center border-2'>$vicepresidente2</td>";
+        echo "       <td class='text-center border-2'>$vicepresidente3</td>";
+        echo "       <td class='text-center border-2'>$vicepresidente4</td>";
+        echo "       <td class='text-center border-2'>$tesorero</td>";
+        echo "       <td class='text-center border-2'>$contador</td>";
+        echo "       <td class='text-center border-2'>$vicecontador</td>";
+        echo "       <td class='text-center border-2'>$bibliotecario</td>";
 
         echo '   </tr>';
         echo '</tbody>';
@@ -125,29 +131,29 @@ class CrudDirectiva
 
         echo '<p class="text-center mt-3"><strong>DELEGADOS</strong></p>';
         echo '<div class="table-responsive m-3">';
-        echo '<table class="mx-auto col-12 table table-striped table-hover">';
+        echo '<table class="mx-auto col-12 table table-striped table-hover table-bordered border-dark">';
         echo '<thead>';
         echo '    <tr>';
-        echo "        <th class='text-center'>Festejos</th>";
-        echo "        <th class='text-center'>Actividades diversas</th>";
-        echo "        <th class='text-center'>Eventos</th>";
-        echo "        <th class='text-center'>Protocolo</th>";
-        echo "        <th class='text-center'>Deportes</th>";
-        echo "        <th class='text-center'>Bar</th>";
-        echo "        <th class='text-center'>Casal</th>";
-        echo "        <th class='text-center'>Infantiles</th>";
+        echo "        <th class='text-center border-2'>Festejos</th>";
+        echo "        <th class='text-center border-2'>Actividades diversas</th>";
+        echo "        <th class='text-center border-2'>Eventos</th>";
+        echo "        <th class='text-center border-2'>Protocolo</th>";
+        echo "        <th class='text-center border-2'>Deportes</th>";
+        echo "        <th class='text-center border-2'>Bar</th>";
+        echo "        <th class='text-center border-2'>Casal</th>";
+        echo "        <th class='text-center border-2'>Infantiles</th>";
         echo '   </tr>';
         echo '</thead>';
         echo '<tbody>';
         echo '    <tr>';
-        echo "       <td class='text-center'>$festejos</td>";
-        echo "       <td class='text-center'>$diversas</td>";
-        echo "       <td class='text-center'>$eventos</td>";
-        echo "       <td class='text-center'>$protocolo</td>";
-        echo "       <td class='text-center'>$deportes</td>";
-        echo "       <td class='text-center'>$bar</td>";
-        echo "       <td class='text-center'>$casal</td>";
-        echo "       <td class='text-center'>$infantiles</td>";
+        echo "       <td class='text-center border-2'>$festejos</td>";
+        echo "       <td class='text-center border-2'>$diversas</td>";
+        echo "       <td class='text-center border-2'>$eventos</td>";
+        echo "       <td class='text-center border-2'>$protocolo</td>";
+        echo "       <td class='text-center border-2'>$deportes</td>";
+        echo "       <td class='text-center border-2'>$bar</td>";
+        echo "       <td class='text-center border-2'>$casal</td>";
+        echo "       <td class='text-center border-2'>$infantiles</td>";
         echo '   </tr>';
         echo '</tbody>';
         echo '</table>';
