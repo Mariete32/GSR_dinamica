@@ -16,6 +16,26 @@ if (isset($_POST["Nombre"]) && isset($_POST["Apellidos"])) {
   $crudInscrito->insertarInscrito($inscrito);
   
 }
+//se comprueba recaptcha
+if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
+
+  $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify'; 
+  $recaptcha_secret = '6Le8JBMmAAAAAAz0gOKUDcYeAMcjhH0A4ryzrl7t'; 
+  $recaptcha_response = $_POST['recaptcha_response']; 
+  $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response); 
+  $recaptcha = json_decode($recaptcha); 
+  
+  if($recaptcha->score >= 0.7){
+  
+    // código para procesar los campos y enviar el form
+  
+  } else {
+  
+    // código para lanzar aviso de error en el envío
+  
+  }
+  
+  }
 
 require_once './plantillas/header.php';
 ?>
@@ -55,10 +75,12 @@ require_once './plantillas/header.php';
           <span class="input-group-text">Texto</span>
           <textarea name="Texto" class="form-control" aria-label="With textarea"></textarea>
         </div>
+        <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
 
         <div class="col-12">
           <button class="btn btn-primary" type="submit">Enviar</button>
         </div>
+
       </form>
     </div>
   </div>

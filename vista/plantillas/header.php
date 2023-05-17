@@ -35,6 +35,15 @@ require_once "../modelo/classes/usuarios.php";*/
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="anos_historia.js"></script>
+  <script src='https://www.google.com/recaptcha/api.js?render=6Lf1IxMmAAAAAKQk9zDeJJChjInjij542C1QSVGN'></script>
+<script>
+    grecaptcha.ready(function() {
+    grecaptcha.execute('6Lf1IxMmAAAAAKQk9zDeJJChjInjij542C1QSVGN', {action: 'formulario'})
+    .then(function(token) {
+    var recaptchaResponse = document.getElementById('recaptchaResponse');
+    recaptchaResponse.value = token;
+    });});
+</script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
   <link active rel="stylesheet" href="../estilazos.css">
   <link active rel="stylesheet" href="../login.css">
