@@ -2,6 +2,8 @@
 require_once "./plantillas/require.php";
 require_once './plantillas/header.php';
 ?>
+<div class="container mt-2 mb-2">
+  <div class="row m-auto col-lg-7 col-md-10 col-sm-12">
   <div class="accordion accordion-flush" id="accordionFlushExample">
     <div class="accordion-item">
       <h2 class="accordion-header" id="flush-headingOne">
@@ -15,9 +17,9 @@ require_once './plantillas/header.php';
         <div class="accordion-body">
           <center>
             <div class="container">
-              <div class="row col-lg-8 col-md-10 col-sm-12">
-                <div id="carouselExampleCaptions" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
-                  <div class="carousel-indicators">
+              <div class="row col-lg-12 col-md-12 col-sm-12">
+                <div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-touch="true" data-bs-ride="carousel">
+                  <div class="carousel-indicators ">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
                       aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
@@ -84,8 +86,8 @@ require_once './plantillas/header.php';
         <div class="accordion-body">
           <center>
             <div class="container">
-              <div class="row col-lg-8 col-md-10 col-sm-12">
-                <div id="carouselExampleCaptions1" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
+              <div class="row col-lg-12 col-md-12 col-sm-12">
+                <div id="carouselExampleCaptions1" class="carousel carousel-dark slide" data-bs-touch="true" data-bs-ride="carousel">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="0" class="active"
                       aria-current="true" aria-label="Slide 1"></button>
@@ -177,8 +179,8 @@ require_once './plantillas/header.php';
         <div class="accordion-body">
           <center>
             <div class="container">
-              <div class="row col-lg-8 col-md-10 col-sm-12">
-                <div id="carouselExampleCaptions2" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
+              <div class="row col-lg-12 col-md-12 col-sm-12">
+                <div id="carouselExampleCaptions2" class="carousel carousel-dark slide" data-bs-touch="true" data-bs-ride="carousel">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="0" class="active"
                       aria-current="true" aria-label="Slide 1"></button>
@@ -246,8 +248,8 @@ require_once './plantillas/header.php';
         <div class="accordion-body">
           <center>
             <div class="container">
-              <div class="row col-lg-8 col-md-10 col-sm-12">
-                <div id="carouselExampleCaptions4" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
+              <div class="row col-lg-12 col-md-12 col-sm-12">
+                <div id="carouselExampleCaptions4" class="carousel carousel-dark slide" data-bs-touch="true" data-bs-ride="carousel">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="0" class="active"
                       aria-current="true" aria-label="Slide 1"></button>
@@ -301,8 +303,8 @@ require_once './plantillas/header.php';
         <div class="accordion-body">
           <center>
             <div class="container">
-              <div class="row col-lg-8 col-md-10 col-sm-12">
-                <div id="carouselExampleCaptions5" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
+              <div class="row col-lg-12 col-md-12 col-sm-12">
+                <div id="carouselExampleCaptions5" class="carousel carousel-dark slide" data-bs-touch="true" data-bs-ride="carousel">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions5" data-bs-slide-to="0" class="active"
                       aria-current="true" aria-label="Slide 1"></button>
@@ -418,8 +420,8 @@ require_once './plantillas/header.php';
         <div class="accordion-body">
           <center>
             <div class="container">
-              <div class="row col-lg-8 col-md-10 col-sm-12">
-                <div id="carouselExampleCaptions6" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
+              <div class="row col-lg-12 col-md-12 col-sm-12">
+                <div id="carouselExampleCaptions6" class="carousel carousel-dark slide" data-bs-touch="true" data-bs-ride="carousel">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions6" data-bs-slide-to="0" class="active"
                       aria-current="true" aria-label="Slide 1"></button>
@@ -527,8 +529,8 @@ require_once './plantillas/header.php';
         <div class="accordion-body">
           <center>
             <div class="container">
-              <div class="row col-lg-8 col-md-10 col-sm-12">
-                <div id="carouselExampleCaptions7" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
+              <div class="row col-lg-12 col-md-12 col-sm-12">
+                <div id="carouselExampleCaptions7" class="carousel carousel-dark slide" data-bs-touch="true" data-bs-ride="carousel">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions7" data-bs-slide-to="0" class="active"
                       aria-current="true" aria-label="Slide 1"></button>
@@ -630,8 +632,8 @@ require_once './plantillas/header.php';
         <div class="accordion-body">
           <center>
             <div class="container">
-              <div class="row col-lg-8 col-md-10 col-sm-12">
-                <div id="carouselExampleCaptions8" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
+              <div class="row col-lg-12 col-md-12 col-sm-12">
+                <div id="carouselExampleCaptions8" class="carousel carousel-dark slide" data-bs-touch="true" data-bs-ride="carousel">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions8" data-bs-slide-to="0" class="active"
                       aria-current="true" aria-label="Slide 1"></button>
@@ -758,8 +760,8 @@ require_once './plantillas/header.php';
         <div class="accordion-body">
           <center>
             <div class="container">
-              <div class="row col-lg-8 col-md-10 col-sm-12">
-                <div id="carouselExampleCaptions9" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
+              <div class="row col-lg-12 col-md-12 col-sm-12">
+                <div id="carouselExampleCaptions9" class="carousel carousel-dark slide" data-bs-touch="true" data-bs-ride="carousel">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions9" data-bs-slide-to="0" class="active"
                       aria-current="true" aria-label="Slide 1"></button>
@@ -875,8 +877,8 @@ require_once './plantillas/header.php';
         <div class="accordion-body">
           <center>
             <div class="container">
-              <div class="row col-lg-8 col-md-10 col-sm-12">
-                <div id="carouselExampleCaptions10" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
+              <div class="row col-lg-12 col-md-12 col-sm-12">
+                <div id="carouselExampleCaptions10" class="carousel carousel-dark slide" data-bs-touch="true" data-bs-ride="carousel">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions10" data-bs-slide-to="0"
                       class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -1015,8 +1017,8 @@ require_once './plantillas/header.php';
         <div class="accordion-body">
           <center>
             <div class="container">
-              <div class="row col-lg-8 col-md-10 col-sm-12">
-                <div id="carouselExampleCaptions11" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
+              <div class="row col-lg-12 col-md-12 col-sm-12">
+                <div id="carouselExampleCaptions11" class="carousel carousel-dark slide" data-bs-touch="true" data-bs-ride="carousel">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions11" data-bs-slide-to="0"
                       class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -1211,8 +1213,8 @@ require_once './plantillas/header.php';
         <div class="accordion-body">
           <center>
             <div class="container">
-              <div class="row col-lg-8 col-md-10 col-sm-12">
-                <div id="carouselExampleCaptions12" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
+              <div class="row col-lg-12 col-md-12 col-sm-12">
+                <div id="carouselExampleCaptions12" class="carousel carousel-dark slide" data-bs-touch="true" data-bs-ride="carousel">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions12" data-bs-slide-to="0"
                       class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -1268,7 +1270,8 @@ require_once './plantillas/header.php';
       </div>
     </div>
   </div>
-
+  </div>
+  </div>
   <?php
 require_once './plantillas/footer.php';
 ?>
