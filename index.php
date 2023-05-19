@@ -50,7 +50,7 @@ require_once "./modelo/classes/usuarios.php";
     nonce="IX9rRk67"></script>
   <header>
     <div class="container">
-      <div class="row">
+      <div class="row my-1">
         <div class="align-self-center col-lg-2 col-md-2 col-sm-3 col-3">
           <img src="./imagenes/escudo-falla.png" class="img-fluid rounded float-start"
             alt="falla Guillem Sorolla i Recaredo">
@@ -161,17 +161,18 @@ if (isset($_SESSION["usuario"])) {
     </div>
     </div>
     </header>
-    <main>
+    <main class="my-1">
   <div class="container ">
     <div class="row col-12 mt-2 ">
-      <div class="col-lg-10 col-md-10 col-sm-12 ">
+      <div class="col-lg-12 col-md-12 col-sm-12 ">
         <a class="twitter-timeline" data-height="500"
           href="https://twitter.com/FGuillemSor_Rec?ref_src=twsrc%5Etfw"></a>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </div>
-      <aside class="colaboradores col-lg-2 col-md-2 col-sm-12 btn-plata">
+      <?php /*<aside class="colaboradores col-lg-2 col-md-2 col-sm-12 btn-plata">
         <p>Colaboradores</p>
-      </aside>
+      </aside> */?>
+      
     </div>
   </div>
 

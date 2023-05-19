@@ -50,7 +50,7 @@ require_once "../modelo/classes/usuarios.php";
     nonce="IX9rRk67"></script>
   <header>
     <div class="container">
-      <div class="row">
+      <div class="row my-1">
         <div class="align-self-center col-lg-2 col-md-2 col-sm-3 col-3">
           <img src="../imagenes/escudo-falla.png" class="img-fluid rounded float-start"
             alt="falla Guillem Sorolla i Recaredo">
@@ -161,4 +161,4 @@ require_once "../modelo/classes/usuarios.php";
     </div>
     </div>
     </header>
-    <main >
+    <main class="my-1">

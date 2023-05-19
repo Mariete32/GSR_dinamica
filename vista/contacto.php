@@ -7,19 +7,7 @@ require_once './plantillas/header.php';
 
       <p class="text-center">Email: <strong> fallaguillemsorolla@hotmail.es</strong></p>
       <p class="text-center">Direcció:<strong> Calle en bany 32</strong> </p>
-      <div class="text-center ">
-        <div class="">
-          <a class="m-2 link-light" href="https://www.facebook.com/guillemsorolla/">
-            <img src="..//imagenes/_facebook.png" class="rrss" alt="">
-          </a>
-          <a class="m-2 link-light" href="https://twitter.com/fguillemsor_rec">
-            <img src="../imagenes/_twitter.png" class="rrss" alt="">
-          </a>
-          <a class="m-2 link-light" href="https://www.instagram.com/fallaguillemsorolla_recaredo/">
-            <img src="../imagenes/Instagram_icon.png.webp" class="rrss" alt="">
-          </a>
-        </div>
-      </div>
+      
 
     </div>
   </div>
