@@ -22,7 +22,7 @@ require_once './plantillas/header.php';
     </div>
     <div class="field1">
       <label class="label" for="contraseña">contraseña</label>
-      <input class="input1" name="contraseña" type="contraseña" placeholder="Contraseña" id="contraseña">
+      <input class="input1" name="contraseña" type="password" placeholder="Contraseña" id="contraseña">
     </div>
     <div class="field1">
       <button class="button1">Log in</button>

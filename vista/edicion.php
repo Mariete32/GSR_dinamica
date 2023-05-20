@@ -1,15 +1,7 @@
 <?php
-//require_once "./BBDD/database.php";
-/*require_once "../modelo/classes/usuarios.php";
-require_once "../controlador/CRUDs/directiva_CRUD.php";
-require_once "../controlador/CRUDs/eventos_CRUD.php";
-require_once "../controlador/CRUDs/cargos_CRUD.php";
-require_once "../controlador/CRUDs/recurso_CRUD.php";
-require_once "../controlador/CRUDs/inscritos_CRUD.php";
-require_once "../controlador/CRUDs/usuarios_CRUD.php";*/
 require_once "./plantillas/require.php";
 session_start();
-var_dump($_POST);
+//var_dump($_POST);
 //si los campos estan rellenos
 if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
 
@@ -33,12 +25,6 @@ if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
 
         //si marca recordar credenciales, almacenamos el ID en la coockie
     }
-    //if ($_POST["usuario"] == "admin" || $_POST["usuario"] == "ADMIN") {
-    //guardamos el nivel en la session para que no nos redirija a login si ya hemos iniciado sesion
-    //  $_SESSION["nivel"] = 1;
-    //} else {
-    //  $_SESSION["nivel"] = 2;
-    //}
     //si ya estamos logueados no nos redirije a login.php
 } else if (!isset($_SESSION["nivel"])) {
     header("Location: ./login.php");}
@@ -358,17 +344,9 @@ if ($_SESSION["nivel"] == 1) {
         echo '</div>';
         echo '</div>';
         echo '<div class="form-group mt-2">';
-        //echo '<input type=hidden name="idModificarDirectivo" value="' . $idModificar . '">';
-        //echo '</div>';
         echo '<button type="submit" name="idModificarDirectivo" value="' . $idModificar . '" class="mx-4 my-3 btn btn-septiembre">Modificar</button>';
         echo '<input type=hidden name="anyos" value="' . $anyo . '">';
         echo '<input type=hidden name="directivo" value="' . $idDirectivo . '">';
-        //echo '</form>';
-        //echo '<form action=edicion.php method=POST class= " mt-4 col-lg-2 col-md-4 col-sm-12">';
-        //echo '<div class="form-group mt-2">';
-        //echo '<label for="eliminar">Nombre</label>';
-        //echo '<input type="text" class="form-control " id="eliminar"  placeholder="' . $nombre . ' ' . $apellidos . '">';
-        //echo '<input type=hidden name="idEliminarDirectivo" value="' . $idEliminar . '">';
         echo '<button type="submit" name="idEliminarDirectivo" value="' . $idEliminar . '" class="btn mx-4 my-3 btn-danger">Eliminar</button>';
         echo '</div>';
         echo '</form>';
@@ -539,14 +517,6 @@ if ($_SESSION["nivel"] == 1) {
     //
     //..............RECURSOS..................
     //
-    /*
-    if (isset($rutaRecurso)) {
-    var_dump($rutaRecurso);
-    echo ' <form action=edicion.php method=POST class= "mt-4 col-lg-2 col-md-4 col-sm-12">';
-    $recursos = $recurso->nombresRecursos($rutaRecurso);
-    echo '<button type="submit" class="btn m-1  btn-success">Selecionar</button>';
-    echo '</form>';}
-     */
     //mostramos los formularios para crear, modificar o eliminar recurso
     echo '<p class="mt-5"><strong> GESTION DE ARCHIVOS</strong></p>';
     echo '<div class="container">';
@@ -595,25 +565,10 @@ if ($_SESSION["nivel"] == 1) {
         echo '</div>';
         echo '</div>';
         echo "<input type=hidden name='urlNew' value='$url'>";
-        /*echo '<div class="form-group mt-2">';
-        //mostramos las rutas de todas las imagenes
-        $recurso= new CrudRecurso();
-        $recurso->listadoRecurso();
-        echo '</div>';*/
         echo '<div class="form-group mt-2">';
-        //echo '<input type=hidden name="idModificarRecurso" value="' . $idModificarRecurso . '">';
-       // echo '</div>';
         echo '<input type=hidden name="recursoSeleccionado" value="' . $recursoSeleccionado . '">';
         echo '<input type=hidden name="rutaRecurso" value="' . $rutaRecurso . '">';
         echo "<button name='idModificarRecurso' value=' $idModificarRecurso ' type='submit' class='m-2 btn btn-septiembre'>Modificar</button>";
-
-        //echo '</form>';
-        //echo '<form action=edicion.php method=POST class= "mt-4 col-lg-2 col-md-4 col-sm-12">';
-        //echo '<div class="form-group mt-2">';
-       // echo '<label for="eliminar">Nombre</label>';
-       // echo '<input type="text" class="form-control" id="eliminar"  placeholder="' . $nombre . ' ' . $anyo . '">';
-        //echo '<input type=hidden name="idEliminarRecurso" value="' . $idEliminarRecurso . '">';
-       // echo '</div>';
         echo "<button name='idEliminarRecurso' value='$idEliminarRecurso'type='submit' class='btn m-1 mx-5  btn-danger'>Eliminar</button>";
         echo '</form>';
         echo '</div>';
@@ -690,16 +645,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '</div>';
         echo '</div>';
         echo '<div class="form-group mt-2">';
-        //echo '<input type=hidden name="idModificarUsuario" value="' . $idModificarUsuario . '">';
-        //echo '</div>';
         echo '<button name="idModificarUsuario" value="' . $idModificarUsuario . '" type="submit" class="mx-2 btn btn-septiembre">Modificar</button>';
-        //echo '</form>';
-        //echo '<form action=edicion.php method=POST class= " mt-4 col-lg-2 col-md-4 col-sm-12">';
-        //echo '<div class="form-group mt-2">';
-        //echo '<label for="eliminar">Nombre</label>';
-        //echo '<input type="text" class="form-control" id="eliminar"  placeholder="' . $login . '">';
-        //echo '<input type=hidden name="idEliminarUsuario" value="' . $idEliminarUsuario . '">';
-        //echo '</div>';
         echo '<button name="idEliminarUsuario" value="' . $idEliminarUsuario . '" type="submit" class="btn m-1 mx-5 btn-danger">Eliminar</button>';
         echo '</form>';
         echo '</div>';
