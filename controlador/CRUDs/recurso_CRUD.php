@@ -40,13 +40,15 @@ public function datosRecurso($rec_id){
     public function urlEventos()
     {
         $directorio = "../imagenes/imagenesEventos"; // reemplaza "ruta/a/la/carpeta" con la ruta real de la carpeta que quieres leer
+        $directorio2 = "./imagenes/imagenesEventos"; //ruta para gusrdar en la base de datos
         $archivos = scandir($directorio);
         
         foreach ($archivos as $archivo) {
             // comprueba si el archivo es una imagen
             if (in_array(pathinfo($archivo, PATHINFO_EXTENSION), array('jpg', 'jpeg', 'png', 'gif'))) {
                 $ruta= $directorio . '/' . $archivo ; // imprime la ruta completa del archivo
-                echo "<option value=$ruta>" . $archivo . "</option>";
+                $ruta2= $directorio2 . '/' . $archivo ;//ruta completa para la base de datos
+                echo "<option value=$ruta2>" . $archivo . "</option>";
             }
         }
         echo "</select>";

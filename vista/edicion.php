@@ -1,7 +1,7 @@
 <?php
 require_once "./plantillas/require.php";
 session_start();
-//var_dump($_POST);
+var_dump($_POST);
 //si los campos estan rellenos
 if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
 
@@ -134,7 +134,7 @@ if (isset($_POST["eventoCrear"])) {
     $DescripcionNew = $_POST["DescripcionNew"];
     $fechaNew = $_POST["fechaNew"];
     $Urlimg = $_POST["Urlimg"];
-    if (isset($_POST["fechaLimiteNew"])) {
+    if ($_POST["fechaLimiteNew"]>0) {
         $fechaLimiteNew = $_POST["fechaLimiteNew"];
         $suscripcionNew = 1;
     } else {
@@ -264,7 +264,7 @@ if (isset($_POST["recursoCrear"])) {
         } else if ($tipoNew == "pdf_llibret") {
           //$_FILES['imagenNew']['name']=$_FILES['imagenNew']['name'].$anyoNew.".pdf";
             $nombreNuevo =$tipoLLIBRET. $anyoNew.".pdf";
-            $rutaNew = '../llibrets/' . $nombreNuevo;
+            $rutaNew = './llibrets/' . $nombreNuevo;
             $nombreNew = "llibret";
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../llibrets/' . $nombreNuevo);
@@ -493,7 +493,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '</div>';
         echo '<div class="form-group mt-2 col-lg-4 col-md-6 col-sm-12">';
         echo '<label for="fechaLimite"><strong>Fecha límite de inscripción</strong></label>';
-        echo '<input type="date" class="form-control form-control-sm" id="fechaLimite" name="fechaLimiteNew" placeholder="fechaLimite">';
+        echo '<input type="date" class="form-control form-control-sm" id="fechaLimite" name="fechaLimiteNew" value="null" placeholder="fechaLimite">';
         echo '</div>';
         echo '<div class="form-group mt-2 col-lg-4 col-md-6 col-sm-12">';
         echo '<label for="Urlimg"><strong>Selecciona ruta imagen</strong></label>';
