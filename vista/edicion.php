@@ -215,26 +215,26 @@ if (isset($_POST["recursoCrear"])) {
         if ($tipoNew == "FM_imagen") {
           $_FILES['imagenNew']['name']=$tipoFM .$nombreNew."_".$anyoNew.".jpg";
             $nombreNuevo = $_FILES['imagenNew']['name'];
-            $rutaNew = '../imagenes/directiva/' . $nombreNuevo;
+            $rutaNew = './imagenes/directiva/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../imagenes/directiva/' . $nombreNuevo);
         } else if ($tipoNew == "FMI_imagen") {
           $_FILES['imagenNew']['name']=$tipoFMI .$nombreNew."_".$anyoNew.".jpg";
             $nombreNuevo = $_FILES['imagenNew']['name'];
-            $rutaNew = '../imagenes/directiva/' . $nombreNuevo;
+            $rutaNew = './imagenes/directiva/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../imagenes/directiva/' . $nombreNuevo);
         } else if ($tipoNew == "P_imagen") {
           $_FILES['imagenNew']['name']=$tipoP .$nombreNew."_".$anyoNew.".jpg";
             $nombreNuevo = $_FILES['imagenNew']['name'];
-            $rutaNew = '../imagenes/directiva/' . $nombreNuevo;
+            $rutaNew = './imagenes/directiva/' . $nombreNuevo;
 
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../imagenes/directiva/' . $nombreNuevo);
         } else if ($tipoNew == "PI_imagen") {
           $_FILES['imagenNew']['name']=$tipoPI .$nombreNew."_".$anyoNew.".jpg";
             $nombreNuevo = $_FILES['imagenNew']['name'];
-            $rutaNew = '../imagenes/directiva/' . $nombreNuevo;
+            $rutaNew = './imagenes/directiva/' . $nombreNuevo;
             /*Si el archivo es una imagen válida, puedes moverlo a la carpeta deseada utilizando la función move_uploaded_file:*/
             move_uploaded_file($_FILES['imagenNew']['tmp_name'], '../imagenes/directiva/' . $nombreNuevo);
 
