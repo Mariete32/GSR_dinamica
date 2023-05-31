@@ -16,7 +16,11 @@ class CrudDirectiva
         INNER JOIN cargos c ON d.jun_cargo_id = c.car_id 
         WHERE d.jun_anyo = (SELECT MAX(jun_anyo) FROM directiva) 
         ORDER BY d.jun_anyo 
-        DESC LIMIT 22"; //La cláusula WHERE filtra los registros en función de la condición especificada. En este caso, se seleccionarán solo aquellos registros en los que el valor de jun_anyo en la tabla directiva sea igual al máximo valor de jun_anyo en la misma tabla. Esto asegura que solo se tomen los registros correspondientes al año más alto.
+        DESC LIMIT 22"; 
+        //La cláusula WHERE filtra los registros en función de la condición especificada. 
+        //En este caso, se seleccionarán solo aquellos registros en los que el valor de jun_anyo en la tabla 
+        //directiva sea igual al máximo valor de jun_anyo en la misma tabla. Esto asegura que solo se tomen 
+        //los registros correspondientes al año más alto.
         $consultaPreparada = $conexion->prepare($consulta);
         $consultaPreparada->execute();
         $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);

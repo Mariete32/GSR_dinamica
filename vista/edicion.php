@@ -1,7 +1,7 @@
 <?php
 require_once "./plantillas/require.php";
 session_start();
-var_dump($_POST);
+//var_dump($_POST);
 //si los campos estan rellenos
 if (isset($_POST["usuario"]) && isset($_POST["contraseña"])) {
 
@@ -346,7 +346,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '<div class="form-group mt-2">';
         echo '<button type="submit" name="idModificarDirectivo" value="' . $idModificar . '" class="mx-4 my-3 btn btn-septiembre">Modificar</button>';
         echo '<input type=hidden name="anyos" value="' . $anyo . '">';
-        echo '<input type=hidden name="directivo" value="' . $idDirectivo . '">';
+        //echo '<input type=hidden name="directivo" value="' . $idDirectivo . '">';
         echo '<button type="submit" name="idEliminarDirectivo" value="' . $idEliminar . '" class="btn mx-4 my-3 btn-danger">Eliminar</button>';
         echo '</div>';
         echo '</form>';
@@ -664,7 +664,7 @@ if ($_SESSION["nivel"] == 1) {
         echo '</div>';
         echo '<div class="form-group mt-2 col-lg-6 col-md-6 col-sm-12">';
         echo '<label class="fw-bold" for="rol">Permisos (1=administrador 2=usuario)</label>';
-        echo '<input type="number" class="form-control" id="rol" name="rolNew" placeholder="Rol" required>';
+        echo '<input type="number" class="form-control" min="1" max="2" id="rol" name="rolNew" placeholder="Rol" required>';
         echo '</div>';
         echo '</div>';
         echo '<div class="form-group mt-2">';

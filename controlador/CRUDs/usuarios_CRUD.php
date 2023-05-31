@@ -15,11 +15,19 @@ class CrudUsuario
         $consultaPreparada->bindvalue(":user_password", $password);
         $consultaPreparada->execute();
         $resultado = $consultaPreparada->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($resultado as $fila) {
-            $id = $fila["user_id"];
-            $rol= $fila["user_rol"];
-            $login=$fila["user_login"];
-            $password=$fila["user_password"];
+        if (!empty($resultado)){
+            foreach ($resultado as $fila) {
+                $id = $fila["user_id"];
+                $rol = $fila["user_rol"];
+                $login = $fila["user_login"];
+                $password = $fila["user_password"];
+                $usuario = new Usuario($login, $password, $rol);
+            }
+        }else{
+            $password = 0;
+            $login = 0;
+            $rol = 0;
+            $id = 0;
             $usuario = new Usuario($login, $password, $rol);
         }
         return $usuario;

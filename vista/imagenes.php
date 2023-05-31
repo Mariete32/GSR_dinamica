@@ -4,7 +4,7 @@ require_once './plantillas/header.php';
 ?>
 
   <div class="container">
-    <div class="row wd-80 mt-2 text-center">
+    <div class="row col-lg-8 col-md-12 cols-sm-12 m-auto wd-80 mt-2 text-center">
       <audio class="" src="../documentos/himno.mp3" preload="none" controls>audio</audio>
       <p class="mt-2"><strong>SOM LA FALLA GUILLEM SOROLLA
         SOM UNA FALLA DE GERMANOR
