@@ -93,7 +93,7 @@ require_once "../modelo/classes/usuarios.php";
     echo "<div $conectado><div class='container'>  <nav class='p-0 navbar navbar-expand-sm navbar-light' >";
     ?>
       <div class="container-fluid ">
-        <a class="navbar-brand " href="index.php">INICIO</a>
+        <a class="navbar-brand " href="../index.php">INICIO</a>
         <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
