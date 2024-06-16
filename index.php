@@ -60,6 +60,11 @@ require_once "./modelo/classes/usuarios.php";
           <p class="h3" id="historia"></p>
         </div>
         <div class="align-self-center col-lg-2 col-md-2 col-sm-3 col-3">
+          <img src="./imagenes/escudo-falla.png" class="img-fluid rounded float-start"
+            alt="falla Guillem Sorolla i Recaredo">
+        </div>
+        <!--
+        <div class="align-self-center col-lg-2 col-md-2 col-sm-3 col-3">
           <div class="text-center align-self-bottom">LOTERIA</div>
           <a href="https://www.labrujitagenerosa.es/loteria-empresas-verlot.php?GadMS=1">
             <svg class="align-self-center col-12" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"
@@ -83,6 +88,7 @@ require_once "./modelo/classes/usuarios.php";
           </a>
         </div>
       </div>
+-->
     </div>
     <?php
 echo "<div $conectado><div class='container'>  <nav class='p-0 navbar navbar-expand-lg navbar-light' >";
@@ -96,54 +102,59 @@ echo "<div $conectado><div class='container'>  <nav class='p-0 navbar navbar-exp
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
           <ul class="navbar-nav mx-5 mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link my-2 active" aria-current="page" href="./vista/historia.php">Historia</a>
+              <a class="nav-link my-2 mx-3 active" aria-current="page" href="./vista/historia.php">Historia</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link my-2 active" aria-current="page" href="./vista/premios.php">Premios</a>
+              <a class="nav-link my-2 mx-3 active" aria-current="page" href="./vista/premios.php">Premios</a>
+            </li>
+            <!--
+            <li class="nav-item">
+              <a class="nav-link my-2 mx-3 active" aria-current="page" href="./vista/eventos.php">Eventos</a>
+            </li>
+            -->
+            <li class="nav-item">
+              <a class="nav-link my-2 mx-3 active" aria-current="page" href="./vista/falleras_majores.php">Falleras mayores</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link my-2 active" aria-current="page" href="./vista/eventos.php">Eventos</a>
+              <a class="nav-link my-2 mx-3 active" aria-current="page" href="./vista/presidentes.php">Presidentes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link my-2 active" aria-current="page" href="./vista/falleras_majores.php">Falleras mayores</a>
+              <a class="nav-link my-2 mx-3 active" aria-current="page" href="./vista/monumentos.php">Fallas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link my-2 active" aria-current="page" href="./vista/presidentes.php">Presidentes</a>
+              <a class="nav-link my-2 mx-3 active" aria-current="page" href="./vista/libros.php">Llibrets</a>
+            </li>
+            <!--
+            <li class="nav-item">
+              <a class="nav-link my-2 mx-3 active" aria-current="page" href="./vista/directiva.php">Junta directiva</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link my-2 mx-3 active" aria-current="page" href="./vista/imagenes.php">Himno</a>
+            </li>
+            -->
+            <li class="nav-item">
+              <a class="nav-link my-2 mx-3 active" aria-current="page" href="./vista/cuotas.php">Cuotas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link my-2 active" aria-current="page" href="./vista/monumentos.php">Fallas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link my-2 active" aria-current="page" href="./vista/libros.php">Llibrets</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link my-2 active" aria-current="page" href="./vista/directiva.php">Junta directiva</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link my-2 active" aria-current="page" href="./vista/imagenes.php">Himno</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link my-2 active" aria-current="page" href="./vista/cuotas.php">Cuotas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link my-2 active" aria-current="page" href="./vista/contacto.php">Contacto</a>
+              <a class="nav-link my-2 mx-3 active" aria-current="page" href="./vista/contacto.php">Contacto</a>
             </li>
 
             <?php
 // cambiamos el icono de login por el de logout y editar con se esta logueado
 if (isset($_SESSION["usuario"])) {
     echo '<li class="nav-item">';
-    echo '<a class="nav-link my-2 active" aria-current="page" href="./vista/edicion.php"><img src="./imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+    echo '<a class="nav-link my-2 mx-3 active" aria-current="page" href="./vista/edicion.php"><img src="./imagenes/editar.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
     echo '</a>';
     echo ' </li>';
     echo '<li class="nav-item">';
-    echo '<a class="nav-link my-2 active" aria-current="page" href="./vista/logout.php"><img src="./imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
+    echo '<a class="nav-link my-2 mx-3 active" aria-current="page" href="./vista/logout.php"><img src="./imagenes/log-out-.png" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></img>';
     echo '</a>';
     echo ' </li>';
 
 } else {
     echo '<li class="nav-item">';
-    echo '<a class="nav-link my-2 active" aria-current="page" href="./vista/login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">';
+    echo '<a class="nav-link my-2 mx-3 active" aria-current="page" href="./vista/login.php"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">';
     echo '<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>';
     echo '<path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>';
     echo '<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>';
